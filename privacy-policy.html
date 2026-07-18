@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | Privacy Policy (mockup v1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens (unchanged from v4) ============ */
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,9vh,110px) var(--pad)}
+.eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ header ============ */
+header{
+  position:sticky;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--pad);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(26,0,58,.12);
+}
+.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;background:var(--lime)}
+nav{display:flex;align-items:center;gap:26px}
+nav a.nl{
+  color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
+  border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
+}
+nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
+@media (max-width:900px){nav a.nl{display:none}}
+
+/* ============ buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:12px;padding:15px 24px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;
+}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:var(--ink);color:var(--lime)}
+.btn-sm{padding:10px 16px;font-size:11px}
+
+/* ============ page hero ============ */
+#top{background:var(--white);border-bottom:1px solid rgba(26,0,58,.12)}
+.ph-inner{max-width:1240px;margin:0 auto;padding:clamp(48px,7vh,84px) var(--pad) clamp(32px,5vh,52px)}
+.crumb{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:20px;
+  display:flex;align-items:center;gap:8px;
+}
+h1{font-size:clamp(2.1rem,4.6vw,3.6rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;max-width:760px}
+h1 .lm{background:var(--lime);padding:0 .12em .04em}
+.hero-sub{
+  max-width:600px;margin-top:22px;color:rgba(26,0,58,.72);
+  font-size:clamp(15px,1.35vw,17px);line-height:1.68;
+}
+
+/* facts strip */
+.facts{border-top:1px solid rgba(26,0,58,.12);background:var(--white)}
+.facts ul{
+  max-width:1240px;margin:0 auto;padding:18px var(--pad);
+  display:flex;flex-wrap:wrap;gap:14px 40px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(26,0,58,.62);
+}
+.facts li{display:flex;align-items:center;gap:12px}
+.facts li::before{content:"";width:7px;height:7px;background:var(--lime)}
+
+/* ============ legal document ============ */
+.doc{max-width:800px}
+.doc h2{
+  font-size:1.3rem;font-weight:700;letter-spacing:-.01em;line-height:1.25;
+  margin:46px 0 14px;padding-top:18px;border-top:1px solid rgba(26,0,58,.14);
+}
+.doc h2:first-of-type{margin-top:0;padding-top:0;border-top:none}
+.doc h3{font-size:1.02rem;font-weight:700;margin:24px 0 8px}
+.doc p{font-size:14.5px;line-height:1.75;color:rgba(26,0,58,.8);margin-bottom:12px}
+.doc ul{margin:0 0 14px;display:flex;flex-direction:column;gap:8px}
+.doc ul li{
+  display:grid;grid-template-columns:18px 1fr;gap:10px;
+  font-size:14.5px;line-height:1.7;color:rgba(26,0,58,.8);
+}
+.doc ul li::before{content:"";width:8px;height:8px;background:var(--lime);margin-top:8px}
+.doc a.tx{border-bottom:1px solid rgba(26,0,58,.35);transition:border-color .25s}
+.doc a.tx:hover{border-color:var(--ink)}
+.doc table{
+  width:100%;border-collapse:collapse;margin:14px 0 18px;font-size:13.5px;line-height:1.6;
+}
+.doc th{
+  text-align:left;background:var(--ink);color:#fff;font-weight:500;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:12px 14px;
+}
+.doc td{padding:12px 14px;border:1px solid rgba(26,0,58,.16);color:rgba(26,0,58,.8);vertical-align:top}
+.doc .note{
+  margin:20px 0;background:var(--gray);padding:16px 18px;
+  font-size:13.5px;line-height:1.65;color:rgba(26,0,58,.75);
+  border-left:3px solid var(--lime);
+}
+.cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:28px}
+
+/* ============ footer (v4 recipe) ============ */
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
+footer .logo{color:#fff}
+.fsocial{display:flex;gap:10px;margin-top:22px}
+.fsocial a{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.3);
+  display:grid;place-items:center;transition:border-color .25s,background .25s;
+}
+.fsocial a:hover{border-color:var(--lime);background:var(--lime)}
+.fsocial a svg{width:16px;height:16px;fill:rgba(255,255,255,.75);transition:fill .25s}
+.fsocial a:hover svg{fill:var(--ink)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:18px;
+}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul.two{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 28px}
+.fgrid ul a{font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;transition:color .25s}
+.fgrid ul a:hover{color:var(--lime)}
+.fbottom{
+  max-width:1240px;margin:52px auto 0;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><i></i>DORADO</a>
+  <nav>
+    <a class="nl" href="services.html">Services</a>
+    <a class="nl" href="how-we-operate.html">Process</a>
+    <a class="nl" href="use-cases.html">Use cases</a>
+    <a class="nl" href="pricing.html">Pricing</a>
+    <a class="nl" href="insights.html">Insights</a>
+    <a class="nl" href="partners.html">Partners</a>
+    <a class="nl" href="about.html">About</a>
+    <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= PAGE HERO ================= -->
+<section id="top">
+  <div class="ph-inner">
+    <p class="crumb rv"><a href="index.html">INDEX</a> / PRIVACY POLICY</p>
+    <p class="eyebrow rv">Legal</p>
+    <h1 class="rv">Privacy Policy.</h1>
+    <p class="hero-sub rv">
+      How Dorado LLC collects, uses, and protects personal information across
+      this website and our services, written to be read, not skimmed past.
+    </p>
+  </div>
+</section>
+
+<!-- ================= DOCUMENT ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="doc rv">
+
+      <h2>1. Who we are</h2>
+      <p>Dorado LLC ("Dorado", "we", "us") is a Japan market-entry consulting
+      firm providing research, validation, and advisory services for
+      international companies exploring the Japanese market. Our registered
+      office is at Hamamatsu-cho Dia Building 2F, 2-2-15 Hamamatsu-cho,
+      Minato-ku, Tokyo 105-0013, Japan. For anything in this policy, contact
+      us at <a class="tx" href="mailto:support@dorado-group.jp">support@dorado-group.jp</a>.</p>
+
+      <h2>2. What we collect</h2>
+      <h3>Information you give us directly</h3>
+      <ul>
+        <li>Your name and company affiliation</li>
+        <li>Email address and other contact details you choose to share</li>
+        <li>The contents of messages you send us through contact forms, email,
+        WhatsApp, or LINE</li>
+      </ul>
+      <h3>Information collected automatically</h3>
+      <ul>
+        <li>IP address and approximate geographic location</li>
+        <li>Browser and device specifications</li>
+        <li>Pages visited and navigation patterns on this site</li>
+        <li>Referral source (how you arrived here)</li>
+      </ul>
+      <p>Automatic collection happens through cookies and similar technologies
+      managed via Google Tag Manager. See our
+      <a class="tx" href="cookie-policy.html">Cookie Policy</a> for details and
+      choices.</p>
+
+      <h2>3. How we use your information</h2>
+      <ul>
+        <li>Responding to your inquiries</li>
+        <li>Evaluating whether our services fit your situation, and scoping a
+        potential engagement</li>
+        <li>Follow-up communications you would reasonably expect</li>
+        <li>Managing contacts and enquiries via our CRM</li>
+        <li>Site analytics and improvement</li>
+        <li>Fraud prevention, security, and compliance with legal obligations</li>
+      </ul>
+
+      <h2>4. Sharing and vendors</h2>
+      <p>We do not sell your personal information. We do not share your
+      personal information with third parties for their own marketing
+      purposes.</p>
+      <p>We use a small number of service providers who process data on our
+      behalf under data processing agreements, including: Google LLC
+      (analytics and tag management), HubSpot (CRM), Automattic (website
+      hosting), Meta (WhatsApp communications), LY Corporation (LINE),
+      LinkedIn, X Corp., and YouTube (social and embedded content).</p>
+
+      <h2>5. International transfers</h2>
+      <p>Some of the vendors above operate outside Japan, primarily in the
+      United States and South Korea. Where personal information is transferred
+      internationally, we do so in accordance with Japan's Act on the
+      Protection of Personal Information (APPI). Information about the data
+      protection frameworks of destination countries is available on request.</p>
+
+      <h2>6. Retention</h2>
+      <table>
+        <tr><th>Data</th><th>How long we keep it</th></tr>
+        <tr><td>Inquiry submissions</td><td>Duration of our relationship, plus 3 years</td></tr>
+        <tr><td>CRM records</td><td>Duration of the business relationship, plus a reasonable period</td></tr>
+        <tr><td>Email &amp; messaging history</td><td>Duration of the relationship, plus a reasonable period</td></tr>
+        <tr><td>Analytics data</td><td>Per Google Analytics defaults (26 months at the user level)</td></tr>
+      </table>
+      <p>When data is no longer needed for the purposes above, we delete it or
+      anonymize it.</p>
+
+      <h2>7. Your rights</h2>
+      <p>Subject to applicable legal obligations, you may request:</p>
+      <ul>
+        <li>Confirmation of whether we hold personal information about you,
+        and access to it</li>
+        <li>Correction of inaccurate information</li>
+        <li>Deletion of your information</li>
+        <li>Suspension of use of your information</li>
+      </ul>
+      <p>Send requests to
+      <a class="tx" href="mailto:support@dorado-group.jp">support@dorado-group.jp</a>.
+      We will verify your identity before processing a request.</p>
+
+      <h2>8. Contact and complaints</h2>
+      <p>Questions and complaints about this policy can be directed to
+      <a class="tx" href="mailto:support@dorado-group.jp">support@dorado-group.jp</a>.
+      You may also lodge a complaint with Japan's Personal Information
+      Protection Commission
+      (<a class="tx" href="https://www.ppc.go.jp/" target="_blank" rel="noopener">ppc.go.jp</a>).</p>
+
+      <h2>9. Changes to this policy</h2>
+      <p>We update this policy periodically. Material changes are reflected in
+      the "Last updated" date at the top of this page.</p>
+
+      <h2>Appendix &middot; Japan: additional APPI disclosures</h2>
+      <p>For the purposes of the APPI: the business operator handling personal
+      information is Dorado LLC (address above). Retained personal data is
+      used for the purposes listed in Section 3. Procedures for disclosure,
+      correction, and suspension requests, details of third-party provision to
+      overseas parties, and complaint mechanisms are as described in Sections
+      5, 7, and 8 of this policy.</p>
+
+      <p class="cap">Mockup for direction review, final legal wording to be
+      confirmed before publication.</p>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><i></i>DORADO</a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+      <div class="fsocial">
+        <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@dorado-llc" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul class="two">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-we-operate.html">Process</a></li>
+        <li><a href="use-cases.html">Use cases</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">Grants database</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">Buyers database</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>Privacy policy mockup v1 &middot; for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* single, subtle reveal, nothing else */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

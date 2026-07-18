@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | Japan Market Intelligence &amp; Execution (mockup v4, crafted)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens (unchanged from v3) ============ */
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.mono{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(80px,11vh,140px) var(--pad)}
+.eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+.h2{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:18px 0 14px}
+.lead{max-width:640px;font-size:clamp(15px,1.35vw,17px);line-height:1.68;opacity:.78}
+.cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:20px}
+
+/* one subtle reveal only, no stagger circus */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ header ============ */
+header{
+  position:sticky;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--pad);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(26,0,58,.12);
+}
+.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;background:var(--lime)}
+nav{display:flex;align-items:center;gap:28px}
+nav a.nl{
+  color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
+  border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
+}
+nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
+@media (max-width:900px){nav a.nl{display:none}}
+
+/* ============ buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:12px;padding:15px 24px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;
+}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:var(--ink);color:var(--lime)}
+.btn-ghost{border-color:rgba(26,0,58,.4);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--lime)}
+.btn-ink{background:var(--ink);color:var(--lime)}
+.btn-ink:hover{background:var(--deep)}
+.btn-sm{padding:10px 16px;font-size:11px}
+
+/* ============ screenshot slots ============
+   Drop a real capture in and delete the .ph div:
+   <img src="captures/xxx.png" alt="..."> */
+.shot{margin:0}
+.shot-frame{
+  background:#fff;border:1px solid rgba(26,0,58,.25);
+  box-shadow:10px 10px 0 rgba(26,0,58,.08);
+  overflow:hidden;
+}
+.shot-frame .bar{
+  display:flex;gap:5px;align-items:center;padding:8px 12px;
+  background:var(--gray);border-bottom:1px solid rgba(26,0,58,.15);
+}
+.shot-frame .bar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
+.shot-frame .bar span{
+  margin-left:8px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;
+  color:rgba(26,0,58,.55);letter-spacing:.05em;
+}
+.shot-frame img{display:block;width:100%;height:auto}
+.shot-frame .ph{
+  aspect-ratio:16/10;display:grid;place-items:center;text-align:center;
+  background:
+    repeating-linear-gradient(45deg,rgba(26,0,58,.035) 0 12px,transparent 12px 24px);
+  border:2px dashed rgba(26,0,58,.25);margin:10px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(26,0,58,.45);line-height:2;
+}
+.shot figcaption{
+  margin-top:12px;font-size:13px;line-height:1.6;color:rgba(26,0,58,.6);
+  display:flex;gap:10px;align-items:baseline;
+}
+.shot figcaption::before{content:"";width:16px;height:2px;background:var(--lime);flex:none;transform:translateY(-3px)}
+.shot.tall .ph{aspect-ratio:4/3}
+.shot.doc .ph{aspect-ratio:3/4}
+
+/* ============ hero ============ */
+#hero{background:var(--white);border-bottom:1px solid rgba(26,0,58,.12)}
+.hero-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,80px);
+  align-items:center;padding:clamp(56px,9vh,110px) var(--pad);
+  max-width:1240px;margin:0 auto;
+}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr}}
+h1{font-size:clamp(2.3rem,5vw,4.2rem);font-weight:700;line-height:1.03;letter-spacing:-.03em}
+h1 .lm{background:var(--lime);padding:0 .12em .04em}
+.hero-sub{
+  max-width:540px;margin-top:24px;color:rgba(26,0,58,.72);
+  font-size:clamp(15px,1.35vw,17px);line-height:1.68;
+}
+.hero-ctas{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.hero-shots{position:relative}
+.hero-shots .shot.back{width:78%;margin-left:auto}
+.hero-shots .shot.front{width:70%;margin-top:-16%;position:relative;z-index:2}
+.hero-shots .shot.front .shot-frame{box-shadow:10px 10px 0 var(--lime)}
+@media (max-width:940px){
+  .hero-shots{max-width:560px}
+  .hero-shots .shot.back{width:88%}
+  .hero-shots .shot.front{width:76%}
+}
+
+/* facts strip: static, no marquee */
+.facts{
+  border-top:1px solid rgba(26,0,58,.12);
+  background:var(--white);
+}
+.facts ul{
+  max-width:1240px;margin:0 auto;padding:18px var(--pad);
+  display:flex;flex-wrap:wrap;gap:14px 40px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(26,0,58,.62);
+}
+.facts li{display:flex;align-items:center;gap:12px}
+.facts li::before{content:"";width:7px;height:7px;background:var(--lime)}
+
+/* ============ statement: editorial two-col, no word animation ============ */
+#gap .cols{
+  display:grid;grid-template-columns:1fr 300px;gap:clamp(32px,5vw,72px);
+  align-items:start;margin-top:30px;
+}
+@media (max-width:900px){#gap .cols{grid-template-columns:1fr}}
+#statement{
+  font-size:clamp(1.3rem,2.5vw,2rem);font-weight:500;line-height:1.45;letter-spacing:-.012em;
+}
+#statement em{font-style:normal;box-shadow:inset 0 -0.45em var(--lime)}
+.margin-note{
+  border-top:2px solid var(--ink);padding-top:18px;
+  font-size:14px;line-height:1.7;color:rgba(26,0,58,.7);
+}
+.margin-note b{
+  display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;color:var(--ink);
+}
+.facts-inline{
+  display:flex;gap:clamp(24px,4vw,64px);flex-wrap:wrap;margin-top:56px;
+  border-top:1px solid rgba(26,0,58,.15);padding-top:26px;
+}
+.facts-inline div b{font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:700;letter-spacing:-.02em;display:block;line-height:1}
+.facts-inline div span{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;display:block;margin-top:8px}
+
+/* ============ numbered narrative (matchory-style problem walk) ============ */
+#otherside{background:var(--gray)}
+.narrative{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
+  margin-top:56px;align-items:start;
+}
+@media (max-width:900px){.narrative{grid-template-columns:1fr}}
+.n-steps{display:flex;flex-direction:column}
+.n-step{
+  padding:26px 0;border-top:1px solid rgba(26,0,58,.2);
+  display:grid;grid-template-columns:80px 1fr;gap:18px;
+}
+.n-step:last-child{border-bottom:1px solid rgba(26,0,58,.2)}
+.n-step .no{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.18em;
+  color:var(--deep);text-transform:uppercase;padding-top:4px;
+}
+.n-step h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.n-step p{font-size:14px;line-height:1.65;opacity:.75}
+.n-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:28px}
+@media (max-width:900px){.n-side{position:static}}
+.note-bar{
+  background:var(--ink);color:#fff;padding:20px 24px;
+  display:flex;align-items:flex-start;gap:16px;font-size:14px;line-height:1.65;
+}
+.note-bar b{color:var(--lime);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;flex:none;padding-top:3px}
+
+/* ============ what we do: checklist + wide shot ============ */
+#whatwedo .do-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
+  margin-top:56px;align-items:start;
+}
+@media (max-width:900px){#whatwedo .do-grid{grid-template-columns:1fr}}
+.do-list{display:flex;flex-direction:column}
+.do-item{
+  display:grid;grid-template-columns:34px 1fr;gap:16px;
+  padding:20px 0;border-top:1px solid rgba(26,0,58,.15);
+}
+.do-item:first-child{border-top:2px solid var(--ink)}
+.do-item .tick{
+  width:20px;height:20px;background:var(--lime);margin-top:2px;
+  display:grid;place-items:center;font-weight:700;font-size:12px;
+}
+.do-item h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.do-item p{font-size:13.5px;line-height:1.6;opacity:.72}
+.wide-shot{margin-top:56px}
+
+/* ============ method ============ */
+#method{background:var(--gray)}
+.m-flow{
+  display:flex;align-items:stretch;gap:0;margin-top:52px;flex-wrap:wrap;
+  border:1px solid rgba(26,0,58,.25);background:#fff;
+}
+.m-cell{flex:1 1 220px;padding:26px 24px;border-right:1px solid rgba(26,0,58,.15)}
+.m-cell:last-child{border-right:none}
+.m-cell .nt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;
+  background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;margin-bottom:14px;
+}
+.m-cell h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.m-cell p{font-size:13.5px;line-height:1.6;opacity:.72}
+.m-annot{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
+  margin-top:64px;align-items:center;
+}
+@media (max-width:900px){.m-annot{grid-template-columns:1fr}}
+.m-annot .txt h3{font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:700;letter-spacing:-.015em;margin-bottom:14px}
+.m-annot .txt p{font-size:14.5px;line-height:1.7;opacity:.78;max-width:480px}
+.m-annot .txt p + p{margin-top:14px}
+.m-annot.flip .txt{order:2}
+.m-annot.flip .shot{order:1}
+@media (max-width:900px){.m-annot.flip .txt{order:1}.m-annot.flip .shot{order:2}}
+.spine{
+  margin-top:64px;background:var(--ink);color:#fff;padding:30px 28px;
+}
+.spine .sp-label{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
+.spine .sp-chain{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+}
+.spine .sp-chain span{border:1px solid rgba(255,255,255,.35);padding:9px 14px}
+.spine .sp-chain i{font-style:normal;color:var(--lime)}
+.spine p{margin-top:18px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);max-width:720px}
+
+/* ============ depth: alternating doc rows ============ */
+.depth-row{
+  display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:clamp(28px,4vw,64px);
+  padding:40px 0;border-top:1px solid rgba(26,0,58,.15);align-items:center;
+}
+.depth-row:first-of-type{margin-top:44px;border-top:2px solid var(--ink)}
+@media (max-width:820px){.depth-row{grid-template-columns:1fr}}
+.depth-row .kt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;
+  background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;
+  margin-bottom:14px;text-transform:uppercase;
+}
+.depth-row h3{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.depth-row p{font-size:14px;line-height:1.65;opacity:.75;max-width:560px}
+
+/* ============ use cases: editorial quotes ============ */
+#usecases{background:var(--ink);color:#fff}
+#usecases .lead{color:rgba(255,255,255,.72)}
+#usecases .cap{color:rgba(255,255,255,.5)}
+.uc-row{
+  display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:clamp(28px,4vw,64px);
+  padding:38px 0;border-top:1px solid rgba(255,255,255,.18);
+}
+.uc-row:first-of-type{margin-top:48px;border-top:2px solid var(--lime)}
+@media (max-width:820px){.uc-row{grid-template-columns:1fr}}
+.uc-row .who{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:14px;
+}
+.uc-row blockquote{
+  font-size:clamp(1.2rem,2vw,1.55rem);font-weight:500;line-height:1.35;letter-spacing:-.01em;
+}
+.uc-row .body p{font-size:14px;line-height:1.68;color:rgba(255,255,255,.72)}
+.uc-row .body .call{
+  margin-top:16px;padding:16px 18px;border-left:3px solid var(--lime);
+  background:var(--deep);font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.88);
+}
+.uc-row .body .call b{
+  color:var(--lime);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;
+  letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:6px;
+}
+
+/* ============ pricing ============ */
+.p-table{margin-top:52px;border:1px solid rgba(26,0,58,.25)}
+.p-row{
+  display:grid;grid-template-columns:150px 1fr 1fr 190px;gap:0;
+  border-top:1px solid rgba(26,0,58,.15);
+}
+.p-row:first-child{border-top:none;background:var(--ink);color:#fff}
+.p-row:first-child > div{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--lime);
+}
+.p-row > div{padding:20px 22px;font-size:14px;line-height:1.6}
+.p-row > div + div{border-left:1px solid rgba(26,0,58,.12)}
+.p-row:first-child > div + div{border-left-color:rgba(255,255,255,.15)}
+.p-row .nm{font-weight:700;font-size:1.05rem}
+.p-row .nm span{
+  display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--deep);margin-top:6px;
+}
+.p-row .pr{font-weight:700}
+.p-row .pr span{display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;opacity:.55;margin-top:6px}
+@media (max-width:820px){
+  .p-row{grid-template-columns:1fr}
+  .p-row > div + div{border-left:none;border-top:1px dashed rgba(26,0,58,.12)}
+  .p-row:first-child{display:none}
+}
+.lanes{
+  display:flex;gap:0;margin-top:26px;border:1px solid rgba(26,0,58,.25);flex-wrap:wrap;
+}
+.lane{flex:1 1 180px;padding:20px 24px;border-right:1px solid rgba(26,0,58,.15);position:relative}
+.lane:last-child{border-right:none}
+.lane .pl{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em}
+.lane .pp{font-size:1.4rem;font-weight:700;margin-top:8px}
+.lane .pp span{font-size:.72rem;font-weight:500;opacity:.55}
+.lane .max{
+  position:absolute;top:0;right:0;background:var(--lime);
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:.18em;padding:4px 9px;
+}
+.pfoot{margin-top:22px;font-size:13.5px;line-height:1.7;opacity:.65;max-width:720px}
+
+/* ============ posture: stacked quotes ============ */
+#posture{background:var(--gray)}
+.pq-list{margin-top:48px;display:flex;flex-direction:column}
+.pq-item{
+  display:grid;grid-template-columns:200px 1fr;gap:clamp(20px,3vw,48px);
+  padding:30px 0;border-top:1px solid rgba(26,0,58,.2);
+}
+.pq-item:last-child{border-bottom:1px solid rgba(26,0,58,.2)}
+@media (max-width:760px){.pq-item{grid-template-columns:1fr}}
+.pq-item .pq-tag{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--deep);padding-top:6px;
+}
+.pq-item blockquote{
+  font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:500;line-height:1.38;letter-spacing:-.012em;
+}
+.pq-item blockquote span{box-shadow:inset 0 -0.4em var(--lime)}
+.pq-item .why{margin-top:12px;font-size:13.5px;line-height:1.6;color:rgba(26,0,58,.62);max-width:640px}
+.principles{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(26,0,58,.2);
+  border:1px solid rgba(26,0,58,.2);margin-top:56px;
+}
+@media (max-width:820px){.principles{grid-template-columns:1fr}}
+.principle{background:var(--gray);padding:26px 26px 28px}
+.principle .kt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  color:var(--deep);text-transform:uppercase;display:block;margin-bottom:12px;
+}
+.principle h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.principle p{font-size:13.5px;line-height:1.62;opacity:.72}
+
+/* ============ insights: plain index list ============ */
+.ins-list{margin-top:48px}
+.ins-item{
+  display:grid;grid-template-columns:120px 1fr 32px;gap:clamp(16px,3vw,40px);
+  align-items:center;padding:22px 0;border-top:1px solid rgba(26,0,58,.15);
+  transition:background .25s;
+}
+.ins-item:last-child{border-bottom:1px solid rgba(26,0,58,.15)}
+.ins-item:hover{background:var(--gray)}
+.ins-item .meta{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(26,0,58,.55);line-height:1.9;
+}
+.ins-item h3{font-size:clamp(1.05rem,1.7vw,1.3rem);font-weight:700;letter-spacing:-.012em;line-height:1.3}
+.ins-item p{font-size:13.5px;line-height:1.55;opacity:.65;margin-top:6px;max-width:640px}
+.ins-item .ar{
+  width:30px;height:30px;border:1px solid rgba(26,0,58,.4);
+  display:grid;place-items:center;font-style:normal;
+}
+.ins-item:hover .ar{background:var(--lime);border-color:var(--lime)}
+@media (max-width:700px){.ins-item{grid-template-columns:1fr}.ins-item .ar{display:none}}
+
+/* ============ products: real capture slots ============ */
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
+@media (max-width:940px){.prods{grid-template-columns:1fr}}
+.p-card{
+  background:#fff;border:1px solid rgba(26,0,58,.18);
+  padding:16px 16px 22px;display:flex;flex-direction:column;gap:16px;
+  transition:border-color .25s,box-shadow .25s;
+}
+.p-card:hover{border-color:var(--ink);box-shadow:8px 8px 0 var(--lime)}
+.p-card .shot figcaption{display:none}
+.p-name{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.p-name h3{font-size:1.25rem;font-weight:700;letter-spacing:.02em}
+.p-name span{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:.16em;color:var(--deep);text-transform:uppercase}
+.p-card > p{font-size:13.5px;line-height:1.62;color:rgba(26,0,58,.7)}
+.p-link{
+  margin-top:auto;display:flex;justify-content:space-between;align-items:center;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;letter-spacing:.12em;
+  color:rgba(26,0,58,.78);border-top:1px solid rgba(26,0,58,.16);padding-top:14px;
+}
+
+/* ============ contact / footer ============ */
+#contact{background:var(--lime);color:var(--ink)}
+#contact .inner{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+}
+@media (max-width:820px){#contact .inner{grid-template-columns:1fr}}
+#contact .h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:14px 0 10px}
+#contact .lead{opacity:.8}
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
+footer .logo{color:#fff}
+.fsocial{display:flex;gap:10px;margin-top:22px}
+.fsocial a{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.3);
+  display:grid;place-items:center;transition:border-color .25s,background .25s;
+}
+.fsocial a:hover{border-color:var(--lime);background:var(--lime)}
+.fsocial a svg{width:16px;height:16px;fill:rgba(255,255,255,.75);transition:fill .25s}
+.fsocial a:hover svg{fill:var(--ink)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:18px;
+}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul.two{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 28px}
+.fgrid ul a{font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;transition:color .25s}
+.fgrid ul a:hover{color:var(--lime)}
+.fbottom{
+  max-width:1240px;margin:52px auto 0;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><i></i>DORADO</a>
+  <nav>
+    <a class="nl" href="services.html">Services</a>
+    <a class="nl" href="how-we-operate.html">Process</a>
+    <a class="nl" href="use-cases.html">Use cases</a>
+    <a class="nl" href="pricing.html">Pricing</a>
+    <a class="nl" href="insights.html">Insights</a>
+    <a class="nl" href="partners.html">Partners</a>
+    <a class="nl" href="about.html">About</a>
+    <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= HERO : text + real capture stack ================= -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <h1>You know your product.<br>We know the side<br><span class="lm">you can't see.</span></h1>
+      <p class="hero-sub">
+        Most companies are excellent at their own side of the deal: the product,
+        the specs, the playbook that works at home. What breaks in a new market is
+        the other side: how buyers there search, screen, and decide. Dorado
+        researches that side at depth, tests it with real outreach, and hands you
+        a clear call on what to do next, including what to stop doing.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-lime" href="#method">See how we work &rarr;</a>
+        <a class="btn btn-ghost" href="#contact">Start a conversation &rarr;</a>
+      </div>
+    </div>
+
+    <div class="hero-shots">
+      <!-- Replace .ph with real captures. Suggested: the ops board + a report page -->
+      <figure class="shot back">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>ops.dorado &middot; batch log</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>1440&times;900<br>live batch log (blurred)</div>
+        </div>
+      </figure>
+      <figure class="shot front">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>deep-dive report &middot; excerpt</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>1440&times;900<br>report excerpt</div>
+        </div>
+        <figcaption>The actual working files, not a stock photo of a meeting.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="facts">
+    <ul>
+      <li>Buyer-side intelligence</li>
+      <li>Japan market entry</li>
+      <li>Manufacturing &middot; Software</li>
+      <li>Clear calls in weeks</li>
+      <li>EN / JA</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= STATEMENT ================= -->
+<section id="gap" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">The gap we close</p>
+    <div class="cols">
+      <p id="statement" class="rv">
+        Companies don't have a hard time abroad because their product is weak.
+        They struggle because everything they're good at was refined for a market
+        they already understand. What's missing in a new market is never the
+        product. It's <em>the other side of the deal</em>: who buys, why now,
+        through whom, and in what package. That understanding is the gap.
+        Closing it is what we do.
+      </p>
+      <aside class="margin-note rv">
+        <b>Why "buyer-side"</b>
+        Everyone sells from their own side. We spend our hours where your
+        knowledge actually runs out: inside the buyer's search habits,
+        screening criteria, and internal approval paths.
+      </aside>
+    </div>
+    <div class="facts-inline rv">
+      <div><b>15+</b><span>Years in the Japan market</span></div>
+      <div><b>30+</b><span>Markets researched for clients</span></div>
+      <div><b>5</b><span>Years running Dorado</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE OTHER SIDE : numbered narrative + shot ================= -->
+<section id="otherside" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">The other side</p>
+    <h2 class="h2 rv">The buyer decided before you arrived.</h2>
+    <p class="lead rv">
+      In Japan (and in most mature B2B markets), the evaluation starts long
+      before the first meeting. If you only prepare your own side, you're
+      optimizing for a conversation that may never happen.
+    </p>
+
+    <div class="narrative">
+      <div class="n-steps rv">
+        <div class="n-step">
+          <span class="no">01: Find</span>
+          <div>
+            <h3>How they find you</h3>
+            <p>Procurement teams search, longlist, and filter suppliers on their own
+            terms: registries, platforms, exhibitions, referrals. We map the actual
+            entry routes into a target buyer, not generic "business culture" advice.</p>
+          </div>
+        </div>
+        <div class="n-step">
+          <span class="no">02: Judge</span>
+          <div>
+            <h3>How they judge you</h3>
+            <p>Before anyone replies, you've been checked: credibility signals,
+            quality systems, certifications, whether your information can survive
+            being forwarded to a boss. We identify exactly what's missing from the
+            buyer's point of view.</p>
+          </div>
+        </div>
+        <div class="n-step">
+          <span class="no">03: Decide</span>
+          <div>
+            <h3>How they decide</h3>
+            <p>A champion at a Japanese buyer doesn't decide alone. They carry your
+            case into internal review. We structure what you give them so it can
+            travel through that process: specs, proof, and a reason to pick you now.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="n-side">
+        <figure class="shot tall rv">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>buying-process deep dive &middot; anonymized</span></div>
+            <div class="ph">SCREENSHOT SLOT<br>4:3<br>buyer org-chart / route map page</div>
+          </div>
+          <figcaption>A page from a real buying-process deep dive, anonymized.</figcaption>
+        </figure>
+        <div class="note-bar rv">
+          <b>No playbook?</b>
+          <span>For a genuinely new category there are no existing criteria to map,
+          for either side. There, the work flips: we go deep into the buyer's business
+          first and help build the case from the ground up.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT WE ACTUALLY DO ================= -->
+<section id="whatwedo" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">What we actually do</p>
+    <h2 class="h2 rv">Interest was never your problem.</h2>
+    <p class="lead rv">
+      Meetings happen. Demos go well. Free trials, pilot talks, "let's explore a
+      partnership." For most companies entering Japan, interest is easy, and
+      none of it converts. The real work is everything after interest.
+    </p>
+
+    <div class="do-grid">
+      <div class="do-list rv">
+        <div class="do-item">
+          <span class="tick">1</span>
+          <div>
+            <h3>Diagnose the pipeline honestly</h3>
+            <p>Every open opportunity audited and graded, then a deal-by-deal
+            priority list: push, nurture, or stop investing entirely.</p>
+          </div>
+        </div>
+        <div class="do-item">
+          <span class="tick">2</span>
+          <div>
+            <h3>Find where the demand actually is</h3>
+            <p>Candidate segments researched in depth before anyone sells anything:
+            does the problem exist, who owns it, what volume, can it pay?</p>
+          </div>
+        </div>
+        <div class="do-item">
+          <span class="tick">3</span>
+          <div>
+            <h3>Test ideas against evidence, including yours</h3>
+            <p>When you propose a positioning, we score it, not applaud it. Clients
+            pay us to be right, not agreeable.</p>
+          </div>
+        </div>
+      </div>
+      <div class="do-list rv">
+        <div class="do-item">
+          <span class="tick">4</span>
+          <div>
+            <h3>Put numbers on it first</h3>
+            <p>Market sizing, volume estimates per prospect, revenue models per
+            scenario, built <b>before</b> outreach.</p>
+          </div>
+        </div>
+        <div class="do-item">
+          <span class="tick">5</span>
+          <div>
+            <h3>Run the outreach and keep deals warm</h3>
+            <p>We send the messages, track every reply, and never let warm interest
+            expire. Every contact has a next action with a date.</p>
+          </div>
+        </div>
+        <div class="do-item">
+          <span class="tick">6</span>
+          <div>
+            <h3>Stand in the room</h3>
+            <p>We sit in the live conversations and turn every interaction into a
+            documented, reusable asset.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="shot wide-shot rv">
+      <div class="shot-frame">
+        <div class="bar"><i></i><i></i><i></i><span>pipeline review &middot; deal-by-deal grading</span></div>
+        <div class="ph">SCREENSHOT SLOT &middot; WIDE<br>1920&times;900<br>pipeline grading sheet (anonymized)</div>
+      </div>
+      <figcaption>An actual pipeline review: every deal graded, with a call attached. Names blurred.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section id="method" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Process</p>
+    <h2 class="h2 rv">Market development,<br>run like an engineering system.</h2>
+    <p class="lead rv">
+      Go-to-market work fails quietly: messages go out, meetings happen, and a
+      year later nobody can say what worked or why. We built our own operating
+      system to make that impossible.
+    </p>
+
+    <div class="m-flow rv">
+      <div class="m-cell">
+        <span class="nt">LANE</span>
+        <h3>One question</h3>
+        <p>Every engagement is organized around testable questions, like "will
+        mid-size Japanese manufacturers buy this component from a foreign second
+        source?"</p>
+      </div>
+      <div class="m-cell">
+        <span class="nt">BATCH</span>
+        <h3>One test</h3>
+        <p>Each question is tested through batches of real companies: who, angle,
+        channel, planned volume. No batch is allowed to just fade out.</p>
+      </div>
+      <div class="m-cell">
+        <span class="nt">CALL</span>
+        <h3>One decision</h3>
+        <p>Every batch ends with an explicit call: CONTINUE, ADJUST, or STOP
+        SPENDING, recorded with the evidence that produced it.</p>
+      </div>
+    </div>
+
+    <div class="m-annot rv">
+      <div class="txt">
+        <h3>Messages are measured like product features</h3>
+        <p>Every message is archived verbatim with its metadata: the hook, the
+        template, whether it got a reply. A draft only becomes a reusable template
+        after it has demonstrably worked, and the library records what failed, too.</p>
+        <p>One example from the log: hooks built on the prospect's own situation
+        (a third-party review of their product, a change in their stack) earn
+        same-day replies. Generic industry news earns silence. We know this
+        because we measured it.</p>
+      </div>
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>message archive &middot; reply tracking</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>16:10<br>message archive with reply flags</div>
+        </div>
+        <figcaption>The message library: what was sent, what replied, what died.</figcaption>
+      </figure>
+    </div>
+
+    <div class="m-annot flip rv">
+      <div class="txt">
+        <h3>The exit is designed in from day one</h3>
+        <p>The end state of our work is not dependence on Dorado. When an account
+        is qualified (real problem, real owner, real timeline), it is packaged
+        and transferred into your own CRM: contacts, channels, research, and the
+        full touch history. You own the relationship. The playbook stays with you.</p>
+      </div>
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>account dossier &middot; handover package</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>16:10<br>account dossier / handover doc</div>
+        </div>
+        <figcaption>A standing dossier you can read in sixty seconds, including whose ball it is.</figcaption>
+      </figure>
+    </div>
+
+    <div class="spine rv">
+      <p class="sp-label">One structure for everything</p>
+      <div class="sp-chain">
+        <span>Company</span><i>&rarr;</i>
+        <span>Contact</span><i>&rarr;</i>
+        <span>Touch history</span><i>&rarr;</i>
+        <span>Status</span><i>&rarr;</i>
+        <span>Next action</span>
+      </div>
+      <p>Nothing depends on anyone's memory. If a project pauses for three months,
+      it resumes from the file, not from recollection. The system described here
+      is the one this page was written from: the same files, the same database,
+      the same rules we apply to client work every day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPTH ================= -->
+<section id="depth" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Depth</p>
+    <h2 class="h2 rv">Research that reads like the buyer wrote it.</h2>
+    <p class="lead rv">
+      Anyone can hand you a market report. Ours are built to change what you do
+      next week. Recent client-facing work includes:
+    </p>
+
+    <div class="depth-row rv">
+      <figure class="shot doc">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>deep-dive &middot; table of contents</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; report page</div>
+        </div>
+      </figure>
+      <div>
+        <span class="kt">Deep dive</span>
+        <h3>Buying-process deep dives</h3>
+        <p>For a single target buyer, we reconstruct the actual route in: purchasing
+        organization, regional sourcing units, supplier registration and screening,
+        evaluation functions, qualification programs, verified against primary
+        sources, with facts, hypotheses, and to-verify items clearly separated.</p>
+      </div>
+    </div>
+
+    <div class="depth-row rv">
+      <figure class="shot doc">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>demand map &middot; segment matrix</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; segment matrix</div>
+        </div>
+      </figure>
+      <div>
+        <span class="kt">Demand map</span>
+        <h3>Segment demand maps</h3>
+        <p>A dozen-plus candidate verticals for one product, researched to a decision:
+        does the problem exist here, who owns it, what volume flows through it, can
+        it pay, and which two segments deserve the next quarter.</p>
+      </div>
+    </div>
+
+    <div class="depth-row rv">
+      <figure class="shot doc">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>horizon report &middot; regulation timeline</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; regulation timeline</div>
+        </div>
+      </figure>
+      <div>
+        <span class="kt">Horizon</span>
+        <h3>Regulatory horizon reports</h3>
+        <p>Five-year outlooks on how regulation reshapes a market: what new laws
+        actually require, where budgets will be forced into existence, and what that
+        means for how a product should be positioned <b>now</b>.</p>
+      </div>
+    </div>
+
+    <div class="depth-row rv">
+      <figure class="shot doc">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>win/loss library &middot; pattern index</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; pattern index</div>
+        </div>
+      </figure>
+      <div>
+        <span class="kt">Patterns</span>
+        <h3>Win / loss pattern libraries</h3>
+        <p>What actually moved orders for foreign suppliers into Japan, and the
+        twelve ways deals die <b>after</b> the order is won. Patterns, not anecdotes.</p>
+      </div>
+    </div>
+
+    <p class="cap rv">
+      These span precision manufacturing and software APIs. The sector changes,
+      the discipline doesn't.
+    </p>
+  </div>
+</section>
+
+<!-- ================= USE CASES ================= -->
+<section id="usecases" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv" style="color:#fff">Use cases</p>
+    <h2 class="h2 rv">One question in. One clear call out.</h2>
+    <p class="lead rv">
+      Every engagement starts from a different doubt. The shape of the answer is
+      always the same: evidence, then a call.
+    </p>
+
+    <div class="uc-row rv">
+      <div>
+        <p class="who">Software / API vendor</p>
+        <blockquote>&ldquo;Everyone is interested. Nobody is buying.&rdquo;</blockquote>
+      </div>
+      <div class="body">
+        <p>A full calendar of demos, free pilots, and partner talks, and no
+        revenue. We audited every open opportunity, graded the funnel deal by
+        deal, and researched a dozen candidate segments before any new outreach
+        went out.</p>
+        <div class="call">
+          <b>The call</b>
+          A priority list of accounts to push, nurture, or drop, and an end to
+          the free pilots that were consuming the team's capacity without a path
+          to a contract.
+        </div>
+      </div>
+    </div>
+
+    <div class="uc-row rv">
+      <div>
+        <p class="who">Precision manufacturer</p>
+        <blockquote>&ldquo;We want this one buyer. How do we get in?&rdquo;</blockquote>
+      </div>
+      <div class="body">
+        <p>A component maker targeting a single large Japanese OEM. We
+        reconstructed the buyer's actual route in: purchasing organization,
+        supplier registration, screening criteria, qualification programs,
+        verified against primary sources.</p>
+        <div class="call">
+          <b>The call</b>
+          A concrete entry route with the gaps named: which credibility signals
+          were missing from the buyer's point of view, and in what order to fix
+          them.
+        </div>
+      </div>
+    </div>
+
+    <div class="uc-row rv">
+      <div>
+        <p class="who">New category</p>
+        <blockquote>&ldquo;No one has ever evaluated this before.&rdquo;</blockquote>
+      </div>
+      <div class="body">
+        <p>A genuinely new product for a niche buyer with no existing evaluation
+        playbook, on either side. We flipped the work: deep research into the
+        buyer's business first, then built the case from the ground up.</p>
+        <div class="call">
+          <b>The call</b>
+          A tested storyline the internal champion could carry into review, and
+          a clear read on which variant of the offer deserved the next batch.
+        </div>
+      </div>
+    </div>
+
+    <p class="cap rv">
+      Composite examples, anonymized. A full anonymized case study is available on request.
+    </p>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section id="pricing" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Pricing</p>
+    <h2 class="h2 rv">Three plans. One destination.</h2>
+    <p class="lead rv">
+      Talking it through, proving sales traction, and running the whole
+      market are different outcomes. They get different meters &mdash; and they
+      build toward the same place: a Japan presence that runs.
+    </p>
+
+    <div class="p-table rv">
+      <div class="p-row">
+        <div>Plan</div><div>What it produces</div><div>How it's metered</div><div>Price</div>
+      </div>
+      <div class="p-row">
+        <div class="nm">Advisory<span>Subscription</span></div>
+        <div>Talk to the person who knows the market. Send a question &mdash; a
+        buyer's reply you can't read, a term sheet that feels off &mdash; and
+        hear how someone here every day would read it.</div>
+        <div>Per month: capped questions, 48-hour written replies.</div>
+        <div class="pr">$99<span>per month</span></div>
+      </div>
+      <div class="p-row">
+        <div class="nm">Performance<span>Results-based sales</span></div>
+        <div>Qualified buyers in the room and deals moving &mdash; proof of
+        sales traction before you commit to the full function.</div>
+        <div>Low fixed fee + success fees that only land when a qualified
+        meeting is held or a qualified lead progresses. You confirm every
+        invoice line.</div>
+        <div class="pr">$150<span>per month + success fees</span></div>
+      </div>
+      <div class="p-row">
+        <div class="nm">Retainer<span>Most chosen &middot; Full function</span></div>
+        <div>A Japan presence that runs: sales plus customer success,
+        product, research, marketing and strategy &mdash; one integrated team
+        instead of five vendors.</div>
+        <div>Monthly flat fee, scoped to your market stage. Exact figure
+        in the first call.</div>
+        <div class="pr">$1,500&ndash;6,000<span>per month</span></div>
+      </div>
+    </div>
+
+    <div class="lanes rv">
+      <div class="lane"><p class="pl">ADVISORY &middot; TALK IT THROUGH</p><p class="pp">$99 <span>/ mo</span></p></div>
+      <div class="lane"><p class="pl">PERFORMANCE &middot; PROOF OF TRACTION</p><p class="pp">$150 <span>/ mo + success fees</span></p></div>
+      <div class="lane"><span class="max">MOST CHOSEN</span><p class="pl">RETAINER &middot; A RUNNING MARKET</p><p class="pp">$1.5k&ndash;6k <span>/ mo</span></p></div>
+    </div>
+
+    <p class="pfoot rv">
+      You are not buying our hours. On Performance, the real money bills
+      only when a qualified meeting happens and a deal actually moves. On
+      the Retainer, you're buying the thing most companies are really
+      after &mdash; a market operation that runs without you standing over it.
+    </p>
+    <p class="cap rv">Full plan details and the exact numbers for your case
+    are on the <a href="pricing.html" style="border-bottom:1px solid rgba(26,0,58,.35)">pricing page</a>.</p>
+  </div>
+</section>
+
+<!-- ================= POSTURE ================= -->
+<section id="posture" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">How we operate with you</p>
+    <h2 class="h2 rv">Honest calls, not comfortable ones.</h2>
+    <p class="lead rv">
+      Some of the most valuable sentences we deliver sound like this, said
+      early, with the evidence attached:
+    </p>
+
+    <div class="pq-list rv">
+      <div class="pq-item">
+        <span class="pq-tag">Said to a client &middot; 01</span>
+        <div>
+          <blockquote>&ldquo;This deal is <span>a nurture, not a pipeline item</span>.&rdquo;</blockquote>
+          <p class="why">Said when a forecast is carrying deals that will never
+          close this year. Naming them frees the team to work the ones that will.</p>
+        </div>
+      </div>
+      <div class="pq-item">
+        <span class="pq-tag">Said to a client &middot; 02</span>
+        <div>
+          <blockquote>&ldquo;Free pilots are increasing <span>your workload, not your revenue</span>.&rdquo;</blockquote>
+          <p class="why">Said when goodwill is being mistaken for demand. Interest
+          that costs you money every month is not traction.</p>
+        </div>
+      </div>
+      <div class="pq-item">
+        <span class="pq-tag">Said to a client &middot; 03</span>
+        <div>
+          <blockquote>&ldquo;This partner is <span>structurally unable to sell for you</span>.&rdquo;</blockquote>
+          <p class="why">Said when a channel looks busy but cannot close. Loyalty
+          to a broken structure is one of the most expensive habits in market entry.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="principles rv">
+      <div class="principle">
+        <span class="kt">Principle 01</span>
+        <h3>Start from the next decision</h3>
+        <p>We scope work around the decision you actually need to make next,
+        not the broadest possible engagement we could sell you.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Principle 02</span>
+        <h3>Transparent about uncertainty</h3>
+        <p>Facts, hypotheses, and to-verify items are labeled as what they are.
+        We don't dress up unknowns as solved.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Principle 03</span>
+        <h3>Validate before scaling</h3>
+        <p>Hiring, local entities, and big campaigns come <b>after</b> the path is
+        tested, never before, on optimism.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Principle 04</span>
+        <h3>With you, not around you</h3>
+        <p>We push back, ask questions, and show our reasoning rather than
+        executing blindly on instructions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSIGHTS ================= -->
+<section id="insights" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Insights</p>
+    <h2 class="h2 rv">What the log keeps teaching us.</h2>
+    <p class="lead rv">
+      Notes from live engagements: what Japanese buyers actually do, what the
+      message archive says works, and where deals really die.
+    </p>
+
+    <div class="ins-list rv">
+      <a class="ins-item" href="#">
+        <span class="meta">Buyer side<br>2026 &middot; 8 min</span>
+        <div>
+          <h3>How Japanese buyers screen foreign suppliers before the first reply</h3>
+          <p>The evaluation starts with your public information: registries, quality
+          signals, whether your materials survive being forwarded to a boss.</p>
+        </div>
+        <i class="ar">&rarr;</i>
+      </a>
+      <a class="ins-item" href="#">
+        <span class="meta">Win / loss<br>2026 &middot; 10 min</span>
+        <div>
+          <h3>Twelve ways deals die after the order is won</h3>
+          <p>Winning the order is the midpoint, not the finish line. The patterns
+          behind post-order failures, and what prevents each one.</p>
+        </div>
+        <i class="ar">&rarr;</i>
+      </a>
+      <a class="ins-item" href="#">
+        <span class="meta">Messaging<br>2026 &middot; 6 min</span>
+        <div>
+          <h3>Same-day replies: what a measured message archive actually shows</h3>
+          <p>Hooks built on the prospect's own situation earn same-day replies.
+          Generic industry news earns silence. The data behind the claim.</p>
+        </div>
+        <i class="ar">&rarr;</i>
+      </a>
+      <a class="ins-item" href="#">
+        <span class="meta">Regulation<br>2026 &middot; 9 min</span>
+        <div>
+          <h3>Reading regulation as a five-year demand forecast</h3>
+          <p>New laws force budgets into existence. How we turn a regulatory horizon
+          into a positioning decision you can act on now.</p>
+        </div>
+        <i class="ar">&rarr;</i>
+      </a>
+    </div>
+
+    <p class="cap rv">Titles are placeholders for direction review, articles to be drafted.</p>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS : real capture slots ================= -->
+<section id="products" class="sec" style="background:var(--gray)">
+  <div class="wrap">
+    <p class="eyebrow rv">Products</p>
+    <h2 class="h2 rv">We run our own tools in production.</h2>
+    <p class="lead rv">
+      The systems behind the method are public products. Drop real captures into
+      the frames below.
+    </p>
+
+    <div class="prods">
+      <a class="p-card rv" href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">
+        <figure class="shot">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>grants.dorado-group.jp</span></div>
+            <div class="ph">SCREENSHOT SLOT<br>16:10 &middot; real capture</div>
+          </div>
+        </figure>
+        <div class="p-name"><h3>GRANTS</h3><span>Database</span></div>
+        <p>A searchable database of Japanese government subsidies, kept current from primary sources.</p>
+        <div class="p-link">grants.dorado-group.jp <i>&#8599;</i></div>
+      </a>
+
+      <a class="p-card rv" href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">
+        <figure class="shot">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>buyers.dorado-group.jp</span></div>
+            <div class="ph">SCREENSHOT SLOT<br>16:10 &middot; real capture</div>
+          </div>
+        </figure>
+        <div class="p-name"><h3>BUYERS</h3><span>Intelligence</span></div>
+        <p>Buyer-side intelligence on the Japan market. Placeholder copy, to be confirmed.</p>
+        <div class="p-link">buyers.dorado-group.jp <i>&#8599;</i></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="sec">
+  <div class="inner">
+    <div>
+      <p class="eyebrow rv">Contact</p>
+      <h2 class="h2 rv">Start with one question.</h2>
+      <p class="lead rv">
+        Tell us the question that matters most right now. We'll tell you
+        honestly if we can help.
+      </p>
+    </div>
+    <a class="btn btn-ink rv" href="contact.html">Contact us &rarr;</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><i></i>DORADO</a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+      <div class="fsocial">
+        <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@dorado-llc" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul class="two">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-we-operate.html">Process</a></li>
+        <li><a href="use-cases.html">Use cases</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">Grants database</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">Buyers database</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>Mockup v4 &middot; crafted &middot; for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* single, subtle reveal, nothing else */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

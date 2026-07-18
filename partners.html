@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | Partners &middot; A Short List, On Purpose (mockup v1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens (unchanged from v4) ============ */
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.mono{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,9vh,110px) var(--pad)}
+.eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+.h2{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:18px 0 14px}
+.lead{max-width:640px;font-size:clamp(15px,1.35vw,17px);line-height:1.68;opacity:.78}
+.cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:20px}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ header ============ */
+header{
+  position:sticky;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--pad);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(26,0,58,.12);
+}
+.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;background:var(--lime)}
+nav{display:flex;align-items:center;gap:26px}
+nav a.nl{
+  color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
+  border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
+}
+nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
+@media (max-width:900px){nav a.nl{display:none}}
+
+/* ============ buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:12px;padding:15px 24px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;
+}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:var(--ink);color:var(--lime)}
+.btn-ghost{border-color:rgba(26,0,58,.4);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--lime)}
+.btn-ink{background:var(--ink);color:var(--lime)}
+.btn-ink:hover{background:var(--deep)}
+.btn-sm{padding:10px 16px;font-size:11px}
+.btn-full{width:100%;justify-content:center}
+
+/* ============ page hero ============ */
+#top{background:var(--white);border-bottom:1px solid rgba(26,0,58,.12)}
+.ph-inner{max-width:1240px;margin:0 auto;padding:clamp(48px,7vh,84px) var(--pad) clamp(32px,5vh,52px)}
+.crumb{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:20px;
+  display:flex;align-items:center;gap:8px;
+}
+h1{font-size:clamp(2.1rem,4.6vw,3.6rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;max-width:760px}
+h1 .lm{background:var(--lime);padding:0 .12em .04em}
+.hero-sub{
+  max-width:600px;margin-top:22px;color:rgba(26,0,58,.72);
+  font-size:clamp(15px,1.35vw,17px);line-height:1.68;
+}
+
+/* facts strip */
+.facts{border-top:1px solid rgba(26,0,58,.12);background:var(--white)}
+.facts ul{
+  max-width:1240px;margin:0 auto;padding:18px var(--pad);
+  display:flex;flex-wrap:wrap;gap:14px 40px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(26,0,58,.62);
+}
+.facts li{display:flex;align-items:center;gap:12px}
+.facts li::before{content:"";width:7px;height:7px;background:var(--lime)}
+
+/* ============ partner rows ============ */
+#partners{background:var(--white)}
+.p-rows{display:flex;flex-direction:column;gap:clamp(48px,6vh,80px);margin-top:56px}
+.p-row{
+  display:grid;grid-template-columns:380px 1fr;gap:clamp(28px,4.5vw,64px);align-items:start;
+}
+@media (max-width:940px){.p-row{grid-template-columns:1fr}}
+.logo-frame{
+  border:1px solid rgba(26,0,58,.22);background:#fff;
+  transition:border-color .25s,box-shadow .25s;
+}
+.p-row:hover .logo-frame{border-color:var(--ink);box-shadow:8px 8px 0 var(--lime)}
+.lf-bar{
+  display:flex;gap:5px;align-items:center;padding:8px 10px;background:var(--gray);
+  border-bottom:1px solid rgba(26,0,58,.15);
+}
+.lf-bar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
+.lf-bar span{
+  margin-left:8px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9px;
+  color:rgba(26,0,58,.6);letter-spacing:.05em;
+}
+.lf-body{
+  aspect-ratio:16/9;display:grid;place-items:center;padding:24px;
+  background:
+    radial-gradient(circle at 25% 20%,rgba(204,255,0,.22),transparent 55%),
+    linear-gradient(rgba(26,0,58,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,0,58,.045) 1px,transparent 1px);
+  background-size:auto,41px 41px,41px 41px;
+}
+.lf-body .logo-slot{text-align:center}
+.lf-body .logo-slot b{
+  display:block;font-size:clamp(1.2rem,1.9vw,1.6rem);font-weight:700;letter-spacing:.04em;
+}
+.lf-body .logo-slot span{
+  display:block;margin-top:8px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(26,0,58,.45);
+}
+.p-body .pb-tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.pb-tag{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;
+}
+.pb-tag.dark{background:var(--ink);color:var(--lime)}
+.pb-tag.line{border:1px solid rgba(26,0,58,.35);color:rgba(26,0,58,.75)}
+.p-body h3{font-size:clamp(1.4rem,2.2vw,1.9rem);font-weight:700;letter-spacing:-.015em;margin-bottom:14px}
+.p-body p{font-size:14.5px;line-height:1.7;color:rgba(26,0,58,.78);max-width:640px}
+.p-body p + p{margin-top:14px}
+.p-gap{
+  margin-top:22px;border-left:3px solid var(--lime);padding:4px 0 4px 16px;
+  font-size:13.5px;line-height:1.6;max-width:640px;
+}
+.p-gap b{
+  display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;
+  font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,0,58,.55);margin-bottom:4px;
+}
+.p-cta{
+  margin-top:24px;display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+  border-bottom:2px solid var(--lime);padding-bottom:6px;transition:color .25s;
+}
+.p-cta:hover{color:var(--deep)}
+.p-sep{height:1px;background:rgba(26,0,58,.14);position:relative}
+.p-sep::before{content:"";position:absolute;left:0;top:-4px;width:56px;height:9px;background:var(--lime)}
+
+/* ============ the bar (principles recipe) ============ */
+#bar{background:var(--gray)}
+.bar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:48px}
+@media (max-width:900px){.bar-grid{grid-template-columns:1fr}}
+.bar-item{border-top:2px solid var(--ink);padding-top:20px;background:transparent}
+.bar-item .bi-num{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.2em;color:var(--deep);display:block;margin-bottom:12px;
+}
+.bar-item h3{font-size:1.1rem;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.bar-item p{font-size:14px;line-height:1.62;opacity:.72}
+
+/* ============ both directions band ============ */
+#directions{background:var(--ink);color:#fff}
+#directions .lead{color:rgba(255,255,255,.72)}
+.note-bar{
+  margin-top:40px;background:var(--deep);color:#fff;padding:18px 20px;
+  display:flex;align-items:flex-start;gap:12px;font-size:13px;line-height:1.6;
+}
+.note-bar b{color:var(--lime);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;flex:none;padding-top:3px}
+
+/* ============ contact band / footer (v4 recipe) ============ */
+#contact{background:var(--lime);color:var(--ink)}
+#contact .inner{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+}
+@media (max-width:820px){#contact .inner{grid-template-columns:1fr}}
+#contact .h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:14px 0 10px}
+#contact .lead{opacity:.8}
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
+footer .logo{color:#fff}
+.fsocial{display:flex;gap:10px;margin-top:22px}
+.fsocial a{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.3);
+  display:grid;place-items:center;transition:border-color .25s,background .25s;
+}
+.fsocial a:hover{border-color:var(--lime);background:var(--lime)}
+.fsocial a svg{width:16px;height:16px;fill:rgba(255,255,255,.75);transition:fill .25s}
+.fsocial a:hover svg{fill:var(--ink)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:18px;
+}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul.two{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 28px}
+.fgrid ul a{font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;transition:color .25s}
+.fgrid ul a:hover{color:var(--lime)}
+.fbottom{
+  max-width:1240px;margin:52px auto 0;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><i></i>DORADO</a>
+  <nav>
+    <a class="nl" href="services.html">Services</a>
+    <a class="nl" href="how-we-operate.html">Process</a>
+    <a class="nl" href="use-cases.html">Use cases</a>
+    <a class="nl" href="pricing.html">Pricing</a>
+    <a class="nl" href="insights.html">Insights</a>
+    <a class="nl" href="partners.html">Partners</a>
+    <a class="nl" href="about.html">About</a>
+    <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= PAGE HERO ================= -->
+<section id="top">
+  <div class="ph-inner">
+    <p class="crumb rv"><a href="index.html">INDEX</a> / PARTNERS</p>
+    <p class="eyebrow rv">Partners</p>
+    <h1 class="rv">A short list,<br><span class="lm">on purpose.</span></h1>
+    <p class="hero-sub rv">
+      Every partner here fills a specific gap (regional reach, specialist
+      knowledge, or execution support), and every one has been vetted in
+      real work, not a logo exchange. If we can't name the gap a partner
+      fills, they don't belong on this page.
+    </p>
+  </div>
+
+  <div class="facts">
+    <ul>
+      <li>Vetted in live engagements</li>
+      <li>Each fills a named gap</li>
+      <li>Referred without hesitation</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= PARTNERS ================= -->
+<section id="partners" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Who we partner with</p>
+    <h2 class="h2 rv">The partners we work with.</h2>
+    <p class="lead rv">
+      A focused list of the external partners Dorado currently relies on across
+      different parts of the work.
+    </p>
+
+    <div class="p-rows">
+
+      <!-- Forward Creative -->
+      <article class="p-row rv">
+        <div class="logo-frame">
+          <div class="lf-bar"><i></i><i></i><i></i><span>forwardcreative.tw</span></div>
+          <div class="lf-body">
+            <div class="logo-slot">
+              <b>FORWARD CREATIVE</b>
+              <span>Logo slot</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-body">
+          <div class="pb-tags">
+            <span class="pb-tag dark">Taiwan</span>
+            <span class="pb-tag line">Branding &amp; Creative</span>
+            <span class="pb-tag line">Local network</span>
+          </div>
+          <h3>Forward Creative</h3>
+          <p>
+            Forward Creative is a Taiwan-based branding and creative agency with
+            deep roots in the local business community. Their strength lies not
+            just in creative output, but in the relationships and trust they have
+            built across industries in Taiwan, giving clients access to market
+            perspectives that take years to develop.
+          </p>
+          <p>
+            We partner with Forward Creative to support traffic in both
+            directions: companies entering Taiwan benefit from their local
+            network and brand expertise, while Taiwanese businesses looking
+            toward Japan can leverage Dorado's on-the-ground presence and market
+            knowledge. Together, we cover both sides of the corridor in a way
+            neither of us could alone.
+          </p>
+          <div class="p-gap">
+            <b>The gap this fills</b>
+            Regional reach: the Japan&ndash;Taiwan corridor, covered from both ends.
+          </div>
+          <a class="p-cta" href="https://forwardcreative.tw/" target="_blank" rel="noopener noreferrer">
+            Visit Forward Creative &rarr;
+          </a>
+        </div>
+      </article>
+
+      <div class="p-sep" aria-hidden="true"></div>
+
+      <!-- 2GlobalMarkets -->
+      <article class="p-row rv">
+        <div class="logo-frame">
+          <div class="lf-bar"><i></i><i></i><i></i><span>2globalmarkets.com</span></div>
+          <div class="lf-body">
+            <div class="logo-slot">
+              <b>2GLOBALMARKETS</b>
+              <span>Logo slot</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-body">
+          <div class="pb-tags">
+            <span class="pb-tag dark">Global</span>
+            <span class="pb-tag line">Pre-entry preparation</span>
+            <span class="pb-tag line">Market connection</span>
+          </div>
+          <h3>2GlobalMarkets</h3>
+          <p>
+            2GlobalMarkets is an international expansion preparation and market
+            connection platform. It helps companies get ready before they enter
+            a new market by clarifying goals, testing assumptions, strengthening
+            market messaging, and identifying the right timing for local support.
+          </p>
+          <p>
+            Rather than acting as a traditional market entry consultancy,
+            2GlobalMarkets works at the stage before full market entry execution.
+            Its role is to help companies avoid weak starts, become better
+            prepared internally, and connect with the right market entry experts,
+            partners, and opportunities when the timing is right.
+          </p>
+          <p>
+            We work with 2GlobalMarkets when clients need traction outside
+            Japan, or when inbound companies need a trusted first point of
+            contact before committing to a full Japan-entry engagement.
+          </p>
+          <div class="p-gap">
+            <b>The gap this fills</b>
+            The stage before entry: preparation, messaging, and timing, so the
+            first move into Japan isn't a weak one.
+          </div>
+          <a class="p-cta" href="https://2globalmarkets.com/" target="_blank" rel="noopener noreferrer">
+            Visit 2GlobalMarkets &rarr;
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE BAR ================= -->
+<section id="bar" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Why the list is short</p>
+    <h2 class="h2 rv">Every name here<br>clears the same bar.</h2>
+
+    <div class="bar-grid rv">
+      <div class="bar-item">
+        <span class="bi-num">01</span>
+        <h3>Vetted in real work</h3>
+        <p>Not a logo exchange. Every partner on this page has worked with us on
+        live engagements, we know how they operate when it matters.</p>
+      </div>
+      <div class="bar-item">
+        <span class="bi-num">02</span>
+        <h3>Fills a specific gap</h3>
+        <p>Regional reach, specialist knowledge, or execution support. If we
+        can't name the gap a partner fills, they don't belong on the list.</p>
+      </div>
+      <div class="bar-item">
+        <span class="bi-num">03</span>
+        <h3>Referred without hesitation</h3>
+        <p>The test is simple: would we put our own name behind the referral?
+        Everyone here passes it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOTH DIRECTIONS ================= -->
+<section id="directions" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv" style="color:#fff">Working together</p>
+    <h2 class="h2 rv">The corridor runs both ways.</h2>
+    <p class="lead rv">
+      Cover a market we don't? Or need a partner on the Japan side who treats
+      your client's market entry like an engineering problem? Partnerships here
+      start the same way client work does, with a specific gap, named in
+      writing, and a small first test.
+    </p>
+
+    <div class="note-bar rv">
+      <b>Said honestly</b>
+      <span>We add partners slowly. A referral carries our name with it, so
+      every addition to this page has to survive real work together first,
+      the same evidence bar we apply to everything else.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT BAND ================= -->
+<section id="contact" class="sec">
+  <div class="inner">
+    <div>
+      <p class="eyebrow rv">Contact</p>
+      <h2 class="h2 rv">Start with one question.</h2>
+      <p class="lead rv">
+        Tell us the question that matters most right now. We'll tell you
+        honestly if we can help.
+      </p>
+    </div>
+    <a class="btn btn-ink rv" href="contact.html">Contact us &rarr;</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><i></i>DORADO</a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+      <div class="fsocial">
+        <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@dorado-llc" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul class="two">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-we-operate.html">Process</a></li>
+        <li><a href="use-cases.html">Use cases</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">Grants database</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">Buyers database</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>Partners mockup v1 &middot; for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* single, subtle reveal, nothing else */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

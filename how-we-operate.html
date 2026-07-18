@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | How We Operate (mockup v1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens (unchanged from v4) ============ */
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.mono{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(80px,11vh,140px) var(--pad)}
+.eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+.h2{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:18px 0 14px}
+.lead{max-width:640px;font-size:clamp(15px,1.35vw,17px);line-height:1.68;opacity:.78}
+.cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:20px}
+
+/* one subtle reveal only */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ header ============ */
+header{
+  position:sticky;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--pad);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(26,0,58,.12);
+}
+.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;background:var(--lime)}
+nav{display:flex;align-items:center;gap:28px}
+nav a.nl{
+  color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
+  border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
+}
+nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
+@media (max-width:900px){nav a.nl{display:none}}
+
+/* ============ buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:12px;padding:15px 24px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;
+}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:var(--ink);color:var(--lime)}
+.btn-ghost{border-color:rgba(26,0,58,.4);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--lime)}
+.btn-ink{background:var(--ink);color:var(--lime)}
+.btn-ink:hover{background:var(--deep)}
+.btn-sm{padding:10px 16px;font-size:11px}
+
+/* ============ screenshot slots (v4 recipe) ============ */
+.shot{margin:0}
+.shot-frame{
+  background:#fff;border:1px solid rgba(26,0,58,.25);
+  box-shadow:10px 10px 0 rgba(26,0,58,.08);
+  overflow:hidden;
+}
+.shot-frame .bar{
+  display:flex;gap:5px;align-items:center;padding:8px 12px;
+  background:var(--gray);border-bottom:1px solid rgba(26,0,58,.15);
+}
+.shot-frame .bar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
+.shot-frame .bar span{
+  margin-left:8px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;
+  color:rgba(26,0,58,.55);letter-spacing:.05em;
+}
+.shot-frame img{display:block;width:100%;height:auto}
+.shot-frame .ph{
+  aspect-ratio:16/10;display:grid;place-items:center;text-align:center;
+  background:
+    repeating-linear-gradient(45deg,rgba(26,0,58,.035) 0 12px,transparent 12px 24px);
+  border:2px dashed rgba(26,0,58,.25);margin:10px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(26,0,58,.45);line-height:2;
+}
+.shot figcaption{
+  margin-top:12px;font-size:13px;line-height:1.6;color:rgba(26,0,58,.6);
+  display:flex;gap:10px;align-items:baseline;
+}
+.shot figcaption::before{content:"";width:16px;height:2px;background:var(--lime);flex:none;transform:translateY(-3px)}
+.shot.tall .ph{aspect-ratio:4/3}
+.shot.doc .ph{aspect-ratio:3/4}
+
+/* ============ hero (v4 recipe) ============ */
+#hero{background:var(--white);border-bottom:1px solid rgba(26,0,58,.12)}
+.hero-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,80px);
+  align-items:center;padding:clamp(56px,9vh,110px) var(--pad);
+  max-width:1240px;margin:0 auto;
+}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr}}
+.hero-label{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.24em;
+  color:rgba(26,0,58,.6);text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;margin-bottom:26px;
+}
+.hero-label::before{content:"";width:34px;height:1px;background:var(--ink)}
+h1{font-size:clamp(2.1rem,4.6vw,3.8rem);font-weight:700;line-height:1.05;letter-spacing:-.03em}
+h1 .lm{background:var(--lime);padding:0 .12em .04em}
+.hero-sub{
+  max-width:540px;margin-top:24px;color:rgba(26,0,58,.72);
+  font-size:clamp(15px,1.35vw,17px);line-height:1.68;
+}
+.hero-ctas{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.hero-shots{position:relative}
+.hero-shots .shot.back{width:78%;margin-left:auto}
+.hero-shots .shot.front{width:70%;margin-top:-16%;position:relative;z-index:2}
+.hero-shots .shot.front .shot-frame{box-shadow:10px 10px 0 var(--lime)}
+@media (max-width:940px){
+  .hero-shots{max-width:560px}
+  .hero-shots .shot.back{width:88%}
+  .hero-shots .shot.front{width:76%}
+}
+
+/* facts strip */
+.facts{border-top:1px solid rgba(26,0,58,.12);background:var(--white)}
+.facts ul{
+  max-width:1240px;margin:0 auto;padding:18px var(--pad);
+  display:flex;flex-wrap:wrap;gap:14px 40px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(26,0,58,.62);
+}
+.facts li{display:flex;align-items:center;gap:12px}
+.facts li::before{content:"";width:7px;height:7px;background:var(--lime)}
+
+/* ============ statement (v4 recipe) ============ */
+#claim .cols{
+  display:grid;grid-template-columns:1fr 300px;gap:clamp(32px,5vw,72px);
+  align-items:start;margin-top:30px;
+}
+@media (max-width:900px){#claim .cols{grid-template-columns:1fr}}
+#statement{
+  font-size:clamp(1.3rem,2.5vw,2rem);font-weight:500;line-height:1.45;letter-spacing:-.012em;
+}
+#statement em{font-style:normal;box-shadow:inset 0 -0.45em var(--lime)}
+.margin-note{
+  border-top:2px solid var(--ink);padding-top:18px;
+  font-size:14px;line-height:1.7;color:rgba(26,0,58,.7);
+}
+.margin-note b{
+  display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;color:var(--ink);
+}
+
+/* ============ m-flow cells (v4 recipe) ============ */
+.m-flow{
+  display:flex;align-items:stretch;gap:0;margin-top:52px;flex-wrap:wrap;
+  border:1px solid rgba(26,0,58,.25);background:#fff;
+}
+.m-cell{flex:1 1 220px;padding:26px 24px;border-right:1px solid rgba(26,0,58,.15)}
+.m-cell:last-child{border-right:none}
+.m-cell .nt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;
+  background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;margin-bottom:14px;
+}
+.m-cell h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.m-cell p{font-size:13.5px;line-height:1.6;opacity:.72}
+
+/* annotated text + shot rows (v4 recipe) */
+.m-annot{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
+  margin-top:56px;align-items:center;
+}
+@media (max-width:900px){.m-annot{grid-template-columns:1fr}}
+.m-annot .txt h3{font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:700;letter-spacing:-.015em;margin-bottom:14px}
+.m-annot .txt p{font-size:14.5px;line-height:1.7;opacity:.78;max-width:480px}
+.m-annot .txt p + p{margin-top:14px}
+.m-annot.flip .txt{order:2}
+.m-annot.flip .shot{order:1}
+@media (max-width:900px){.m-annot.flip .txt{order:1}.m-annot.flip .shot{order:2}}
+
+/* spine bar (v4 recipe) */
+.spine{
+  margin-top:56px;background:var(--ink);color:#fff;padding:30px 28px;
+}
+.spine .sp-label{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
+.spine .sp-chain{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+}
+.spine .sp-chain span{border:1px solid rgba(255,255,255,.35);padding:9px 14px}
+.spine .sp-chain i{font-style:normal;color:var(--lime)}
+.spine p{margin-top:18px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);max-width:720px}
+
+/* note bar */
+.note-bar{
+  background:var(--ink);color:#fff;padding:20px 24px;
+  display:flex;align-items:flex-start;gap:16px;font-size:14px;line-height:1.65;
+}
+.note-bar b{color:var(--lime);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;flex:none;padding-top:3px}
+
+/* ============ verdict rule rows ============ */
+.verdicts{margin-top:52px}
+.v-row{
+  display:grid;grid-template-columns:170px 1fr;gap:clamp(16px,3vw,40px);
+  padding:18px 0;border-top:1px solid rgba(26,0,58,.15);align-items:baseline;
+}
+.v-row:first-child{border-top:2px solid var(--ink)}
+.v-row:last-child{border-bottom:1px solid rgba(26,0,58,.15)}
+@media (max-width:640px){.v-row{grid-template-columns:1fr;gap:8px}}
+.v-row .vt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.v-row .vt::before{content:"";width:9px;height:9px;background:var(--lime);flex:none}
+.v-row p{font-size:14px;line-height:1.6;opacity:.75;max-width:640px}
+
+/* ============ motions (gray section) ============ */
+#motions{background:var(--gray)}
+#motions .m-flow{background:#fff}
+
+/* ============ closing (dark section, v4 usecases recipe) ============ */
+#proofrun{background:var(--ink);color:#fff}
+#proofrun .lead{color:rgba(255,255,255,.72)}
+#proofrun .cap{color:rgba(255,255,255,.5)}
+#proofrun blockquote{
+  margin-top:44px;max-width:820px;
+  font-size:clamp(1.35rem,2.6vw,2rem);font-weight:500;line-height:1.4;letter-spacing:-.012em;
+}
+#proofrun blockquote span{box-shadow:inset 0 -0.4em rgba(204,255,0,.9);color:var(--ink);background:var(--lime);padding:0 .1em}
+.run-links{
+  margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.18);
+}
+@media (max-width:900px){.run-links{grid-template-columns:1fr}}
+.run-links a{
+  background:var(--ink);padding:22px 24px;display:flex;flex-direction:column;gap:10px;
+  transition:background .25s;
+}
+.run-links a:hover{background:var(--deep)}
+.run-links .rt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--lime);
+}
+.run-links h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;color:#fff}
+.run-links span{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.55);text-transform:uppercase}
+
+/* ============ contact / footer (v4 recipe) ============ */
+#contact{background:var(--lime);color:var(--ink)}
+#contact .inner{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+}
+@media (max-width:820px){#contact .inner{grid-template-columns:1fr}}
+#contact .h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:14px 0 10px}
+#contact .lead{opacity:.8}
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
+footer .logo{color:#fff}
+.fsocial{display:flex;gap:10px;margin-top:22px}
+.fsocial a{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.3);
+  display:grid;place-items:center;transition:border-color .25s,background .25s;
+}
+.fsocial a:hover{border-color:var(--lime);background:var(--lime)}
+.fsocial a svg{width:16px;height:16px;fill:rgba(255,255,255,.75);transition:fill .25s}
+.fsocial a:hover svg{fill:var(--ink)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:18px;
+}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul.two{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 28px}
+.fgrid ul a{font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;transition:color .25s}
+.fgrid ul a:hover{color:var(--lime)}
+.fbottom{
+  max-width:1240px;margin:52px auto 0;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><i></i>DORADO</a>
+  <nav>
+    <a class="nl" href="services.html">Services</a>
+    <a class="nl" href="how-we-operate.html">Process</a>
+    <a class="nl" href="use-cases.html">Use cases</a>
+    <a class="nl" href="pricing.html">Pricing</a>
+    <a class="nl" href="insights.html">Insights</a>
+    <a class="nl" href="partners.html">Partners</a>
+    <a class="nl" href="about.html">About</a>
+    <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="hero-label">How we operate &middot; Dorado LLC</p>
+      <h1>No formula survives<br>contact with Japan.<br><span class="lm">So we run a system.</span></h1>
+      <p class="hero-sub">
+        Your product, your buyer, the channel, the timing: every market entry
+        is a different equation with different variables. Anyone selling you a
+        step-by-step formula is selling reassurance. What we can show you instead
+        is the operating system we run daily: every hypothesis, every message,
+        every reply, and every dead end: recorded, measured, and turned into a
+        reusable asset.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-lime" href="#spine">See the system &rarr;</a>
+        <a class="btn btn-ghost" href="services.html">What we do &rarr;</a>
+      </div>
+    </div>
+
+    <div class="hero-shots">
+      <figure class="shot back">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>ops.dorado &middot; live batch log (blurred)</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>1440&times;900<br>batch log with verdicts</div>
+        </div>
+      </figure>
+      <figure class="shot front">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>account dossier &middot; STATUS file (anonymized)</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>1440&times;900<br>STATUS file, 60-second read</div>
+        </div>
+        <figcaption>The actual working files this page was written from.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="facts">
+    <ul>
+      <li>No formulas &middot; variables made visible</li>
+      <li>Runs daily, on real client work</li>
+      <li>Database tables, not adjectives</li>
+      <li>Built to be handed over</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CLAIM ================= -->
+<section id="claim" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Why show you this</p>
+    <div class="cols">
+      <p id="statement" class="rv">
+        Go-to-market work fails quietly: messages go out, meetings happen, and a
+        year later nobody can say what worked or why. With this many unknowns,
+        the honest edge isn't a secret playbook, it's being able to say,
+        <em>at any moment, what was tested and what was learned</em>. We built
+        our own operating system to make that the default.
+      </p>
+      <aside class="margin-note rv">
+        <b>Adjectives vs. tables</b>
+        Most agencies describe how they work in adjectives: "hands-on,"
+        "data-driven," "local expertise." Ours can be described in database
+        tables. Every claim on this page corresponds to a system we run daily,
+        not a slide.
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPINE ================= -->
+<section id="spine" class="sec" style="background:var(--gray);padding-top:clamp(64px,9vh,110px)">
+  <div class="wrap">
+    <p class="eyebrow rv">One structure for everything</p>
+    <h2 class="h2 rv">Nothing depends on anyone's memory.</h2>
+    <p class="lead rv">
+      Underneath every engagement (whatever the product, whatever the stage)
+      runs the same spine. The structured backbone lives in a database; the depth
+      (research memos, message archives, account dossiers) lives in
+      versioned files, linked to it.
+    </p>
+
+    <div class="spine rv" style="margin-top:44px">
+      <p class="sp-label">The spine</p>
+      <div class="sp-chain">
+        <span>Company</span><i>&rarr;</i>
+        <span>Contact</span><i>&rarr;</i>
+        <span>Touch history</span><i>&rarr;</i>
+        <span>Status</span><i>&rarr;</i>
+        <span>Next action</span>
+      </div>
+      <p>If a project pauses for three months, it resumes from the file, not from
+      recollection.</p>
+    </div>
+
+    <div class="m-annot rv">
+      <div class="txt">
+        <h3>Every account has a standing dossier</h3>
+        <p>A STATUS file you can read in sixty seconds (including, in bold,
+        <b>whose ball it is right now</b>), a cross-channel timeline, a verbatim
+        archive of every message sent, an untouched raw log, and dated research
+        snapshots.</p>
+        <p>One file to know the state; the rest is evidence.</p>
+      </div>
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>STATUS file &middot; anonymized</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>16:10<br>dossier: status + timeline</div>
+        </div>
+        <figcaption>A standing dossier, readable in sixty seconds.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HYPOTHESES ================= -->
+<section id="lanes" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Hypotheses, not hunches</p>
+    <h2 class="h2 rv">Every thesis is written down<br>so it can be proven wrong.</h2>
+    <p class="lead rv">
+      Because the variables differ for every company, we don't start from a
+      recipe, we start from a falsifiable claim: <i>"companies of this profile,
+      under this trigger, with this buyer, will respond."</i> Then we test it
+      against real companies, in fixed batches, with response measured per
+      company, not per anecdote.
+    </p>
+
+    <div class="m-flow rv">
+      <div class="m-cell">
+        <span class="nt">LANE</span>
+        <h3>One question</h3>
+        <p>A market thesis phrased so it can be true or false, not a segment
+        name, a question. Each lane exists to get that question answered.</p>
+      </div>
+      <div class="m-cell">
+        <span class="nt">BATCH</span>
+        <h3>One test</h3>
+        <p>A fixed cohort of real companies: who, angle, channel, planned volume.
+        A pilot batch first, then validation cohorts of hundreds.</p>
+      </div>
+      <div class="m-cell">
+        <span class="nt">CALL</span>
+        <h3>One decision</h3>
+        <p>No batch is allowed to just fade out. Every one ends with an explicit
+        call, recorded with the evidence that produced it.</p>
+      </div>
+    </div>
+
+    <div class="verdicts rv">
+      <div class="v-row">
+        <span class="vt">Continue</span>
+        <p>The evidence supports the thesis: same conditions, next batch.</p>
+      </div>
+      <div class="v-row">
+        <span class="vt">Adjust</span>
+        <p>The thesis survives in a modified form: conditions change, the
+        evidence carries over.</p>
+      </div>
+      <div class="v-row">
+        <span class="vt">Fork</span>
+        <p>The buyer or the buying motive changed: that's a new question, and
+        the evidence counter resets. We don't quietly blend two theses into one.</p>
+      </div>
+      <div class="v-row">
+        <span class="vt">Stop spending</span>
+        <p>The thesis is dead. Killing it fast is a result, not a failure: it's
+        knowledge you no longer have to pay for.</p>
+      </div>
+    </div>
+
+    <div class="note-bar rv" style="margin-top:44px;max-width:820px">
+      <b>Hard rule</b>
+      <span>Metrics are never typed in by hand. Reply rates, contact counts, and
+      last-activity dates are derived from the event log itself. If a number is
+      on our dashboard, there's a recorded event behind it. And exploratory
+      pilots are never extrapolated into conclusions: that's a rule, not a
+      habit.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THREE MOTIONS ================= -->
+<section id="motions" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Three tracks</p>
+    <h2 class="h2 rv">Not all outreach is the same work.</h2>
+    <p class="lead rv">
+      Cold list work, warm follow-up, and strategic account pursuit are different
+      jobs with different rhythms. Forcing them into one pipeline is how CRMs
+      turn into graveyards. We run them as three explicit tracks: every
+      company in the system is in exactly one.
+    </p>
+
+    <div class="m-flow rv">
+      <div class="m-cell">
+        <span class="nt">LIST</span>
+        <h3>The cold pool</h3>
+        <p>High-rotation qualification of researched companies. The goal is not
+        volume of messages, it's a fast, evidence-based sort: who is worth
+        pursuing, who isn't, and why.</p>
+      </div>
+      <div class="m-cell">
+        <span class="nt">FOLLOW-UP</span>
+        <h3>Person-level, warm</h3>
+        <p>The moment someone replies, the unit of work changes from company to
+        <b>person</b>. Each warm contact gets a next action with a date: our
+        queue won't let a lead be closed without one. Warm interest is never
+        allowed to expire from neglect.</p>
+      </div>
+      <div class="m-cell">
+        <span class="nt">ABM</span>
+        <h3>Account-level, strategic</h3>
+        <p>Some accounts justify pursuit before anyone replies. We map the key
+        people and track coverage (who has been reached, who has responded,
+        where the gaps are), reviewed weekly against the actual contact log,
+        not against optimism.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MESSAGES MEASURED ================= -->
+<section id="messages" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">The message library</p>
+    <h2 class="h2 rv">Messages are measured<br>like product features.</h2>
+
+    <div class="m-annot rv" style="margin-top:44px">
+      <div class="txt">
+        <h3>Templates earn their place</h3>
+        <p>Every message we send is archived verbatim with its metadata: what the
+        hook was, which template it came from, whether it got a reply, and how
+        effective it proved. A draft only becomes a reusable template after it
+        has demonstrably worked, and the library records what failed, too.</p>
+        <p>One example from the log: hooks built on <b>the prospect's own
+        situation</b> (a third-party review of their product, a change in
+        their stack) earn same-day replies. Generic industry news earns
+        silence. We know this because we measured it, and every future message
+        benefits from it.</p>
+      </div>
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>message archive &middot; reply tracking</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>16:10<br>message library with reply flags</div>
+        </div>
+        <figcaption>The library: what was sent, what replied, what died.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HANDOFF ================= -->
+<section id="handoff" class="sec" style="background:var(--gray)">
+  <div class="wrap">
+    <p class="eyebrow rv">The handoff</p>
+    <h2 class="h2 rv">The exit is designed in<br>from day one.</h2>
+
+    <div class="m-annot flip rv" style="margin-top:44px">
+      <div class="txt">
+        <h3>You own the relationship</h3>
+        <p>The end state of our work is not dependence on Dorado. When an account
+        is qualified (real problem, real owner, real timeline), it is
+        packaged through standard handoff templates and transferred into your own
+        CRM: contacts, channels, triggers, research, and the full touch history.</p>
+        <p>The client owns the relationship. The playbook stays with them.</p>
+      </div>
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>handover package &middot; template</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>16:10<br>handoff doc / CRM transfer</div>
+        </div>
+        <figcaption>A handover package: everything learned, in a form your team can run with.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section id="proofrun" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv" style="color:#fff">Not theoretical</p>
+    <h2 class="h2 rv">The system described here<br>wrote this page.</h2>
+    <p class="lead rv">
+      The same folders, the same database, the same verdict rules we apply to
+      client work every day. When we say we'll give you a clear call on a market,
+      this is the machinery that produces it.
+    </p>
+
+    <blockquote class="rv">
+      We can't promise Japan will work for you, nobody honestly can. We can
+      promise that every yen you spend exploring it will <span>produce recorded
+      knowledge</span> you keep.
+    </blockquote>
+
+    <div class="run-links rv">
+      <a href="services.html#validate">
+        <span class="rt">Runs under stage 01</span>
+        <h3>Validate &middot; research sprints</h3>
+        <span>Evidence log &middot; weekly reviews &rarr;</span>
+      </a>
+      <a href="services.html#sell">
+        <span class="rt">Runs under stage 02</span>
+        <h3>Sell &middot; GTM operations</h3>
+        <span>Lanes &middot; batches &middot; calls &rarr;</span>
+      </a>
+      <a href="services.html#operate">
+        <span class="rt">Runs under stage 03</span>
+        <h3>Operate &middot; customer success</h3>
+        <span>Dossiers &middot; bilingual logs &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="sec">
+  <div class="inner">
+    <div>
+      <p class="eyebrow rv">Contact</p>
+      <h2 class="h2 rv">Start with one question.</h2>
+      <p class="lead rv">
+        Tell us the market question that matters most right now: which segment,
+        which buyer, which doubt. We'll tell you honestly whether it's a question
+        we can help answer, and what the leanest way to test it would be.
+      </p>
+    </div>
+    <a class="btn btn-ink rv" href="contact.html">Send the question &rarr;</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><i></i>DORADO</a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+      <div class="fsocial">
+        <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@dorado-llc" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul class="two">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-we-operate.html">Process</a></li>
+        <li><a href="use-cases.html">Use cases</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">Grants database</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">Buyers database</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>How-we-operate mockup v1 &middot; for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* single, subtle reveal, nothing else */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

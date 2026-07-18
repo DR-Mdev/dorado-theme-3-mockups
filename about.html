@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | About &middot; The Record (mockup v1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens (unchanged from v4) ============ */
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.mono{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(72px,10vh,120px) var(--pad)}
+.eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+.h2{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:18px 0 14px}
+.lead{max-width:640px;font-size:clamp(15px,1.35vw,17px);line-height:1.68;opacity:.78}
+.cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:20px}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ header ============ */
+header{
+  position:sticky;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--pad);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(26,0,58,.12);
+}
+.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;background:var(--lime)}
+nav{display:flex;align-items:center;gap:24px}
+nav a.nl{
+  color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
+  border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
+}
+nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
+@media (max-width:1000px){nav a.nl{display:none}}
+
+/* ============ buttons ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:12px;padding:15px 24px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;
+}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:var(--ink);color:var(--lime)}
+.btn-ghost{border-color:rgba(26,0,58,.4);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--lime)}
+.btn-ink{background:var(--ink);color:var(--lime)}
+.btn-ink:hover{background:var(--deep)}
+.btn-sm{padding:10px 16px;font-size:11px}
+
+/* ============ screenshot / photo slots (v4 recipe) ============ */
+.shot{margin:0}
+.shot-frame{
+  background:#fff;border:1px solid rgba(26,0,58,.25);
+  box-shadow:10px 10px 0 rgba(26,0,58,.08);
+  overflow:hidden;
+}
+.shot-frame .bar{
+  display:flex;gap:5px;align-items:center;padding:8px 12px;
+  background:var(--gray);border-bottom:1px solid rgba(26,0,58,.15);
+}
+.shot-frame .bar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
+.shot-frame .bar span{
+  margin-left:8px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;
+  color:rgba(26,0,58,.55);letter-spacing:.05em;
+}
+.shot-frame img{display:block;width:100%;height:auto}
+.shot-frame .ph{
+  aspect-ratio:16/10;display:grid;place-items:center;text-align:center;
+  background:
+    repeating-linear-gradient(45deg,rgba(26,0,58,.035) 0 12px,transparent 12px 24px);
+  border:2px dashed rgba(26,0,58,.25);margin:10px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(26,0,58,.45);line-height:2;
+}
+.shot.tall .ph{aspect-ratio:4/3}
+
+/* ============ hero ============ */
+#hero{background:var(--white);border-bottom:1px solid rgba(26,0,58,.12)}
+.hero-grid{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,80px);
+  align-items:center;padding:clamp(48px,8vh,96px) var(--pad);
+  max-width:1240px;margin:0 auto;
+}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr}}
+.crumb{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:22px;
+  display:flex;align-items:center;gap:8px;
+}
+h1{font-size:clamp(2rem,4.4vw,3.5rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;max-width:640px}
+h1 .lm{background:var(--lime);padding:0 .12em .04em}
+.hero-sub{
+  max-width:540px;margin-top:22px;color:rgba(26,0,58,.72);
+  font-size:clamp(15px,1.35vw,17px);line-height:1.68;
+}
+.hero-ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+
+/* facts strip */
+.facts{border-top:1px solid rgba(26,0,58,.12);background:var(--white)}
+.facts ul{
+  max-width:1240px;margin:0 auto;padding:18px var(--pad);
+  display:flex;flex-wrap:wrap;gap:14px 40px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(26,0,58,.62);
+}
+.facts li{display:flex;align-items:center;gap:12px}
+.facts li::before{content:"";width:7px;height:7px;background:var(--lime)}
+
+/* ============ facts-inline stat strip (v4 recipe) ============ */
+.facts-inline{
+  display:flex;gap:clamp(24px,4vw,64px);flex-wrap:wrap;margin-top:48px;
+  border-top:1px solid rgba(26,0,58,.15);padding-top:26px;
+}
+.facts-inline div b{font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:700;letter-spacing:-.02em;display:block;line-height:1}
+.facts-inline div span{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;opacity:.6;display:block;margin-top:8px;max-width:180px;
+}
+
+/* ============ stage proof rows (ins-item recipe, from Services) ============ */
+.proof{margin-top:44px}
+.ins-item{
+  display:grid;grid-template-columns:150px 1fr auto 32px;gap:clamp(16px,3vw,40px);
+  align-items:center;padding:24px 0;border-top:1px solid rgba(26,0,58,.15);
+  transition:background .25s;
+}
+.ins-item:first-of-type{border-top:2px solid var(--ink)}
+.ins-item:last-child{border-bottom:1px solid rgba(26,0,58,.15)}
+.ins-item:hover{background:var(--gray)}
+.ins-item .meta{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(26,0,58,.55);line-height:1.9;
+}
+.ins-item .meta .stagetag{
+  background:var(--ink);color:var(--lime);display:inline-block;padding:4px 9px;margin-bottom:8px;
+}
+.ins-item h3{font-size:clamp(1.05rem,1.7vw,1.25rem);font-weight:700;letter-spacing:-.012em;line-height:1.3}
+.ins-item p{font-size:13.5px;line-height:1.55;opacity:.65;margin-top:6px;max-width:520px}
+.ins-item .stat{
+  text-align:right;font-weight:700;font-size:clamp(1.1rem,1.8vw,1.5rem);letter-spacing:-.02em;white-space:nowrap;
+}
+.ins-item .stat span{
+  display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;opacity:.5;margin-top:5px;white-space:normal;
+}
+.ins-item .ar{
+  width:30px;height:30px;border:1px solid rgba(26,0,58,.4);
+  display:grid;place-items:center;font-style:normal;
+}
+.ins-item:hover .ar{background:var(--lime);border-color:var(--lime)}
+@media (max-width:820px){
+  .ins-item{grid-template-columns:1fr}
+  .ins-item .ar{display:none}
+  .ins-item .stat{text-align:left}
+}
+
+/* ============ sector proof grid (principle recipe) ============ */
+#sectors{background:var(--gray)}
+.principles{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(26,0,58,.2);
+  border:1px solid rgba(26,0,58,.2);margin-top:48px;
+}
+@media (max-width:820px){.principles{grid-template-columns:1fr}}
+.principle{background:#fff;padding:26px 26px 28px}
+.principle .kt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  color:var(--deep);text-transform:uppercase;display:block;margin-bottom:12px;
+}
+.principle h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.principle p{font-size:13.5px;line-height:1.62;opacity:.72}
+
+/* ============ throughline statement (v4 recipe) ============ */
+#throughline .cols{
+  display:grid;grid-template-columns:1fr 300px;gap:clamp(32px,5vw,72px);
+  align-items:start;margin-top:30px;
+}
+@media (max-width:900px){#throughline .cols{grid-template-columns:1fr}}
+#statement{
+  font-size:clamp(1.3rem,2.5vw,2rem);font-weight:500;line-height:1.45;letter-spacing:-.012em;
+}
+#statement em{font-style:normal;box-shadow:inset 0 -0.45em var(--lime)}
+.margin-note{
+  border-top:2px solid var(--ink);padding-top:18px;
+  font-size:14px;line-height:1.7;color:rgba(26,0,58,.7);
+}
+.margin-note b{
+  display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;color:var(--ink);
+}
+
+/* ============ system teaser ============ */
+#system{background:var(--ink);color:#fff}
+#system .lead{color:rgba(255,255,255,.72)}
+.m-annot{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
+  margin-top:44px;align-items:center;
+}
+@media (max-width:900px){.m-annot{grid-template-columns:1fr}}
+.m-annot .txt p{font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.75);max-width:480px}
+.m-annot .txt p + p{margin-top:14px}
+.m-annot .txt .btn{margin-top:22px}
+
+/* ============ proof quotes (v4 pq recipe) ============ */
+.pq-list{margin-top:44px;display:flex;flex-direction:column}
+.pq-item{
+  display:grid;grid-template-columns:210px 1fr;gap:clamp(20px,3vw,48px);
+  padding:30px 0;border-top:1px solid rgba(26,0,58,.2);
+}
+.pq-item:last-child{border-bottom:1px solid rgba(26,0,58,.2)}
+@media (max-width:760px){.pq-item{grid-template-columns:1fr}}
+.pq-item .pq-tag{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--deep);padding-top:6px;
+}
+.pq-item blockquote{
+  font-size:clamp(1.2rem,2.1vw,1.55rem);font-weight:500;line-height:1.4;letter-spacing:-.012em;
+}
+.pq-item blockquote span{box-shadow:inset 0 -0.4em var(--lime)}
+.pq-item .why{margin-top:12px;font-size:13.5px;line-height:1.6;color:rgba(26,0,58,.62);max-width:600px}
+
+/* ============ company profile ============ */
+#company{background:var(--gray)}
+#company .c-table{
+  margin-top:44px;border:1px solid rgba(26,0,58,.25);max-width:820px;
+}
+#company .c-row{
+  display:grid;grid-template-columns:220px 1fr;
+  border-top:1px solid rgba(26,0,58,.12);
+}
+#company .c-row:first-child{border-top:none}
+@media (max-width:640px){#company .c-row{grid-template-columns:1fr}}
+#company .c-row > span{
+  padding:16px 20px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(26,0,58,.55);
+  border-right:1px solid rgba(26,0,58,.12);display:flex;align-items:center;gap:10px;
+  background:#fff;
+}
+#company .c-row > span::before{content:"";width:7px;height:7px;background:var(--lime);flex:none}
+@media (max-width:640px){#company .c-row > span{border-right:none;padding-bottom:4px}}
+#company .c-row > div{padding:16px 20px;font-size:14.5px;line-height:1.6;background:#fff}
+#company .todo{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.12em;
+  background:var(--gray);padding:3px 8px;color:rgba(26,0,58,.6);text-transform:uppercase;
+}
+
+/* ============ contact / footer (v4 recipe) ============ */
+#contact{background:var(--lime);color:var(--ink)}
+#contact .inner{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+}
+@media (max-width:820px){#contact .inner{grid-template-columns:1fr}}
+#contact .h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:14px 0 10px}
+#contact .lead{opacity:.8}
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
+footer .logo{color:#fff}
+.fsocial{display:flex;gap:10px;margin-top:22px}
+.fsocial a{
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.3);
+  display:grid;place-items:center;transition:border-color .25s,background .25s;
+}
+.fsocial a:hover{border-color:var(--lime);background:var(--lime)}
+.fsocial a svg{width:16px;height:16px;fill:rgba(255,255,255,.75);transition:fill .25s}
+.fsocial a:hover svg{fill:var(--ink)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:18px;
+}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul.two{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 28px}
+.fgrid ul a{font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;transition:color .25s}
+.fgrid ul a:hover{color:var(--lime)}
+.fbottom{
+  max-width:1240px;margin:52px auto 0;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><i></i>DORADO</a>
+  <nav>
+    <a class="nl" href="services.html">Services</a>
+    <a class="nl" href="how-we-operate.html">Process</a>
+    <a class="nl" href="use-cases.html">Use cases</a>
+    <a class="nl" href="pricing.html">Pricing</a>
+    <a class="nl" href="insights.html">Insights</a>
+    <a class="nl" href="partners.html">Partners</a>
+    <a class="nl" href="about.html">About</a>
+    <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="crumb rv"><a href="index.html">INDEX</a> / ABOUT</p>
+      <h1 class="rv">The three jobs on our services page aren't a pitch. <span class="lm">They're a record.</span></h1>
+      <p class="hero-sub rv">
+        We didn't sit down and design Validate, Sell, and Operate as a sales
+        structure. They're the shape four real engagements took, independently,
+        months apart, for companies that had never spoken to each other. This
+        page is the paper trail: what actually happened, what it produced, and
+        who's behind it.
+      </p>
+      <div class="hero-ctas rv">
+        <a class="btn btn-lime" href="#record">See the record &rarr;</a>
+        <a class="btn btn-ghost" href="how-we-operate.html">How we operate &rarr;</a>
+      </div>
+    </div>
+
+    <div>
+      <figure class="shot tall rv">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>tokyo &middot; where the work happens</span></div>
+          <div class="ph">PHOTO SLOT<br>4:3<br>real workspace / founder photo<br>(no stock imagery)</div>
+        </div>
+      </figure>
+    </div>
+  </div>
+
+  <div class="facts">
+    <ul>
+      <li>Tokyo, Japan</li>
+      <li>15+ years in the Japan market</li>
+      <li>5 years running Dorado</li>
+      <li>EN / JA</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= THE RECORD ================= -->
+<section id="record" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">The record</p>
+    <h2 class="h2 rv">Four engagements.<br>One pattern that keeps repeating.</h2>
+    <p class="lead rv">
+      An industrial-automation company installing machine vision on a Japanese
+      factory floor. A logistics-software provider deciding whether to enter at
+      all. A food brand testing one channel hypothesis. A vertical SaaS company
+      that couldn't turn interest into revenue. Different products, different
+      buyers, different years, and every one of them needed the same underlying
+      thing: someone to research the side of the deal they couldn't see
+      themselves.
+    </p>
+
+    <div class="facts-inline rv">
+      <div><b>20&ndash;30%</b><span>Efficiency gain identified in one week on-site, factory floor</span></div>
+      <div><b>3 mo</b><span>From open question to a validated entry strategy, logistics-software provider</span></div>
+      <div><b>35+</b><span>Country markets mapped for one GTM engagement, vertical SaaS company</span></div>
+      <div><b>30 days</b><span>From zero local data to a prioritized Japan plan, food brand</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACROSS EVERY STAGE ================= -->
+<section id="stages" class="sec" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">Across every stage</p>
+    <h2 class="h2 rv">The framework came<br>after the work, not before it.</h2>
+    <p class="lead rv">
+      Validate, Sell, and Operate on our
+      <a href="services.html" style="border-bottom:2px solid var(--lime)">services page</a>
+      aren't three products we built in advance. They're what we noticed once we
+      looked back at four unrelated engagements and saw the same three jobs
+      recurring.
+    </p>
+
+    <div class="proof rv">
+      <a class="ins-item" href="services.html#validate">
+        <span class="meta"><span class="stagetag">01 Validate</span><br>2 engagements</span>
+        <div>
+          <h3>Logistics-software provider &amp; food brand, both entering from overseas</h3>
+          <p>Neither company was in the Japanese market yet. Both needed a go / no-go call built on evidence, not a hunch, before committing resources.</p>
+        </div>
+        <span class="stat">2<span>research sprints run</span></span>
+        <i class="ar">&rarr;</i>
+      </a>
+      <a class="ins-item" href="services.html#sell">
+        <span class="meta"><span class="stagetag">02 Sell</span><br>1 engagement</span>
+        <div>
+          <h3>Vertical SaaS company, global + Japan</h3>
+          <p>Demos, PoCs, and partner conversations were happening constantly. None of it was converting. The gap was everything after interest.</p>
+        </div>
+        <span class="stat">35+<span>markets under active research</span></span>
+        <i class="ar">&rarr;</i>
+      </a>
+      <a class="ins-item" href="services.html#operate">
+        <span class="meta"><span class="stagetag">03 Operate</span><br>1 engagement</span>
+        <div>
+          <h3>Industrial-automation company, entering from overseas</h3>
+          <p>The deal was already signed with a major Japanese manufacturer. What was missing was someone in Japan accountable for the relationship.</p>
+        </div>
+        <span class="stat">7 mo<span>audit to installed system</span></span>
+        <i class="ar">&rarr;</i>
+      </a>
+    </div>
+
+    <p class="cap rv">Client names withheld under active confidentiality agreements; sector and outcome details are drawn directly from the engagement records. Full write-ups live on the case-study index.</p>
+  </div>
+</section>
+
+<!-- ================= EVERY SECTOR ================= -->
+<section id="sectors" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Not sector-specific, proven</p>
+    <h2 class="h2 rv">Four sectors that share<br>nothing except the problem.</h2>
+    <p class="lead rv">
+      Industrial robotics, logistics software, food products, and vertical
+      software have almost nothing in common as products. What they had in common
+      as clients was the same missing piece: a structured read on the Japanese
+      buyer's side of the deal.
+    </p>
+
+    <div class="principles rv">
+      <div class="principle">
+        <span class="kt">Industrial automation</span>
+        <h3>Machine vision &amp; line robotics</h3>
+        <p>Machine-vision inspection and line automation for factories. Client-facing work required fluency in PLCs, conveyors, and vision systems, in two languages, without losing precision.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Logistics software</span>
+        <h3>Fleet &amp; telematics SaaS</h3>
+        <p>Hundreds of fleet deployments abroad, zero in Japan. The research had to account for a different regulatory regime, strict driver-hour rules, and keiretsu-bound logistics incumbents.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Food &amp; beverage</span>
+        <h3>Food, a broad product range</h3>
+        <p>A range with no fixed Japan strategy yet, not even a settled channel. The research had to decide the product, the channel, and the positioning at once.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Vertical SaaS</span>
+        <h3>Industry-specific software platform</h3>
+        <p>A technically superior product competing with both incumbent platforms and general-purpose alternatives. The constraint was never the technology: it was the commercial layer around it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THROUGHLINE ================= -->
+<section id="throughline" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Where this comes from</p>
+    <div class="cols">
+      <p id="statement" class="rv">
+        We didn't arrive at this idea in the abstract. It showed up independently
+        on a factory floor, in a logistics-software company's board deck, and
+        in a software company's stalled pipeline: <em>what's missing is
+        never the product</em>. It's the other side of the deal: who buys, why
+        now, through whom, and in what package. Four different engagements kept
+        teaching us the same lesson, which is the only reason we now say it with
+        confidence.
+      </p>
+      <aside class="margin-note rv">
+        <b>Why this became the company</b>
+        Dorado exists because that gap kept showing up regardless of sector,
+        product maturity, or company size, and because closing it is research
+        work, not a translation job or a sales favor.
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SYSTEM TEASER ================= -->
+<section id="system" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv" style="color:#fff">Built on a system, not improvisation</p>
+    <div class="m-annot rv">
+      <div class="txt">
+        <h2 class="h2" style="color:#fff">Every engagement above<br>left a paper trail.</h2>
+        <p>The 20&ndash;30% efficiency figure, the 3-month validation timeline, the
+        35+ markets, the 30-day sprint, none of those numbers were typed in
+        after the fact. They came out of the same logging discipline we run on
+        every engagement: every hypothesis, every message, every reply recorded
+        as it happens.</p>
+        <p>That system isn't specific to any one client. It's the infrastructure
+        this company runs on.</p>
+        <a class="btn btn-lime" href="how-we-operate.html">See how we operate &rarr;</a>
+      </div>
+      <figure class="shot">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>engagement log &middot; anonymized excerpt</span></div>
+          <div class="ph">SCREENSHOT SLOT<br>16:10<br>event log behind the numbers above</div>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT CLIENTS ACTUALLY HEARD ================= -->
+<section id="quotes" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">In their own engagement records</p>
+    <h2 class="h2 rv">Three lines pulled straight<br>from the case files.</h2>
+    <p class="lead rv">
+      Not testimonials, excerpts from the actual deliverables and engagement
+      notes, kept as written.
+    </p>
+
+    <div class="pq-list rv">
+      <div class="pq-item">
+        <span class="pq-tag">Logistics-software provider &middot; research memo</span>
+        <div>
+          <blockquote>&ldquo;When direct adoption data didn't exist, we built <span>a defensible estimate from public statistics</span>, we didn't stop at &lsquo;no data.&rsquo;&rdquo;</blockquote>
+          <p class="why">Public demand data for the client's category simply wasn't published. Rather than treat that as a dead end, we built a proxy model from public government statistics.</p>
+        </div>
+      </div>
+      <div class="pq-item">
+        <span class="pq-tag">Food brand &middot; research memo</span>
+        <div>
+          <blockquote>&ldquo;The research surfaced findings that <span>materially changed the plan</span>, including ones the client didn't expect to hear.&rdquo;</blockquote>
+          <p class="why">Consumer data showed the biggest barrier wasn't price or product: it was that Japanese shoppers bought the category through a channel the brand hadn't planned for. The strategy was rebuilt around that fact.</p>
+        </div>
+      </div>
+      <div class="pq-item">
+        <span class="pq-tag">Vertical SaaS company &middot; GTM operations note</span>
+        <div>
+          <blockquote>&ldquo;We treat <span>every signup as a research problem</span> before it becomes an email.&rdquo;</blockquote>
+          <p class="why">Standing operating rule for inbound follow-up: company scan, buying-context hypothesis, then a tailored message, in that order, every time, never the reverse.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPANY PROFILE ================= -->
+<section id="company" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Company</p>
+    <h2 class="h2 rv">Dorado LLC</h2>
+
+    <div class="c-table rv">
+      <div class="c-row">
+        <span>Company name</span>
+        <div>Dorado LLC (Dorado&#21512;&#21516;&#20250;&#31038;)</div>
+      </div>
+      <div class="c-row">
+        <span>Location</span>
+        <div>Tokyo, Japan &nbsp;<span class="todo">full address to confirm</span></div>
+      </div>
+      <div class="c-row">
+        <span>Representative</span>
+        <div><span class="todo">name &amp; title to confirm</span></div>
+      </div>
+      <div class="c-row">
+        <span>Founded</span>
+        <div><span class="todo">year to confirm</span>, 5 years operating, 15+ years of Japan-market experience behind it</div>
+      </div>
+      <div class="c-row">
+        <span>Business</span>
+        <div>Japan market research &amp; entry validation &middot; go-to-market operations &middot; customer success representation</div>
+      </div>
+      <div class="c-row">
+        <span>Languages</span>
+        <div>English / Japanese</div>
+      </div>
+      <div class="c-row">
+        <span>Products</span>
+        <div>grants.dorado-group.jp &middot; team.dorado-group.jp &middot; buyers.dorado-group.jp</div>
+      </div>
+    </div>
+
+    <p class="cap rv">Rows marked "to confirm" need real registry details before publication.</p>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="sec">
+  <div class="inner">
+    <div>
+      <p class="eyebrow rv">Contact</p>
+      <h2 class="h2 rv">Start with one question.</h2>
+      <p class="lead rv">
+        Tell us the market question that matters most right now: which segment,
+        which buyer, which doubt. We'll tell you honestly whether it's a question
+        we can help answer, and what the leanest way to test it would be.
+      </p>
+    </div>
+    <a class="btn btn-ink rv" href="contact.html">Send the question &rarr;</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><i></i>DORADO</a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+      <div class="fsocial">
+        <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@dorado-llc" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul class="two">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-we-operate.html">Process</a></li>
+        <li><a href="use-cases.html">Use cases</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">Grants database</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">Buyers database</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>About mockup v2 &middot; rebuilt from the case files &middot; for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* single, subtle reveal, nothing else */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

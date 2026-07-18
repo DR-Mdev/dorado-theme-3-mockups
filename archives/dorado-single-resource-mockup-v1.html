@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | Single resource — Use case / Insight (mockup v1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens ============ */
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.mono{font-family:'DM Mono',ui-monospace,'SF Mono',monospace}
+.wrap{max-width:1240px;margin:0 auto}
+.eyebrow{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+
+/* ============ reveal utilities ============ */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1s var(--ease);transition-delay:var(--d,0s)}
+.wipe.in{clip-path:inset(0 0 0% 0)}
+
+/* ============ progress + header ============ */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--lime);z-index:120}
+header{
+  position:fixed;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px var(--pad);transition:background .4s,padding .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+  padding-top:12px;padding-bottom:12px;border-bottom-color:rgba(26,0,58,.14);
+}
+.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;background:var(--lime);transition:transform .4s var(--ease)}
+.logo:hover i{transform:rotate(135deg)}
+nav{display:flex;align-items:center;gap:30px}
+nav a.nl{
+  color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;position:relative;padding:4px 0;
+  transition:color .3s;
+}
+nav a.nl::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:var(--lime);transform:scaleX(0);transform-origin:right;
+  transition:transform .35s var(--ease);
+}
+nav a.nl:hover{color:var(--ink)}
+nav a.nl:hover::after{transform:scaleX(1);transform-origin:left}
+@media (max-width:900px){nav a.nl{display:none}}
+
+/* ============ buttons (sweep fill) ============ */
+.btn{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;gap:12px;padding:16px 26px;
+  font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid transparent;
+  transition:color .35s var(--ease),border-color .35s var(--ease);
+}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .4s var(--ease);
+}
+.btn:hover::before{transform:scaleY(1)}
+.btn .ar{transition:transform .35s var(--ease)}
+.btn:hover .ar{transform:translateX(6px)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime::before{background:var(--ink)}
+.btn-lime:hover{color:var(--lime)}
+.btn-ghost{border-color:rgba(26,0,58,.4);color:var(--ink);background:transparent}
+.btn-ghost::before{background:var(--ink)}
+.btn-ghost:hover{color:var(--lime);border-color:var(--ink)}
+.btn-ink{background:var(--ink);color:var(--lime)}
+.btn-ink::before{background:var(--white)}
+.btn-ink:hover{color:var(--ink)}
+.btn-sm{padding:11px 18px;font-size:11px}
+
+/* ============ breadcrumbs ============ */
+.crumbs{
+  padding:110px var(--pad) 0;
+}
+.crumbs ol{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(26,0,58,.5);
+  list-style:none;max-width:1240px;margin:0 auto;
+}
+.crumbs li{display:flex;align-items:center;gap:10px}
+.crumbs li + li::before{content:"/";opacity:.5}
+.crumbs a{transition:color .3s}
+.crumbs a:hover{color:var(--ink)}
+.crumbs .cur{color:var(--ink)}
+
+/* ============ article hero ============ */
+.a-hero{position:relative;overflow:hidden;padding:44px var(--pad) 64px;background:var(--white)}
+.a-hero .grid-bg{
+  position:absolute;inset:-80px;z-index:0;
+  background-image:
+    linear-gradient(rgba(26,0,58,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,0,58,.05) 1px,transparent 1px);
+  background-size:82px 82px;
+}
+.a-hero-grid{
+  position:relative;z-index:1;max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(28px,4vw,64px);align-items:center;
+}
+@media (max-width:940px){.a-hero-grid{grid-template-columns:1fr}}
+.a-hero-tags{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.type-tag{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;background:var(--ink);color:var(--lime);padding:7px 13px;
+}
+.cat-tag{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;border:1px solid rgba(26,0,58,.35);padding:6px 12px;color:rgba(26,0,58,.75);
+}
+.a-hero h1{
+  font-size:clamp(1.9rem,4.2vw,3.5rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;
+}
+.a-hero h1 .hl{overflow:hidden;display:block}
+.a-hero h1 .hl > span{display:block;transform:translateY(112%);transition:transform .95s var(--ease);transition-delay:var(--d,0s)}
+body.loaded .a-hero h1 .hl > span{transform:none}
+.a-hero h1 em{font-style:normal;background:var(--lime);padding:0 .1em}
+.a-hero-sub{
+  max-width:560px;margin-top:22px;color:rgba(26,0,58,.72);
+  font-size:clamp(15px,1.3vw,17px);line-height:1.65;
+  opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease) .45s,transform .8s var(--ease) .45s;
+}
+body.loaded .a-hero-sub{opacity:1;transform:none}
+.a-meta{
+  display:flex;flex-wrap:wrap;gap:0;margin-top:30px;border:1px solid rgba(26,0,58,.2);width:max-content;max-width:100%;
+  opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease) .6s,transform .8s var(--ease) .6s;
+}
+body.loaded .a-meta{opacity:1;transform:none}
+.a-meta span{
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(26,0,58,.65);padding:10px 16px;
+}
+.a-meta span + span{border-left:1px solid rgba(26,0,58,.2)}
+.a-meta b{color:var(--ink);font-weight:500}
+/* hero media: framed image slot */
+.a-media{position:relative}
+.a-media .sq{
+  position:absolute;right:-26px;top:-26px;width:92px;height:92px;
+  border:1px solid rgba(26,0,58,.3);z-index:0;animation:spin 48s linear infinite;
+}
+.a-media .sq::before{content:"";position:absolute;top:-5px;left:-5px;width:10px;height:10px;background:var(--lime)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.frame{position:relative;z-index:1;background:#fff;border:1px solid rgba(26,0,58,.25);overflow:hidden;box-shadow:12px 12px 0 var(--lime)}
+.fbar{display:flex;gap:5px;align-items:center;padding:8px 10px;background:var(--gray);border-bottom:1px solid rgba(26,0,58,.15)}
+.fbar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
+.furl{
+  margin-left:8px;flex:1;background:#fff;
+  font-family:'DM Mono',monospace;font-size:9px;color:rgba(26,0,58,.6);
+  padding:4px 8px;letter-spacing:.05em;
+}
+.fimg{
+  aspect-ratio:16/10;display:grid;place-items:center;
+  background:
+    radial-gradient(circle at 70% 20%,rgba(204,255,0,.4),transparent 55%),
+    linear-gradient(rgba(26,0,58,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,0,58,.05) 1px,transparent 1px);
+  background-size:auto,41px 41px,41px 41px;
+}
+.fimg span{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(26,0,58,.45);
+}
+
+/* ============ article layout ============ */
+.a-section{padding:0 var(--pad) clamp(80px,10vh,130px)}
+.a-layout{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:clamp(32px,4.5vw,72px);
+  align-items:start;
+}
+@media (max-width:1020px){.a-layout{grid-template-columns:1fr}}
+.a-divider{
+  max-width:1240px;margin:0 auto 56px;height:1px;background:rgba(26,0,58,.15);position:relative;
+}
+.a-divider::before{content:"";position:absolute;left:0;top:-4px;width:56px;height:9px;background:var(--lime)}
+
+/* ---- body typography ---- */
+.a-body{max-width:720px;font-size:clamp(15.5px,1.25vw,17px);line-height:1.75;color:rgba(26,0,58,.85)}
+.a-body > * + *{margin-top:1.5em}
+.a-body .a-intro{font-size:clamp(17px,1.45vw,19.5px);line-height:1.7;color:var(--ink)}
+.a-body h2{
+  font-size:clamp(1.45rem,2.4vw,2rem);font-weight:700;letter-spacing:-.018em;line-height:1.2;
+  color:var(--ink);margin-top:2.4em;display:flex;align-items:baseline;gap:14px;
+}
+.a-body h2 .hn{
+  font-family:'DM Mono',monospace;font-size:.55em;font-weight:500;letter-spacing:.14em;
+  background:var(--ink);color:var(--lime);padding:5px 10px;flex:none;transform:translateY(-4px);
+}
+.a-body h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-top:2em}
+.a-body ul{padding-left:0}
+.a-body ul li{position:relative;padding-left:26px;margin-top:.7em}
+.a-body ul li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;background:var(--lime);outline:1px solid rgba(26,0,58,.35)}
+.a-body strong{color:var(--ink)}
+.a-pull{
+  border-left:4px solid var(--lime);padding:8px 0 8px 26px;
+  font-size:clamp(1.15rem,1.8vw,1.4rem);font-weight:500;line-height:1.5;letter-spacing:-.01em;color:var(--ink);
+}
+.a-note{
+  background:var(--ink);color:#fff;padding:24px 28px;font-size:14.5px;line-height:1.7;
+}
+.a-note b{
+  display:block;color:var(--lime);font-family:'DM Mono',monospace;font-size:10.5px;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;font-weight:500;
+}
+.a-call{
+  border:1px solid rgba(26,0,58,.25);background:var(--gray);padding:28px;
+}
+.a-call b{
+  display:inline-block;background:var(--lime);color:var(--ink);
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;padding:6px 12px;margin-bottom:14px;
+}
+.a-call p{font-size:15px;line-height:1.7;color:var(--ink)}
+/* checklist table */
+.a-check{border:1px solid rgba(26,0,58,.2)}
+.a-check .row{display:grid;grid-template-columns:52px 1fr;border-top:1px solid rgba(26,0,58,.12)}
+.a-check .row:first-child{border-top:none}
+.a-check .row i{
+  display:grid;place-items:center;background:var(--gray);border-right:1px solid rgba(26,0,58,.12);
+  font-family:'DM Mono',monospace;font-style:normal;font-size:11px;font-weight:500;color:var(--ink);
+}
+.a-check .row div{padding:16px 20px;font-size:14.5px;line-height:1.6}
+.a-check .row div b{display:block;margin-bottom:2px}
+
+/* ---- article footer ---- */
+.a-foot{max-width:720px;margin-top:64px}
+.a-foot-tags{display:flex;gap:10px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(26,0,58,.15)}
+.a-foot-tags a{
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid rgba(26,0,58,.3);padding:7px 12px;color:rgba(26,0,58,.7);
+  transition:background .3s,color .3s,border-color .3s;
+}
+.a-foot-tags a:hover{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.a-nav{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:28px;
+  background:rgba(26,0,58,.2);border:1px solid rgba(26,0,58,.2);
+}
+@media (max-width:640px){.a-nav{grid-template-columns:1fr}}
+.a-nav a{
+  background:#fff;padding:22px 24px;display:flex;flex-direction:column;gap:8px;
+  transition:background .3s;
+}
+.a-nav a:hover{background:var(--gray)}
+.a-nav a.next{text-align:right;align-items:flex-end}
+.a-nav .dir{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);
+}
+.a-nav .ttl{font-size:14.5px;font-weight:700;letter-spacing:-.01em;line-height:1.35}
+.a-back{
+  margin-top:28px;display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(26,0,58,.7);transition:color .3s;
+}
+.a-back::before{content:"\2190";transition:transform .35s var(--ease)}
+.a-back:hover{color:var(--ink)}
+.a-back:hover::before{transform:translateX(-5px)}
+
+/* ============ sidebar ============ */
+.a-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:26px}
+@media (max-width:1020px){.a-side{position:static}}
+.side-panel{border:1px solid rgba(26,0,58,.2);background:#fff;padding:24px 24px 26px}
+.side-panel .sp-eyebrow{
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:18px;color:var(--ink);
+}
+.side-panel .sp-eyebrow::before{content:"";width:8px;height:8px;background:var(--lime)}
+/* TOC */
+.toc a{
+  display:flex;gap:12px;align-items:baseline;padding:9px 0;
+  font-size:13.5px;line-height:1.45;color:rgba(26,0,58,.62);
+  border-left:2px solid transparent;padding-left:14px;margin-left:-16px;
+  transition:color .3s,border-color .3s;
+}
+.toc a i{font-family:'DM Mono',monospace;font-style:normal;font-size:10px;letter-spacing:.1em;opacity:.55;flex:none}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--ink);border-left-color:var(--lime);font-weight:500}
+/* related */
+.rel-list{display:flex;flex-direction:column}
+.rel-card{
+  padding:16px 0;border-top:1px solid rgba(26,0,58,.12);display:flex;flex-direction:column;gap:8px;
+  transition:padding-left .3s var(--ease);
+}
+.rel-card:first-child{border-top:none;padding-top:0}
+.rel-card:hover{padding-left:8px}
+.rel-card .rc-meta{
+  font-family:'DM Mono',monospace;font-size:9.5px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);
+}
+.rel-card h3{font-size:14px;font-weight:700;letter-spacing:-.01em;line-height:1.4}
+.rel-card:hover h3{text-decoration:underline;text-decoration-color:var(--lime);text-decoration-thickness:2px;text-underline-offset:3px}
+.side-archive{
+  margin-top:18px;display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink);
+}
+.side-archive .ar{transition:transform .35s var(--ease)}
+.side-archive:hover .ar{transform:translateX(5px)}
+/* side CTA */
+.side-cta{background:var(--ink);color:#fff;padding:26px 24px 28px;border:none}
+.side-cta .sp-eyebrow{color:var(--lime)}
+.side-cta p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);margin-bottom:20px}
+.side-cta .btn{width:100%;justify-content:space-between}
+
+/* ============ contact band ============ */
+#contact{background:var(--lime);color:var(--ink);text-align:center;padding:clamp(80px,11vh,140px) var(--pad)}
+#contact .h2c{font-size:clamp(2.2rem,5.4vw,4.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin:18px 0 14px}
+#contact .lead{max-width:640px;margin:0 auto;font-size:clamp(15px,1.35vw,18px);line-height:1.65;opacity:.8}
+#contact .btn{margin-top:38px}
+
+/* ============ footer ============ */
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:70px var(--pad) 32px}
+footer .logo{color:#fff}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:18px;
+}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul a{
+  font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;
+  transition:color .3s,padding-left .3s var(--ease);position:relative;
+}
+.fgrid ul a:hover{color:var(--lime);padding-left:14px}
+.fgrid ul a::before{
+  content:"";position:absolute;left:0;top:50%;width:8px;height:1.5px;background:var(--lime);
+  transform:translateY(-50%) scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
+}
+.fgrid ul a:hover::before{transform:translateY(-50%) scaleX(1)}
+.fbottom{
+  max-width:1240px;margin:56px auto 0;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;
+}
+
+/* ============ reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rv,.wipe{opacity:1!important;transform:none!important;clip-path:none!important}
+  .a-hero h1 .hl > span{transform:none!important}
+  .a-hero-sub,.a-meta{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="hd">
+  <a class="logo" href="#"><i></i>DORADO</a>
+  <nav>
+    <a class="nl" href="#">What we do</a>
+    <a class="nl" href="#">Method</a>
+    <a class="nl" href="#">Use cases</a>
+    <a class="nl" href="#">Pricing</a>
+    <a class="nl" href="#">Insights</a>
+    <a class="btn btn-lime btn-sm" href="#contact">Contact us <span class="ar">&rarr;</span></a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= BREADCRUMBS ================= -->
+<div class="crumbs">
+  <ol>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#">Use cases</a></li>
+    <li><span class="cur">The three things restaurants check before taste&hellip;</span></li>
+  </ol>
+</div>
+
+<!-- ================= ARTICLE HERO ================= -->
+<section class="a-hero">
+  <div class="grid-bg"></div>
+  <div class="a-hero-grid">
+    <div>
+      <div class="a-hero-tags">
+        <span class="type-tag">Use case</span>
+        <span class="cat-tag">Food &amp; Beverage</span>
+      </div>
+      <h1>
+        <span class="hl"><span style="--d:.1s">The three things restaurants check</span></span>
+        <span class="hl"><span style="--d:.22s"><em>before taste</em> when considering</span></span>
+        <span class="hl"><span style="--d:.34s">a new ingredient.</span></span>
+      </h1>
+      <p class="a-hero-sub">
+        A foreign food producer assumed the tasting would decide everything.
+        The buyer's kitchen had already decided three things before the sample
+        was ever opened. Here is what they were &mdash; and what that means for how
+        you approach Japanese restaurants.
+      </p>
+      <div class="a-meta">
+        <span><b>2026.07</b></span>
+        <span>7 min read</span>
+        <span>By Dorado</span>
+      </div>
+    </div>
+
+    <div class="a-media rv" style="--d:.2s">
+      <div class="sq" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="fbar"><i></i><i></i><i></i><span class="furl">dorado-group.jp/resources/use-cases</span></div>
+        <div class="fimg"><span>Image slot &middot; 16:10</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARTICLE ================= -->
+<section class="a-section">
+  <div class="a-divider"></div>
+  <div class="a-layout">
+
+    <!-- ---------- main ---------- -->
+    <article>
+      <div class="a-body">
+        <p class="a-intro">
+          Dummy intro copy. A producer with a genuinely good product kept
+          losing deals after well-received tastings. When we mapped the buyer's
+          side of the decision, the pattern was clear: taste was the last
+          gate, not the first. Three checks came before it.
+        </p>
+
+        <div class="a-note">
+          <b>The situation</b>
+          Placeholder summary. A foreign ingredient maker, strong reviews at
+          trade shows, samples requested by dozens of Tokyo restaurants &mdash;
+          and almost no repeat orders. The question we were brought: is the
+          product wrong, or is the approach wrong?
+        </div>
+
+        <h2 id="s1"><span class="hn">01</span>Can the kitchen actually use it?</h2>
+        <p>
+          Dummy paragraph. Before anyone tastes anything, the chef checks
+          operational fit: prep time, storage, shelf life once opened, and
+          whether it slots into dishes already on the menu without retraining
+          staff. An ingredient that demands a new workflow is judged as a
+          cost, not a flavor.
+        </p>
+        <ul>
+          <li><strong>Storage:</strong> dummy line about refrigeration and space constraints in small kitchens.</li>
+          <li><strong>Portioning:</strong> dummy line about pack sizes that don't match service volume.</li>
+          <li><strong>Consistency:</strong> dummy line about batch-to-batch variation being a deal-breaker.</li>
+        </ul>
+
+        <h2 id="s2"><span class="hn">02</span>Will supply survive success?</h2>
+        <p>
+          Dummy paragraph. The second check is continuity: if the dish becomes
+          a signature, can you deliver every week, at the same grade, through
+          Japanese import channels? Restaurants have been burned before. A
+          great ingredient that disappears for six weeks damages the menu it
+          was supposed to elevate.
+        </p>
+        <p class="a-pull">
+          The tasting doesn't sell the ingredient. It confirms a decision the
+          kitchen has already half-made.
+        </p>
+
+        <h2 id="s3"><span class="hn">03</span>Can the story be told at the table?</h2>
+        <p>
+          Dummy paragraph. The third check is whether the ingredient gives the
+          restaurant something to say &mdash; an origin, a maker, a reason &mdash; that
+          staff can explain to a guest in one sentence. This is where foreign
+          producers underinvest: the materials exist for importers, not for
+          the person holding the menu.
+        </p>
+
+        <h2 id="s4"><span class="hn">04</span>What we did with this</h2>
+        <p>
+          Dummy paragraph. We rebuilt the approach in the buyer's order:
+          operational one-pager first, supply commitment second, story card
+          third, tasting last. Outreach volume stayed the same; the sequence
+          changed.
+        </p>
+
+        <div class="a-call">
+          <b>The call</b>
+          <p>
+            Placeholder outcome. The product was never the problem. The
+            sequence was. Repeat-order conversations opened at the same
+            tasting count &mdash; the difference was what arrived before the
+            sample did.
+          </p>
+        </div>
+
+        <h3>What this means if you sell to Japanese restaurants</h3>
+        <div class="a-check">
+          <div class="row"><i>&#10003;</i><div><b>Lead with operations, not flavor.</b> Dummy line: answer the kitchen's first question before they ask it.</div></div>
+          <div class="row"><i>&#10003;</i><div><b>Prove continuity early.</b> Dummy line: name your import route and your restock cadence in the first materials.</div></div>
+          <div class="row"><i>&#10003;</i><div><b>Arm the table, not just the buyer.</b> Dummy line: give staff one sentence they can say to a guest.</div></div>
+        </div>
+      </div>
+
+      <!-- article footer -->
+      <div class="a-foot">
+        <div class="a-foot-tags">
+          <a href="#">#Japan market entry</a>
+          <a href="#">#Food &amp; Beverage</a>
+          <a href="#">#Buyer-side intelligence</a>
+        </div>
+        <div class="a-nav">
+          <a href="#">
+            <span class="dir">&larr; Previous</span>
+            <span class="ttl">Why "interested" distributors go silent after the second meeting</span>
+          </a>
+          <a href="#" class="next">
+            <span class="dir">Next &rarr;</span>
+            <span class="ttl">Twelve ways deals die after the order is won</span>
+          </a>
+        </div>
+        <a class="a-back" href="#">Back to Use cases</a>
+      </div>
+    </article>
+
+    <!-- ---------- sidebar ---------- -->
+    <aside class="a-side">
+      <div class="side-panel">
+        <p class="sp-eyebrow">On this page</p>
+        <nav class="toc">
+          <a href="#s1" class="on"><i>01</i>Can the kitchen actually use it?</a>
+          <a href="#s2"><i>02</i>Will supply survive success?</a>
+          <a href="#s3"><i>03</i>Can the story be told at the table?</a>
+          <a href="#s4"><i>04</i>What we did with this</a>
+        </nav>
+      </div>
+
+      <div class="side-panel">
+        <p class="sp-eyebrow">Related use cases</p>
+        <div class="rel-list">
+          <a class="rel-card" href="#">
+            <span class="rc-meta">Use case &middot; Manufacturing</span>
+            <h3>"We want this one buyer. How do we get in?"</h3>
+          </a>
+          <a class="rel-card" href="#">
+            <span class="rc-meta">Use case &middot; Software / API</span>
+            <h3>"Everyone is interested. Nobody is buying."</h3>
+          </a>
+          <a class="rel-card" href="#">
+            <span class="rc-meta">Use case &middot; New category</span>
+            <h3>"No one has ever evaluated this before."</h3>
+          </a>
+        </div>
+        <a class="side-archive" href="#">View all use cases <span class="ar">&rarr;</span></a>
+      </div>
+
+      <div class="side-panel side-cta">
+        <p class="sp-eyebrow">Your market, your question</p>
+        <p>Reading this with a specific buyer in mind? Tell us the question
+        that matters most right now &mdash; we'll tell you the leanest way to test it.</p>
+        <a class="btn btn-lime btn-sm" href="#contact">Send the question <span class="ar">&rarr;</span></a>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT BAND ================= -->
+<section id="contact">
+  <p class="eyebrow rv" style="justify-content:center;display:inline-flex">Contact</p>
+  <h2 class="h2c rv" style="--d:.08s">Start with one question.</h2>
+  <p class="lead rv" style="--d:.16s">
+    Tell us the market question that matters most right now &mdash; which segment,
+    which buyer, which doubt. We'll tell you honestly whether it's a question we
+    can help answer, and what the leanest way to test it would be.
+  </p>
+  <a class="btn btn-ink rv" style="--d:.24s" href="#">Send the question <span class="ar">&rarr;</span></a>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="#" style="margin-bottom:20px"><i></i>DORADO</a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+    </div>
+    <div>
+      <h4>Index</h4>
+      <ul>
+        <li><a href="#">What we do</a></li>
+        <li><a href="#">Method</a></li>
+        <li><a href="#">Use cases</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Network</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">grants.dorado-group.jp</a></li>
+        <li><a href="https://team.dorado-group.jp/" target="_blank" rel="noopener">team.dorado-group.jp</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">buyers.dorado-group.jp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>Single resource mockup v1 &middot; use case / insight &middot; for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const body = document.body;
+
+  /* ---------- entrance ---------- */
+  requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('loaded')));
+
+  /* ---------- header + progress ---------- */
+  const hd = document.getElementById('hd');
+  const prog = document.getElementById('progress');
+  function onScrollBar(){
+    const st = scrollY;
+    hd.classList.toggle('scrolled', st > 30);
+    const h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+  }
+  addEventListener('scroll', onScrollBar, { passive: true });
+  onScrollBar();
+
+  /* ---------- reveal on scroll ---------- */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .16 });
+  document.querySelectorAll('.rv, .wipe').forEach(el => io.observe(el));
+
+  /* ---------- TOC scrollspy ---------- */
+  const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+  const heads = tocLinks
+    .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+    .filter(Boolean);
+  if (heads.length) {
+    const spy = new IntersectionObserver((es) => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        const id = e.target.id;
+        tocLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + id));
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    heads.forEach(h => spy.observe(h));
+  }
+})();
+</script>
+</body>
+</html>

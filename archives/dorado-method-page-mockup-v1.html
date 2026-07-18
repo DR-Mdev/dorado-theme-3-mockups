@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | Method — How we operate (mockup v1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens ============ */
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.mono{font-family:'DM Mono',ui-monospace,'SF Mono',monospace}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(90px,12vh,150px) var(--pad)}
+.eyebrow{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+.h2{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:18px 0 14px}
+.lead{max-width:680px;font-size:clamp(15px,1.35vw,18px);line-height:1.65;opacity:.78}
+.cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:20px}
+
+/* ============ reveal utilities ============ */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ progress + header ============ */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--lime);z-index:120}
+header{
+  position:fixed;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px var(--pad);transition:background .4s,padding .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(26,0,58,.92);backdrop-filter:blur(10px);
+  padding-top:12px;padding-bottom:12px;border-bottom-color:rgba(255,255,255,.14);
+}
+header.light-scrolled{background:rgba(26,0,58,.92)}
+.logo{color:#fff;font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;background:var(--lime);transition:transform .4s var(--ease)}
+.logo:hover i{transform:rotate(135deg)}
+nav{display:flex;align-items:center;gap:30px}
+nav a.nl{
+  color:rgba(255,255,255,.68);font-size:12px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;position:relative;padding:4px 0;
+  transition:color .3s;
+}
+nav a.nl::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:var(--lime);transform:scaleX(0);transform-origin:right;
+  transition:transform .35s var(--ease);
+}
+nav a.nl:hover{color:#fff}
+nav a.nl:hover::after{transform:scaleX(1);transform-origin:left}
+nav a.nl.active{color:#fff}
+nav a.nl.active::after{transform:scaleX(1)}
+@media (max-width:900px){nav a.nl{display:none}}
+
+/* ============ buttons (sweep fill) ============ */
+.btn{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;gap:12px;padding:16px 26px;
+  font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid transparent;
+  transition:color .35s var(--ease),border-color .35s var(--ease);
+}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .4s var(--ease);
+}
+.btn:hover::before{transform:scaleY(1)}
+.btn .ar{transition:transform .35s var(--ease)}
+.btn:hover .ar{transform:translateX(6px)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime::before{background:var(--white)}
+.btn-lime:hover{color:var(--ink)}
+.btn-ghost-w{border-color:rgba(255,255,255,.45);color:#fff;background:transparent}
+.btn-ghost-w::before{background:var(--lime)}
+.btn-ghost-w:hover{color:var(--ink);border-color:var(--lime)}
+.btn-ink{background:var(--ink);color:var(--lime)}
+.btn-ink::before{background:var(--white)}
+.btn-ink:hover{color:var(--ink)}
+.btn-sm{padding:11px 18px;font-size:11px}
+
+/* ============ page hero (dark, compact — distinct from home) ============ */
+.m-hero{
+  background:var(--ink);color:#fff;position:relative;overflow:hidden;
+  padding:0 var(--pad);
+}
+.m-hero .grid-bg{
+  position:absolute;inset:-80px;
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:82px 82px;
+}
+.m-hero .glow{
+  position:absolute;width:58vmax;height:58vmax;left:-24vmax;bottom:-34vmax;
+  background:radial-gradient(circle,rgba(204,255,0,.16),transparent 60%);
+}
+.m-hero-inner{
+  position:relative;z-index:2;max-width:1240px;margin:0 auto;
+  padding:150px 0 clamp(64px,9vh,110px);
+}
+.m-crumbs{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);
+  margin-bottom:44px;
+}
+.m-crumbs a{transition:color .3s}
+.m-crumbs a:hover{color:#fff}
+.m-crumbs i{font-style:normal;opacity:.5}
+.m-crumbs .cur{color:var(--lime)}
+.m-hero-grid{
+  display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(32px,5vw,80px);align-items:center;
+}
+@media (max-width:980px){.m-hero-grid{grid-template-columns:1fr}}
+.m-hero .eyebrow{color:#fff;opacity:1}
+.m-hero h1{
+  font-size:clamp(2.1rem,4.8vw,3.9rem);font-weight:700;line-height:1.04;letter-spacing:-.025em;
+  margin:20px 0 0;
+}
+.m-hero h1 .hl{overflow:hidden;display:block}
+.m-hero h1 .hl > span{display:block;transform:translateY(112%);transition:transform .95s var(--ease);transition-delay:var(--d,0s)}
+body.loaded .m-hero h1 .hl > span{transform:none}
+.m-hero h1 em{font-style:normal;color:var(--lime)}
+.m-hero-axis{
+  margin-top:28px;max-width:520px;
+  border-left:4px solid var(--lime);padding:6px 0 6px 22px;
+  font-size:clamp(1.05rem,1.6vw,1.3rem);font-weight:500;line-height:1.5;letter-spacing:-.01em;
+  color:rgba(255,255,255,.92);
+  opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease) .5s,transform .8s var(--ease) .5s;
+}
+body.loaded .m-hero-axis{opacity:1;transform:none}
+.m-hero-sub{
+  margin-top:22px;max-width:560px;color:rgba(255,255,255,.68);
+  font-size:clamp(14.5px,1.3vw,16.5px);line-height:1.7;
+  opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease) .65s,transform .8s var(--ease) .65s;
+}
+body.loaded .m-hero-sub{opacity:1;transform:none}
+
+/* terminal card */
+.term{
+  background:var(--deep);border:1px solid rgba(255,255,255,.22);
+  box-shadow:12px 12px 0 rgba(204,255,0,.9);
+  opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease) .4s,transform .9s var(--ease) .4s;
+}
+body.loaded .term{opacity:1;transform:none}
+.term-bar{
+  display:flex;gap:6px;align-items:center;padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+.term-bar i{width:9px;height:9px;background:rgba(255,255,255,.3)}
+.term-bar span{
+  margin-left:10px;font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase;
+}
+.term-body{
+  padding:22px 24px 26px;font-family:'DM Mono',monospace;font-size:12.5px;line-height:2.05;
+  color:rgba(255,255,255,.78);letter-spacing:.02em;white-space:nowrap;overflow-x:auto;
+}
+.term-body .pr{color:var(--lime)}
+.term-body .dim{color:rgba(255,255,255,.4)}
+.term-body b{color:#fff;font-weight:500;background:rgba(204,255,0,.18);padding:1px 6px}
+.term-body .lm{color:var(--lime)}
+.caret{
+  display:inline-block;width:8px;height:15px;background:var(--lime);
+  vertical-align:-2px;animation:blink 1.1s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+/* ============ spine chain ============ */
+.spine-chain{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:48px;
+  font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+}
+.spine-chain span{border:1px solid rgba(26,0,58,.35);padding:11px 16px;background:#fff}
+.spine-chain i{font-style:normal;color:var(--ink);opacity:.5}
+.spine-chain .hot{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+
+/* ============ generic cards ============ */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px}
+@media (max-width:940px){.cards3{grid-template-columns:1fr}}
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:48px}
+@media (max-width:820px){.cards2{grid-template-columns:1fr}}
+.card{
+  background:#fff;border:1px solid rgba(26,0,58,.18);padding:28px 26px 30px;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.card:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--lime);border-color:var(--ink)}
+.card .kt{
+  font-family:'DM Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;
+  background:var(--ink);color:var(--lime);display:inline-block;padding:6px 12px;margin-bottom:18px;text-transform:uppercase;
+}
+.card h3{font-size:1.25rem;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.card p{font-size:14px;line-height:1.62;opacity:.75}
+.card .meta{
+  font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  border-top:1px solid rgba(26,0,58,.15);border-bottom:1px solid rgba(26,0,58,.15);
+  padding:9px 0;margin:0 0 14px;opacity:.65;
+}
+.note-bar{
+  margin-top:26px;background:var(--ink);color:#fff;padding:20px 26px;
+  display:flex;align-items:flex-start;gap:16px;font-size:14px;line-height:1.65;
+}
+.note-bar b{color:var(--lime);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;flex:none;padding-top:3px}
+.pull{
+  margin-top:56px;border-left:4px solid var(--lime);padding:6px 0 6px 28px;
+  font-size:clamp(1.1rem,1.9vw,1.45rem);font-weight:500;line-height:1.5;letter-spacing:-.01em;max-width:860px;
+}
+
+/* ============ status file (spine section) ============ */
+.status-file{
+  border:1px solid rgba(26,0,58,.25);background:#fff;max-width:860px;margin-top:26px;
+}
+.sf-bar{
+  display:flex;gap:5px;align-items:center;padding:9px 12px;background:var(--gray);
+  border-bottom:1px solid rgba(26,0,58,.15);
+}
+.sf-bar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
+.sf-bar span{
+  margin-left:8px;font-family:'DM Mono',monospace;font-size:10px;color:rgba(26,0,58,.6);letter-spacing:.1em;
+}
+.sf-rows{font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:.03em}
+.sf-row{display:grid;grid-template-columns:170px 1fr;border-top:1px solid rgba(26,0,58,.1)}
+.sf-row:first-child{border-top:none}
+.sf-row em{
+  font-style:normal;padding:12px 16px;background:rgba(26,0,58,.04);
+  border-right:1px solid rgba(26,0,58,.1);color:rgba(26,0,58,.55);
+  text-transform:uppercase;font-size:10.5px;letter-spacing:.16em;
+}
+.sf-row div{padding:12px 16px;color:var(--ink)}
+.sf-row .ball{background:var(--lime);font-weight:500;padding:2px 8px}
+@media (max-width:640px){.sf-row{grid-template-columns:1fr}.sf-row em{border-right:none}}
+
+/* ============ hypothesis / calls ============ */
+.hypo{
+  background:#fff;border:1px solid rgba(26,0,58,.25);max-width:860px;
+  padding:30px 32px;margin-top:48px;position:relative;
+}
+.hypo::before{
+  content:"H-014";position:absolute;top:0;right:0;background:var(--ink);color:var(--lime);
+  font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.18em;padding:7px 13px;
+}
+.hypo .hy-label{
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(26,0,58,.55);margin-bottom:14px;
+}
+.hypo blockquote{
+  font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:500;line-height:1.5;letter-spacing:-.01em;
+}
+.hypo blockquote i{font-style:normal;background:var(--lime);padding:0 .12em}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.chip{
+  font-family:'DM Mono',monospace;font-size:12.5px;font-weight:500;letter-spacing:.18em;
+  padding:12px 20px;border:1px solid rgba(26,0,58,.4);background:transparent;color:var(--ink);
+  transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease);
+}
+.chip:hover{transform:translateY(-4px)}
+.chip.c1:hover{background:var(--lime);border-color:var(--lime)}
+.chip.c2:hover{background:var(--deep);border-color:var(--deep);color:#fff}
+.chip.c3:hover{background:#fff;border-color:var(--ink)}
+.chip.c4:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.c5:hover{background:var(--lime);border-color:var(--ink)}
+
+/* ============ message log table ============ */
+.msg-log{border:1px solid rgba(26,0,58,.2);margin-top:48px;background:#fff}
+.ml-head,.ml-row{
+  display:grid;grid-template-columns:1.6fr 1fr 140px;gap:14px;align-items:center;
+  padding:14px 20px;
+}
+.ml-head{
+  border-bottom:1.5px solid rgba(26,0,58,.35);
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(26,0,58,.55);
+}
+.ml-row{border-bottom:1px solid rgba(26,0,58,.1);font-size:14px}
+.ml-row:last-child{border-bottom:none}
+.ml-row .hook{font-weight:500}
+.ml-row .tpl{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;color:rgba(26,0,58,.55)}
+.badge{
+  font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;padding:6px 10px;text-align:center;
+}
+.badge.hit{background:var(--lime);color:var(--ink)}
+.badge.mute{background:var(--gray);color:rgba(26,0,58,.55)}
+@media (max-width:680px){.ml-head{display:none}.ml-row{grid-template-columns:1fr;gap:6px}}
+
+/* ============ handoff diagram ============ */
+.handoff{display:grid;grid-template-columns:1fr 64px 1fr;gap:0;margin-top:48px;align-items:stretch;max-width:980px}
+@media (max-width:820px){.handoff{grid-template-columns:1fr}.h-conn{display:none}}
+.h-box{border:1px solid rgba(26,0,58,.25);background:#fff;padding:26px 26px 28px}
+.h-box.ink{background:var(--ink);color:#fff;border-color:var(--ink)}
+.h-box .hb-tag{
+  font-family:'DM Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;display:inline-block;padding:6px 12px;margin-bottom:18px;
+  background:var(--lime);color:var(--ink);
+}
+.h-box h3{font-size:1.2rem;font-weight:700;letter-spacing:-.01em;margin-bottom:14px}
+.h-box ul{display:flex;flex-direction:column;gap:8px}
+.h-box li{
+  font-size:13.5px;line-height:1.5;position:relative;padding-left:22px;
+}
+.h-box li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;background:var(--lime)}
+.h-box.ink li{color:rgba(255,255,255,.78)}
+.h-conn{position:relative}
+.h-conn::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(26,0,58,.3)}
+.h-conn i{
+  position:absolute;top:50%;left:0;width:9px;height:9px;background:var(--lime);
+  transform:translate(-50%,-50%);animation:dash 2.4s linear infinite;
+}
+@keyframes dash{
+  0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}
+}
+
+/* ============ outro (dark) ============ */
+#outro{background:var(--ink);color:#fff}
+#outro .eyebrow{color:#fff;opacity:1}
+#outro .outro-q{
+  margin-top:34px;max-width:960px;
+  font-size:clamp(1.35rem,2.8vw,2.2rem);font-weight:500;line-height:1.42;letter-spacing:-.014em;
+}
+#outro .outro-q i{font-style:normal;color:var(--lime)}
+#outro .ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:44px}
+
+/* ============ contact band ============ */
+#contact{background:var(--lime);color:var(--ink);text-align:center;padding:clamp(80px,11vh,140px) var(--pad)}
+#contact .h2c{font-size:clamp(2.2rem,5.4vw,4.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin:18px 0 14px}
+#contact .lead{max-width:640px;margin:0 auto;opacity:.8}
+#contact .btn{margin-top:38px}
+
+/* ============ footer ============ */
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:70px var(--pad) 32px}
+footer .logo{color:#fff}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--lime);margin-bottom:18px;
+}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul a{
+  font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;
+  transition:color .3s,padding-left .3s var(--ease);position:relative;
+}
+.fgrid ul a:hover{color:var(--lime);padding-left:14px}
+.fgrid ul a::before{
+  content:"";position:absolute;left:0;top:50%;width:8px;height:1.5px;background:var(--lime);
+  transform:translateY(-50%) scaleX(0);transform-origin:left;transition:transform .3s var(--ease);
+}
+.fgrid ul a:hover::before{transform:translateY(-50%) scaleX(1)}
+.fbottom{
+  max-width:1240px;margin:56px auto 0;padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;
+}
+
+/* ============ reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1!important;transform:none!important}
+  .m-hero h1 .hl > span{transform:none!important}
+  .m-hero-axis,.m-hero-sub,.term{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="hd">
+  <a class="logo" href="#"><i></i>DORADO</a>
+  <nav>
+    <a class="nl" href="#">What we do</a>
+    <a class="nl active" href="#">Method</a>
+    <a class="nl" href="#">Use cases</a>
+    <a class="nl" href="#">Pricing</a>
+    <a class="nl" href="#">Insights</a>
+    <a class="btn btn-lime btn-sm" href="#contact">Contact us <span class="ar">&rarr;</span></a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= PAGE HERO (dark, compact) ================= -->
+<section class="m-hero">
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+  <div class="m-hero-inner">
+    <div class="m-crumbs">
+      <a href="#">Home</a><i>/</i><span class="cur">Method</span>
+    </div>
+    <div class="m-hero-grid">
+      <div>
+        <p class="eyebrow">How we operate</p>
+        <h1>
+          <span class="hl"><span style="--d:.1s">Market development,</span></span>
+          <span class="hl"><span style="--d:.22s">run like an <em>engineering</em></span></span>
+          <span class="hl"><span style="--d:.34s"><em>system.</em></span></span>
+        </h1>
+        <p class="m-hero-axis">
+          Most agencies describe their method in adjectives. We can describe
+          ours in database tables.
+        </p>
+        <p class="m-hero-sub">
+          Go-to-market work fails quietly: messages go out, meetings happen, and a year
+          later nobody can say what worked, what didn't, or why. We built our own
+          operating system to make that impossible. Every hypothesis, every outreach,
+          every reply, and every dead end is recorded, measured, and turned into a
+          reusable asset &mdash; for us and for our clients.
+        </p>
+      </div>
+
+      <div class="term" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><span>account &middot; STATUS.md</span></div>
+        <div class="term-body">
+<span class="pr">$</span> cat accounts/&#9608;&#9608;&#9608;&#9608;/STATUS.md<br>
+<span class="dim">&#9500;</span> status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="lm">WARM &middot; FOLLOW-UP</span><br>
+<span class="dim">&#9500;</span> whose ball&nbsp;<b>OURS</b><br>
+<span class="dim">&#9500;</span> next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2026-07-24 &middot; send spec sheet<br>
+<span class="dim">&#9500;</span> last touch&nbsp;2026-07-15 &middot; reply received<br>
+<span class="dim">&#9492;</span> evidence&nbsp;&nbsp;&nbsp;12 touches &middot; 3 memos &middot; verbatim<br>
+<span class="pr">$</span> <span class="caret"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SPINE ================= -->
+<section class="sec" style="background:var(--white)">
+  <div class="wrap">
+    <p class="eyebrow rv">The spine</p>
+    <h2 class="h2 rv" style="--d:.08s">One structure<br>for everything.</h2>
+    <p class="lead rv" style="--d:.16s">
+      Underneath every engagement runs the same spine. The structured backbone
+      lives in a database; the depth &mdash; research memos, message archives, account
+      dossiers &mdash; lives in versioned files, linked to it. Nothing depends on
+      anyone's memory. If a project pauses for three months, it resumes from the
+      file, not from recollection.
+    </p>
+
+    <div class="spine-chain rv" style="--d:.1s">
+      <span>Company</span><i>&rarr;</i>
+      <span>Contact</span><i>&rarr;</i>
+      <span>Touch history</span><i>&rarr;</i>
+      <span>Status</span><i>&rarr;</i>
+      <span class="hot">Next action</span>
+    </div>
+
+    <div class="status-file rv" style="--d:.15s">
+      <div class="sf-bar"><i></i><i></i><i></i><span>The sixty-second read &mdash; every active account has one</span></div>
+      <div class="sf-rows">
+        <div class="sf-row"><em>Status</em><div>Warm &middot; person-level follow-up</div></div>
+        <div class="sf-row"><em>Whose ball</em><div><span class="ball">OURS</span></div></div>
+        <div class="sf-row"><em>Timeline</em><div>Cross-channel, one line per touch</div></div>
+        <div class="sf-row"><em>Messages</em><div>Verbatim archive of every message sent</div></div>
+        <div class="sf-row"><em>Research</em><div>Dated snapshots &mdash; facts, hypotheses, to-verify</div></div>
+      </div>
+    </div>
+    <p class="cap rv" style="--d:.2s">One file to know the state; the rest is evidence.</p>
+  </div>
+</section>
+
+<!-- ================= HYPOTHESES ================= -->
+<section class="sec" style="background:var(--gray)">
+  <div class="wrap">
+    <p class="eyebrow rv">Hypotheses, not hunches</p>
+    <h2 class="h2 rv" style="--d:.08s">Every thesis is written down<br>as a falsifiable claim.</h2>
+    <p class="lead rv" style="--d:.16s">
+      Every market thesis we run is a formal hypothesis. Each one is tested
+      through batches: fixed cohorts of real companies &mdash; a pilot batch first,
+      then validation cohorts of hundreds &mdash; with response rates measured per
+      company, not per anecdote.
+    </p>
+
+    <div class="hypo rv" style="--d:.1s">
+      <p class="hy-label">A hypothesis, as written</p>
+      <blockquote>
+        &ldquo;Companies of <i>this profile</i>, under <i>this trigger</i>, with
+        <i>this buyer</i> &mdash; will respond.&rdquo;
+      </blockquote>
+    </div>
+
+    <div class="rv" style="--d:.12s;margin-top:52px">
+      <p class="cap" style="margin:0 0 4px">
+        No batch is allowed to just fade out. Every one ends with an explicit call:
+      </p>
+      <div class="chips">
+        <button class="chip c1">CONTINUE</button>
+        <button class="chip c2">MORPH</button>
+        <button class="chip c3">FORK</button>
+        <button class="chip c4">KILL</button>
+        <button class="chip c5">VALIDATED / INVALIDATED</button>
+      </div>
+      <p class="cap rv" style="--d:.2s">
+        Exploratory pilots are never extrapolated into conclusions &mdash; that's a rule, not a habit.
+      </p>
+    </div>
+
+    <div class="note-bar rv" style="--d:.15s">
+      <b>No hand-typed metrics</b>
+      <span>Reply rates, contact counts, and last-activity dates are derived from
+      the event log itself. If a number is on our dashboard, there's a recorded
+      event behind it.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THREE MOTIONS ================= -->
+<section class="sec" style="background:var(--white)">
+  <div class="wrap">
+    <p class="eyebrow rv">Three motions</p>
+    <h2 class="h2 rv" style="--d:.08s">Not all outreach<br>is the same work.</h2>
+    <p class="lead rv" style="--d:.16s">
+      Cold list work, warm follow-up, and strategic account pursuit are different
+      jobs with different rhythms. Forcing them into one pipeline is how CRMs turn
+      into graveyards. We run them as three explicit motions, and every company in
+      the system is in exactly one:
+    </p>
+
+    <div class="cards3">
+      <div class="card rv" style="--d:.05s">
+        <span class="kt">List</span>
+        <div class="meta">The cold pool &middot; high rotation</div>
+        <h3>Fast, evidence-based sorting</h3>
+        <p>High-rotation qualification of researched companies. The goal is not
+        volume of messages &mdash; it's a fast, evidence-based sort: who is worth
+        pursuing, who isn't, and why.</p>
+      </div>
+      <div class="card rv" style="--d:.15s">
+        <span class="kt">Follow-up</span>
+        <div class="meta">Person-level &middot; warm</div>
+        <h3>Warm interest never expires</h3>
+        <p>The moment someone replies, the unit of work changes from company to
+        <b>person</b>. Each warm contact gets a next action with a date &mdash; our
+        queue won't let a lead be closed without one.</p>
+      </div>
+      <div class="card rv" style="--d:.25s">
+        <span class="kt">ABM</span>
+        <div class="meta">Account-level &middot; strategic</div>
+        <h3>Coverage, reviewed weekly</h3>
+        <p>Some accounts justify pursuit before anyone replies. We map the key
+        people and track coverage &mdash; who has been reached, who has responded,
+        where the gaps are &mdash; against the actual contact log, not optimism.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MESSAGES ================= -->
+<section class="sec" style="background:var(--gray)">
+  <div class="wrap">
+    <p class="eyebrow rv">The message library</p>
+    <h2 class="h2 rv" style="--d:.08s">Messages are measured<br>like product features.</h2>
+    <p class="lead rv" style="--d:.16s">
+      Every message we send is archived verbatim with its metadata: what the hook
+      was, which template it came from, whether it got a reply, and how effective
+      it proved. Templates earn their place &mdash; a draft only becomes a reusable
+      template after it has demonstrably worked, and the library records what
+      failed, too.
+    </p>
+
+    <div class="msg-log rv" style="--d:.1s">
+      <div class="ml-head"><span>Hook</span><span>Template</span><span>Result</span></div>
+      <div class="ml-row">
+        <span class="hook">Third-party review of their product</span>
+        <span class="tpl">TPL-031 &middot; situation</span>
+        <span class="badge hit">Same-day reply</span>
+      </div>
+      <div class="ml-row">
+        <span class="hook">A change in their stack</span>
+        <span class="tpl">TPL-027 &middot; situation</span>
+        <span class="badge hit">Same-day reply</span>
+      </div>
+      <div class="ml-row">
+        <span class="hook">Generic industry news</span>
+        <span class="tpl">TPL-008 &middot; news</span>
+        <span class="badge mute">Silence</span>
+      </div>
+      <div class="ml-row">
+        <span class="hook">Company-milestone congratulations</span>
+        <span class="tpl">TPL-012 &middot; news</span>
+        <span class="badge mute">Silence</span>
+      </div>
+    </div>
+    <p class="cap rv" style="--d:.15s">Illustrative rows &mdash; the pattern is real, from the effectiveness log.</p>
+
+    <p class="pull rv" style="--d:.1s">
+      Hooks built on the prospect's own situation earn same-day replies. Generic
+      industry news earns silence. We know this because we measured it &mdash; and
+      every future message benefits from it.
+    </p>
+  </div>
+</section>
+
+<!-- ================= HANDOFF ================= -->
+<section class="sec" style="background:var(--white)">
+  <div class="wrap">
+    <p class="eyebrow rv">The handoff</p>
+    <h2 class="h2 rv" style="--d:.08s">The exit is designed in<br>from day one.</h2>
+    <p class="lead rv" style="--d:.16s">
+      The end state of our work is not dependence on Dorado. When an account is
+      qualified &mdash; real problem, real owner, real timeline &mdash; it is packaged
+      through standard handoff templates and transferred into your own CRM.
+    </p>
+
+    <div class="handoff rv" style="--d:.1s">
+      <div class="h-box">
+        <span class="hb-tag">Dorado &middot; the dossier</span>
+        <h3>Everything we learned</h3>
+        <ul>
+          <li>Contacts &amp; channels</li>
+          <li>Triggers that worked</li>
+          <li>Research snapshots</li>
+          <li>Full touch history, verbatim</li>
+        </ul>
+      </div>
+      <div class="h-conn"><i></i></div>
+      <div class="h-box ink">
+        <span class="hb-tag">You &middot; your CRM</span>
+        <h3>You own the relationship</h3>
+        <ul>
+          <li>Qualified account, ready to work</li>
+          <li>The playbook stays with you</li>
+          <li>No dependence on Dorado</li>
+          <li>The dossier remains your asset</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OUTRO ================= -->
+<section id="outro" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">None of this is theoretical</p>
+    <p class="outro-q rv" style="--d:.08s">
+      The system described above is the one this page was written from &mdash; the
+      same folders, the same database, the same rules we apply to client work
+      every day. When we say we'll give you a clear call on a market,
+      <i>this is the machinery that produces it.</i>
+    </p>
+    <div class="ctas rv" style="--d:.16s">
+      <a class="btn btn-lime" href="#contact">Start a conversation <span class="ar">&rarr;</span></a>
+      <a class="btn btn-ghost-w" href="#">See use cases <span class="ar">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT BAND ================= -->
+<section id="contact">
+  <p class="eyebrow rv" style="justify-content:center;display:inline-flex">Contact</p>
+  <h2 class="h2c rv" style="--d:.08s">Start with one question.</h2>
+  <p class="lead rv" style="--d:.16s">
+    Tell us the market question that matters most right now &mdash; which segment,
+    which buyer, which doubt. We'll tell you honestly whether it's a question we
+    can help answer, and what the leanest way to test it would be.
+  </p>
+  <a class="btn btn-ink rv" style="--d:.24s" href="#">Send the question <span class="ar">&rarr;</span></a>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="#" style="margin-bottom:20px"><i></i>DORADO</a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+    </div>
+    <div>
+      <h4>Index</h4>
+      <ul>
+        <li><a href="#">What we do</a></li>
+        <li><a href="#">Method</a></li>
+        <li><a href="#">Use cases</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Network</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">grants.dorado-group.jp</a></li>
+        <li><a href="https://team.dorado-group.jp/" target="_blank" rel="noopener">team.dorado-group.jp</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">buyers.dorado-group.jp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>Method page mockup v1 &middot; for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const body = document.body;
+
+  /* ---------- entrance ---------- */
+  requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('loaded')));
+
+  /* ---------- header + progress ---------- */
+  const hd = document.getElementById('hd');
+  const prog = document.getElementById('progress');
+  function onScrollBar(){
+    const st = scrollY;
+    hd.classList.toggle('scrolled', st > 30);
+    const h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+  }
+  addEventListener('scroll', onScrollBar, { passive: true });
+  onScrollBar();
+
+  /* ---------- reveal on scroll ---------- */
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .16 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
