@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DORADO | Validating a Fleet-Telematics Provider's Japan Entry &middot; Use Case (mockup v1)</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-ink-lime-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon/favicon-ink-lime-64.png">
+<link rel="apple-touch-icon" href="../assets/favicon/favicon-ink-lime-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -51,8 +54,8 @@ header{
   background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
   border-bottom:1px solid rgba(26,0,58,.12);
 }
-.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
-.logo i{width:11px;height:11px;background:var(--lime)}
+.logo{display:flex;align-items:center}
+.logo-img{height:34px;width:auto;display:block}
 nav{display:flex;align-items:center;gap:24px}
 nav a.nl{
   color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
@@ -60,7 +63,46 @@ nav a.nl{
   border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
 }
 nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
-@media (max-width:1020px){nav a.nl{display:none}}
+
+/* ============ SP nav (hamburger) ============ */
+.menu-btn{
+  display:none;width:44px;height:44px;flex:none;
+  flex-direction:column;justify-content:center;align-items:center;gap:6px;
+  background:transparent;border:1px solid rgba(26,0,58,.4);cursor:pointer;padding:0;
+}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink)}
+@media (max-width:1020px){
+  nav a.nl{display:none}
+  .menu-btn{display:flex}
+}
+@media (max-width:420px){nav .btn{display:none}}
+
+.sp-nav{
+  position:fixed;inset:0;z-index:200;background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;padding:0 var(--pad) 28px;
+  opacity:0;visibility:hidden;transform:translateY(-12px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s .35s;
+  overflow-y:auto;
+}
+.sp-nav.open{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+}
+.sp-nav-top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 24px}
+.sp-close{
+  width:44px;height:44px;flex:none;background:transparent;cursor:pointer;
+  border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;
+}
+.sp-nav ul{display:flex;flex-direction:column}
+.sp-nav li a{
+  display:flex;align-items:center;gap:14px;padding:18px 0;
+  font-size:clamp(1.45rem,6vw,1.9rem);font-weight:700;letter-spacing:-.01em;color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.sp-nav li a::before{content:"";width:9px;height:9px;background:var(--lime);flex:none}
+.sp-nav li a[aria-current="page"]{color:var(--lime)}
+.sp-cta{margin-top:auto;padding-top:28px}
+.btn-full{width:100%;justify-content:center}
 
 /* ============ buttons ============ */
 .btn{
@@ -258,7 +300,6 @@ h1{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;letter-sp
 #contact .h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:14px 0 10px}
 #contact .lead{opacity:.8}
 footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
-footer .logo{color:#fff}
 .fsocial{display:flex;gap:10px;margin-top:22px}
 .fsocial a{
   width:36px;height:36px;border:1px solid rgba(255,255,255,.3);
@@ -295,18 +336,37 @@ footer .logo{color:#fff}
 <body>
 
 <header>
-  <a class="logo" href="index.html"><i></i>DORADO</a>
+  <a class="logo" href="index.html"><img src="../assets/logo/logo-ink.png" alt="DORADO" class="logo-img"></a>
   <nav>
     <a class="nl" href="services.html">Services</a>
     <a class="nl" href="how-we-operate.html">Process</a>
     <a class="nl" href="use-cases.html">Use cases</a>
-    <a class="nl" href="pricing.html">Pricing</a>
     <a class="nl" href="insights.html">Insights</a>
     <a class="nl" href="partners.html">Partners</a>
     <a class="nl" href="about.html">About</a>
     <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sp-nav">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 </header>
+<div class="sp-nav" id="sp-nav" aria-hidden="true">
+  <div class="sp-nav-top">
+    <a class="logo" href="index.html"><img src="../assets/logo/logo-white.png" alt="DORADO" class="logo-img"></a>
+    <button class="sp-close" type="button" aria-label="Close menu">&#10005;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="how-we-operate.html">Process</a></li>
+      <li><a href="use-cases.html" aria-current="page">Use cases</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div class="sp-cta"><a class="btn btn-lime btn-full" href="contact.html">Contact us &rarr;</a></div>
+</div>
 
 <main>
 
@@ -319,10 +379,10 @@ footer .logo{color:#fff}
     <p class="crumb rv">
       <a href="index.html">INDEX</a> /
       <a href="use-cases.html">USE CASES</a> /
-      <a href="services.html#validate">VALIDATE</a>
+      <a href="how-we-operate.html#validate">VALIDATE</a>
     </p>
     <div class="ins-meta rv">
-      <a class="cat-tag" href="services.html#validate">01 Validate</a>
+      <a class="cat-tag" href="how-we-operate.html#validate">01 Validate</a>
       <span class="dot"></span>
       <span>Fleet &amp; telematics SaaS</span>
       <span class="dot"></span>
@@ -560,7 +620,7 @@ footer .logo{color:#fff}
         </a>
         <div class="ins-body">
           <div class="ins-meta">
-            <a class="cat-tag" href="services.html#sell">02 Sell</a>
+            <a class="cat-tag" href="how-we-operate.html#sell">02 Sell</a>
             <span class="dot"></span>
             <span>Vertical SaaS</span>
           </div>
@@ -579,7 +639,7 @@ footer .logo{color:#fff}
         </a>
         <div class="ins-body">
           <div class="ins-meta">
-            <a class="cat-tag" href="services.html#validate">01 Validate</a>
+            <a class="cat-tag" href="how-we-operate.html#validate">01 Validate</a>
             <span class="dot"></span>
             <span>Food &amp; beverage</span>
           </div>
@@ -598,7 +658,7 @@ footer .logo{color:#fff}
         </a>
         <div class="ins-body">
           <div class="ins-meta">
-            <a class="cat-tag" href="services.html#operate">03 Operate</a>
+            <a class="cat-tag" href="how-we-operate.html#operate">03 Operate</a>
             <span class="dot"></span>
             <span>Industrial automation</span>
           </div>
@@ -634,7 +694,7 @@ footer .logo{color:#fff}
 <footer>
   <div class="fgrid">
     <div>
-      <a class="logo" href="index.html" style="margin-bottom:20px"><i></i>DORADO</a>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><img src="../assets/logo/logo-white.png" alt="DORADO" class="logo-img"></a>
       <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
       <div class="fsocial">
         <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -652,7 +712,6 @@ footer .logo{color:#fff}
         <li><a href="services.html">Services</a></li>
         <li><a href="how-we-operate.html">Process</a></li>
         <li><a href="use-cases.html">Use cases</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
         <li><a href="insights.html">Insights</a></li>
         <li><a href="partners.html">Partners</a></li>
         <li><a href="about.html">About</a></li>
@@ -705,6 +764,27 @@ footer .logo{color:#fff}
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
   targets.forEach(t => t && spy.observe(t));
+})();
+</script>
+<script>
+(function(){
+  const btn = document.querySelector('.menu-btn');
+  const panel = document.getElementById('sp-nav');
+  if(!btn || !panel) return;
+  const closeBtn = panel.querySelector('.sp-close');
+  function setOpen(v){
+    panel.classList.toggle('open', v);
+    btn.setAttribute('aria-expanded', String(v));
+    panel.setAttribute('aria-hidden', String(!v));
+    document.body.style.overflow = v ? 'hidden' : '';
+    (v ? closeBtn : btn).focus();
+  }
+  btn.addEventListener('click', () => setOpen(true));
+  closeBtn.addEventListener('click', () => setOpen(false));
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && panel.classList.contains('open')) setOpen(false);
+  });
 })();
 </script>
 </body>

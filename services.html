@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DORADO | What We Do &middot; Services (mockup v1)</title>
+<title>DORADO | Services &middot; A Japan Presence That Runs (mockup v3)</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-ink-lime-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon/favicon-ink-lime-64.png">
+<link rel="apple-touch-icon" href="../assets/favicon/favicon-ink-lime-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -29,7 +32,7 @@ a{color:inherit;text-decoration:none}
 ul{list-style:none}
 .mono{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif}
 .wrap{max-width:1240px;margin:0 auto}
-.sec{padding:clamp(80px,11vh,140px) var(--pad)}
+.sec{padding:clamp(64px,9vh,110px) var(--pad)}
 .eyebrow{
   font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
   letter-spacing:.22em;text-transform:uppercase;
@@ -40,7 +43,6 @@ ul{list-style:none}
 .lead{max-width:640px;font-size:clamp(15px,1.35vw,17px);line-height:1.68;opacity:.78}
 .cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:20px}
 
-/* one subtle reveal only, no stagger circus */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .rv.in{opacity:1;transform:none}
 
@@ -52,16 +54,55 @@ header{
   background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
   border-bottom:1px solid rgba(26,0,58,.12);
 }
-.logo{color:var(--ink);font-weight:700;font-size:17px;letter-spacing:.08em;display:flex;align-items:center;gap:9px}
-.logo i{width:11px;height:11px;background:var(--lime)}
-nav{display:flex;align-items:center;gap:28px}
+.logo{display:flex;align-items:center}
+.logo-img{height:34px;width:auto;display:block}
+nav{display:flex;align-items:center;gap:26px}
 nav a.nl{
   color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
   letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
   border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
 }
 nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
-@media (max-width:900px){nav a.nl{display:none}}
+
+/* ============ SP nav (hamburger) ============ */
+.menu-btn{
+  display:none;width:44px;height:44px;flex:none;
+  flex-direction:column;justify-content:center;align-items:center;gap:6px;
+  background:transparent;border:1px solid rgba(26,0,58,.4);cursor:pointer;padding:0;
+}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink)}
+@media (max-width:1020px){
+  nav a.nl{display:none}
+  .menu-btn{display:flex}
+}
+@media (max-width:420px){nav .btn{display:none}}
+
+.sp-nav{
+  position:fixed;inset:0;z-index:200;background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;padding:0 var(--pad) 28px;
+  opacity:0;visibility:hidden;transform:translateY(-12px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s .35s;
+  overflow-y:auto;
+}
+.sp-nav.open{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+}
+.sp-nav-top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 24px}
+.sp-close{
+  width:44px;height:44px;flex:none;background:transparent;cursor:pointer;
+  border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;
+}
+.sp-nav ul{display:flex;flex-direction:column}
+.sp-nav li a{
+  display:flex;align-items:center;gap:14px;padding:18px 0;
+  font-size:clamp(1.45rem,6vw,1.9rem);font-weight:700;letter-spacing:-.01em;color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.sp-nav li a::before{content:"";width:9px;height:9px;background:var(--lime);flex:none}
+.sp-nav li a[aria-current="page"]{color:var(--lime)}
+.sp-cta{margin-top:auto;padding-top:28px}
+.btn-full{width:100%;justify-content:center}
 
 /* ============ buttons ============ */
 .btn{
@@ -76,88 +117,21 @@ nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
 .btn-ink{background:var(--ink);color:var(--lime)}
 .btn-ink:hover{background:var(--deep)}
 .btn-sm{padding:10px 16px;font-size:11px}
-
-/* ============ screenshot slots (same recipe as v4) ============ */
-.shot{margin:0}
-.shot-frame{
-  background:#fff;border:1px solid rgba(26,0,58,.25);
-  box-shadow:10px 10px 0 rgba(26,0,58,.08);
-  overflow:hidden;
-}
-.shot-frame .bar{
-  display:flex;gap:5px;align-items:center;padding:8px 12px;
-  background:var(--gray);border-bottom:1px solid rgba(26,0,58,.15);
-}
-.shot-frame .bar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
-.shot-frame .bar span{
-  margin-left:8px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;
-  color:rgba(26,0,58,.55);letter-spacing:.05em;
-}
-.shot-frame img{display:block;width:100%;height:auto}
-.shot-frame .ph{
-  aspect-ratio:16/10;display:grid;place-items:center;text-align:center;
-  background:
-    repeating-linear-gradient(45deg,rgba(26,0,58,.035) 0 12px,transparent 12px 24px);
-  border:2px dashed rgba(26,0,58,.25);margin:10px;
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(26,0,58,.45);line-height:2;
-}
-.shot figcaption{
-  margin-top:12px;font-size:13px;line-height:1.6;color:rgba(26,0,58,.6);
-  display:flex;gap:10px;align-items:baseline;
-}
-.shot figcaption::before{content:"";width:16px;height:2px;background:var(--lime);flex:none;transform:translateY(-3px)}
-.shot.tall .ph{aspect-ratio:4/3}
-.shot.doc .ph{aspect-ratio:3/4}
+.btn-full{width:100%;justify-content:center}
 
 /* ============ page hero ============ */
 #top{background:var(--white);border-bottom:1px solid rgba(26,0,58,.12)}
-.ph-inner{max-width:1240px;margin:0 auto;padding:clamp(56px,9vh,100px) var(--pad) clamp(40px,6vh,64px)}
-.hero-label{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.24em;
-  color:rgba(26,0,58,.6);text-transform:uppercase;
-  display:flex;align-items:center;gap:12px;margin-bottom:26px;
+.ph-inner{max-width:1240px;margin:0 auto;padding:clamp(48px,7vh,84px) var(--pad) clamp(36px,5vh,52px)}
+.crumb{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:20px;
+  display:flex;align-items:center;gap:8px;
 }
-.hero-label::before{content:"";width:34px;height:1px;background:var(--ink)}
-h1{font-size:clamp(2.1rem,4.6vw,3.8rem);font-weight:700;line-height:1.05;letter-spacing:-.03em;max-width:820px}
+h1{font-size:clamp(2.1rem,4.6vw,3.4rem);font-weight:700;line-height:1.08;letter-spacing:-.03em}
 h1 .lm{background:var(--lime);padding:0 .12em .04em}
 .hero-sub{
-  max-width:600px;margin-top:24px;color:rgba(26,0,58,.72);
+  max-width:620px;margin-top:22px;color:rgba(26,0,58,.72);
   font-size:clamp(15px,1.35vw,17px);line-height:1.68;
-}
-
-/* stage picker: matchory-style pain cards */
-.pickers{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:rgba(26,0,58,.2);border:1px solid rgba(26,0,58,.2);
-  margin-top:clamp(36px,6vh,56px);
-}
-@media (max-width:940px){.pickers{grid-template-columns:1fr}}
-.picker{
-  background:#fff;padding:26px 26px 24px;display:flex;flex-direction:column;gap:16px;
-  transition:background .25s;
-}
-.picker:hover{background:var(--gray)}
-.picker .st{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--deep);
-  display:flex;align-items:center;gap:10px;
-}
-.picker .st::before{content:"";width:9px;height:9px;background:var(--lime)}
-.picker blockquote{
-  font-size:clamp(1.15rem,1.8vw,1.4rem);font-weight:500;line-height:1.35;letter-spacing:-.012em;
-  min-height:3.6em;
-}
-.picker p{font-size:13.5px;line-height:1.6;opacity:.7}
-.picker .go{
-  margin-top:auto;display:flex;justify-content:space-between;align-items:center;
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;letter-spacing:.12em;
-  border-top:1px solid rgba(26,0,58,.16);padding-top:14px;text-transform:uppercase;
-}
-.picker:hover .go i{background:var(--lime);border-color:var(--lime)}
-.picker .go i{
-  width:26px;height:26px;border:1px solid rgba(26,0,58,.4);
-  display:grid;place-items:center;font-style:normal;transition:background .25s,border-color .25s;
 }
 
 /* facts strip */
@@ -171,80 +145,140 @@ h1 .lm{background:var(--lime);padding:0 .12em .04em}
 .facts li{display:flex;align-items:center;gap:12px}
 .facts li::before{content:"";width:7px;height:7px;background:var(--lime)}
 
-/* ============ stage sections ============ */
-.stage-marker{
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;
+/* ============ the structure: plans-at-a-glance band ============ */
+#unit{background:var(--ink);color:#fff}
+#unit .lead{color:rgba(255,255,255,.72)}
+.formula{
+  margin-top:40px;border:1px solid rgba(255,255,255,.3);
+  display:flex;flex-wrap:wrap;align-items:stretch;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;text-transform:uppercase;
 }
-.stage-marker .big{
-  font-size:clamp(2.6rem,5vw,4rem);font-weight:500;letter-spacing:0;
-  color:transparent;-webkit-text-stroke:1.5px var(--ink);line-height:1;
+.formula > div{
+  flex:1 1 220px;padding:24px 20px;text-align:center;
+  border-right:1px solid rgba(255,255,255,.2);
+  display:flex;flex-direction:column;justify-content:center;gap:8px;
 }
-.stage-marker .tag{
-  background:var(--ink);color:var(--lime);padding:6px 12px;
+.formula > div:last-child{border-right:none;background:var(--lime);color:var(--ink)}
+.formula .fv{font-size:clamp(.95rem,1.7vw,1.25rem);font-weight:500;letter-spacing:.05em;line-height:1.35}
+.formula .fl{font-size:10px;letter-spacing:.2em;opacity:.6}
+.formula > div:last-child .fl{opacity:.75}
+.u-ticks{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media (max-width:900px){.u-ticks{grid-template-columns:1fr}}
+.u-tick{display:grid;grid-template-columns:30px 1fr;gap:14px}
+.u-tick .tick{width:20px;height:20px;background:var(--lime);margin-top:3px;display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--ink)}
+.u-tick h3{font-size:1rem;font-weight:700;margin-bottom:6px;color:#fff}
+.u-tick p{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.68)}
+.h2 .lm{background:var(--lime);color:var(--ink);padding:0 .12em .04em}
+
+/* ============ service detail sections ============ */
+.svc-alt{background:var(--gray)}
+.svc-grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(32px,6vw,80px);align-items:start;
 }
-.stage-marker .of{opacity:.45}
-.stage-quote{
-  margin:26px 0 8px;max-width:760px;
-  font-size:clamp(1.25rem,2.4vw,1.8rem);font-weight:500;line-height:1.38;letter-spacing:-.012em;
+.svc-grid.flip{grid-template-columns:1.35fr 1fr}
+.svc-grid.flip .svc-name{order:2}
+@media (max-width:900px){
+  .svc-grid,.svc-grid.flip{grid-template-columns:1fr;gap:26px}
+  .svc-grid.flip .svc-name{order:-1}
 }
-.stage-quote span{box-shadow:inset 0 -0.4em var(--lime)}
-.stage-quote-src{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:26px;
+.svc-word{
+  font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:700;
+  letter-spacing:-.03em;line-height:1.02;margin:16px 0 12px;
+}
+.svc-word::after{content:"";display:block;width:56px;height:10px;background:var(--lime);margin-top:20px}
+.svc-price{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(26,0,58,.6);
+}
+.svc-copy h3{
+  font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;
+  letter-spacing:-.02em;line-height:1.12;margin-bottom:18px;
+}
+.svc-copy p{max-width:640px;font-size:clamp(15px,1.3vw,16.5px);line-height:1.7;opacity:.8;margin-bottom:16px}
+.svc-copy p:last-of-type{margin-bottom:0}
+.svc-who{
+  border-left:3px solid var(--lime);padding:4px 0 4px 14px;
+  font-size:13.5px;line-height:1.6;color:rgba(26,0,58,.65);
+  max-width:560px;margin-top:24px;
 }
 
-/* numbered narrative (as v4 #otherside) */
-.narrative{
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
-  margin-top:48px;align-items:start;
+/* ============ plans ============ */
+#plans{background:var(--gray)}
+.plan-grid{
+  display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:26px;margin-top:52px;align-items:stretch;
 }
-@media (max-width:900px){.narrative{grid-template-columns:1fr}}
-.n-steps{display:flex;flex-direction:column}
-.n-step{
-  padding:24px 0;border-top:1px solid rgba(26,0,58,.2);
-  display:grid;grid-template-columns:96px 1fr;gap:18px;
+@media (max-width:1100px){.plan-grid{grid-template-columns:1fr}}
+.plan{
+  background:#fff;border:1px solid rgba(26,0,58,.22);
+  padding:28px 26px 26px;display:flex;flex-direction:column;gap:0;
 }
-.n-step:last-child{border-bottom:1px solid rgba(26,0,58,.2)}
-@media (max-width:560px){.n-step{grid-template-columns:1fr;gap:8px}}
-.n-step .no{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.18em;
-  color:var(--deep);text-transform:uppercase;padding-top:4px;
+.plan.feature{border:2px solid var(--ink);box-shadow:10px 10px 0 var(--lime)}
+.plan .ptag{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--deep);display:flex;align-items:center;gap:10px;margin-bottom:18px;
 }
-.n-step h3{font-size:1.12rem;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
-.n-step p{font-size:14px;line-height:1.65;opacity:.75}
-.n-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:28px}
-@media (max-width:900px){.n-side{position:static}}
-.note-bar{
-  background:var(--ink);color:#fff;padding:20px 24px;
-  display:flex;align-items:flex-start;gap:16px;font-size:14px;line-height:1.65;
+.plan .ptag::before{content:"";width:9px;height:9px;background:var(--lime)}
+.plan .pname{font-size:1.25rem;font-weight:700;letter-spacing:-.012em;margin-bottom:6px}
+.plan .pprice{font-size:clamp(1.9rem,3.2vw,2.5rem);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+.plan .pprice.range{font-size:clamp(1.5rem,2.6vw,2rem)}
+.plan .pprice span{font-size:.95rem;font-weight:500;opacity:.55;letter-spacing:0}
+.plan .prange{
+  margin-top:6px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11.5px;letter-spacing:.08em;
+  color:var(--deep);text-transform:uppercase;
 }
-.note-bar b{color:var(--lime);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;flex:none;padding-top:3px}
+.plan .pdesc{margin:16px 0 20px;font-size:14px;line-height:1.62;opacity:.75}
+.plan ul{display:flex;flex-direction:column;border-top:1px solid rgba(26,0,58,.14);margin-bottom:22px}
+.plan li{
+  display:grid;grid-template-columns:26px 1fr;gap:10px;padding:11px 0;
+  border-bottom:1px solid rgba(26,0,58,.09);font-size:13.5px;line-height:1.55;
+}
+.plan li .tk{width:16px;height:16px;background:var(--lime);margin-top:2px;display:grid;place-items:center;font-size:10px;font-weight:700}
+.plan li.no .tk{background:transparent;border:1px solid rgba(26,0,58,.35)}
+.plan li.no{opacity:.6}
+.plan .pwho{
+  font-size:12.5px;line-height:1.6;color:rgba(26,0,58,.6);
+  border-left:3px solid var(--lime);padding:4px 0 4px 14px;margin-bottom:22px;
+}
+.plan .btn{margin-top:auto}
 
-/* checklist (as v4 #whatwedo) */
-.do-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
-  margin-top:48px;align-items:start;
+/* envelope strip */
+.envelope{
+  margin-top:36px;background:var(--ink);color:#fff;padding:28px;
 }
-@media (max-width:900px){.do-grid{grid-template-columns:1fr}}
-.do-list{display:flex;flex-direction:column}
-.do-item{
-  display:grid;grid-template-columns:34px 1fr;gap:16px;
-  padding:20px 0;border-top:1px solid rgba(26,0,58,.15);
+.envelope .sp-label{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:16px}
+.env-bar{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.env-node{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.35);padding:12px 16px;text-align:center;
 }
-.do-item:first-child{border-top:2px solid var(--ink)}
-.do-item .tick{
-  width:20px;height:20px;background:var(--lime);margin-top:2px;
-  display:grid;place-items:center;font-weight:700;font-size:12px;
-}
-.do-item h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
-.do-item p{font-size:13.5px;line-height:1.6;opacity:.72}
-.wide-shot{margin-top:56px}
+.env-node b{display:block;font-size:1.15rem;letter-spacing:.04em;font-weight:500}
+.env-node small{display:block;font-size:9.5px;letter-spacing:.16em;opacity:.6;margin-top:4px}
+.env-line{flex:1 1 40px;height:1px;background:rgba(255,255,255,.35);position:relative;min-width:32px}
+.env-line::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;background:var(--lime)}
+.env-node.hi{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.env-node.hi small{opacity:.75}
+.envelope p{margin-top:18px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);max-width:760px}
 
-/* engagement shape strip (spine recipe) */
+/* ============ in practice (principle cards) ============ */
+.principles{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(26,0,58,.2);
+  border:1px solid rgba(26,0,58,.2);margin-top:48px;
+}
+@media (max-width:900px){.principles{grid-template-columns:1fr}}
+.principle{background:var(--white);padding:26px 26px 28px}
+.principle .kt{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
+  color:var(--deep);text-transform:uppercase;display:block;margin-bottom:12px;
+}
+.principle h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.principle p{font-size:13.5px;line-height:1.62;opacity:.72}
+
+/* ============ path (spine recipe) ============ */
+#path{background:var(--gray)}
 .spine{
-  margin-top:56px;background:var(--ink);color:#fff;padding:30px 28px;
+  margin-top:44px;background:var(--ink);color:#fff;padding:30px 28px;
 }
 .spine .sp-label{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
 .spine .sp-chain{
@@ -254,88 +288,28 @@ h1 .lm{background:var(--lime);padding:0 .12em .04em}
 .spine .sp-chain span{border:1px solid rgba(255,255,255,.35);padding:9px 14px}
 .spine .sp-chain i{font-style:normal;color:var(--lime)}
 .spine p{margin-top:18px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);max-width:720px}
-.spine p a{color:var(--lime);border-bottom:1px solid rgba(204,255,0,.4)}
-.spine p a:hover{border-bottom-color:var(--lime)}
+.note-bar{
+  margin-top:28px;background:#fff;border-left:3px solid var(--lime);
+  padding:20px 24px;display:flex;align-items:flex-start;gap:16px;font-size:14px;line-height:1.65;
+}
+.note-bar b{color:var(--deep);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;flex:none;padding-top:3px}
 
-/* proof: case-study index rows (ins-item recipe) */
-.proof{margin-top:56px}
-.proof-h{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:rgba(26,0,58,.55);
-  display:flex;align-items:center;gap:12px;
+/* ============ FAQ (accordion) ============ */
+.v-list{margin-top:44px;border-bottom:1px solid rgba(26,0,58,.15)}
+.v-acc{border-top:1px solid rgba(26,0,58,.15)}
+.v-acc:first-of-type{border-top:2px solid var(--ink)}
+.v-acc summary{
+  cursor:pointer;list-style:none;
+  display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+  padding:20px 0;font-size:15px;font-weight:700;letter-spacing:-.008em;
 }
-.proof-h::after{content:"";height:1px;background:rgba(26,0,58,.2);flex:1}
-.ins-item{
-  display:grid;grid-template-columns:150px 1fr auto 32px;gap:clamp(16px,3vw,40px);
-  align-items:center;padding:22px 0;border-top:1px solid rgba(26,0,58,.15);
-  transition:background .25s;
-}
-.ins-item:first-of-type{margin-top:18px;border-top:2px solid var(--ink)}
-.ins-item:last-child{border-bottom:1px solid rgba(26,0,58,.15)}
-.ins-item:hover{background:var(--gray)}
-.ins-item .meta{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(26,0,58,.55);line-height:1.9;
-}
-.ins-item h3{font-size:clamp(1.05rem,1.7vw,1.25rem);font-weight:700;letter-spacing:-.012em;line-height:1.3}
-.ins-item p{font-size:13.5px;line-height:1.55;opacity:.65;margin-top:6px;max-width:560px}
-.ins-item .stat{
-  text-align:right;font-weight:700;font-size:clamp(1.1rem,1.8vw,1.5rem);letter-spacing:-.02em;white-space:nowrap;
-}
-.ins-item .stat span{
-  display:block;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9.5px;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;opacity:.5;margin-top:5px;white-space:normal;
-}
-.ins-item .ar{
-  width:30px;height:30px;border:1px solid rgba(26,0,58,.4);
-  display:grid;place-items:center;font-style:normal;
-}
-.ins-item:hover .ar{background:var(--lime);border-color:var(--lime)}
-@media (max-width:820px){
-  .ins-item{grid-template-columns:1fr}
-  .ins-item .ar{display:none}
-  .ins-item .stat{text-align:left}
-}
+.v-acc summary::-webkit-details-marker{display:none}
+.v-acc summary::after{content:"+";flex:none;font-size:19px;font-weight:500;color:var(--deep);line-height:1}
+.v-acc[open] summary::after{content:"\2212"}
+.v-acc summary:hover{color:var(--deep)}
+.v-acc p{font-size:14px;line-height:1.62;opacity:.75;max-width:680px;padding:0 0 22px}
 
-/* next-stage handoff */
-.next-stage{
-  margin-top:64px;border:1px solid rgba(26,0,58,.25);
-  display:flex;justify-content:space-between;align-items:center;gap:18px;
-  padding:22px 26px;transition:background .25s;
-}
-.next-stage:hover{background:var(--ink);color:#fff}
-.next-stage .nx{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
-  text-transform:uppercase;opacity:.55;display:block;margin-bottom:8px;
-}
-.next-stage h3{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:700;letter-spacing:-.012em}
-.next-stage i{
-  font-style:normal;width:34px;height:34px;border:1px solid rgba(26,0,58,.4);
-  display:grid;place-items:center;flex:none;
-}
-.next-stage:hover i{background:var(--lime);border-color:var(--lime);color:var(--ink)}
-
-/* stage section tints */
-#sell{background:var(--gray)}
-#sell .picker{background:#fff}
-#sell .ins-item:hover{background:#fff}
-#sell .next-stage:hover{background:var(--ink)}
-
-/* not-sure strip */
-#which{background:var(--white);border-top:1px solid rgba(26,0,58,.12)}
-.which-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px;
-}
-@media (max-width:900px){.which-grid{grid-template-columns:1fr}}
-.which-item{border-top:2px solid var(--ink);padding-top:16px}
-.which-item .wq{font-size:15px;font-weight:500;line-height:1.5;letter-spacing:-.005em}
-.which-item .wa{
-  margin-top:10px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--deep);
-  display:inline-flex;align-items:center;gap:8px;border-bottom:2px solid var(--lime);padding-bottom:3px;
-}
-
-/* ============ contact / footer (v4 recipe) ============ */
+/* ============ contact band / footer (v4 recipe) ============ */
 #contact{background:var(--lime);color:var(--ink)}
 #contact .inner{
   max-width:1240px;margin:0 auto;
@@ -345,7 +319,6 @@ h1 .lm{background:var(--lime);padding:0 .12em .04em}
 #contact .h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:14px 0 10px}
 #contact .lead{opacity:.8}
 footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
-footer .logo{color:#fff}
 .fsocial{display:flex;gap:10px;margin-top:22px}
 .fsocial a{
   width:36px;height:36px;border:1px solid rgba(255,255,255,.3);
@@ -362,7 +335,7 @@ footer .logo{color:#fff}
 }
 .fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
 .fgrid ul{display:flex;flex-direction:column;gap:12px}
-.fgrid ul.two{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 28px}
+.fgrid ul.two{display:grid;grid-template-rows:repeat(4,auto);grid-auto-flow:column;gap:12px 28px}
 .fgrid ul a{font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;transition:color .25s}
 .fgrid ul a:hover{color:var(--lime)}
 .fbottom{
@@ -382,512 +355,511 @@ footer .logo{color:#fff}
 <body>
 
 <header>
-  <a class="logo" href="index.html"><i></i>DORADO</a>
+  <a class="logo" href="index.html"><img src="../assets/logo/logo-ink.png" alt="DORADO" class="logo-img"></a>
   <nav>
     <a class="nl" href="services.html">Services</a>
     <a class="nl" href="how-we-operate.html">Process</a>
     <a class="nl" href="use-cases.html">Use cases</a>
-    <a class="nl" href="pricing.html">Pricing</a>
     <a class="nl" href="insights.html">Insights</a>
     <a class="nl" href="partners.html">Partners</a>
     <a class="nl" href="about.html">About</a>
     <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sp-nav">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 </header>
+<div class="sp-nav" id="sp-nav" aria-hidden="true">
+  <div class="sp-nav-top">
+    <a class="logo" href="index.html"><img src="../assets/logo/logo-white.png" alt="DORADO" class="logo-img"></a>
+    <button class="sp-close" type="button" aria-label="Close menu">&#10005;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul>
+      <li><a href="services.html" aria-current="page">Services</a></li>
+      <li><a href="how-we-operate.html">Process</a></li>
+      <li><a href="use-cases.html">Use cases</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div class="sp-cta"><a class="btn btn-lime btn-full" href="contact.html">Contact us &rarr;</a></div>
+</div>
 
 <main>
 
-<!-- ================= PAGE HERO : three jobs, pick yours ================= -->
+<!-- ================= PAGE HERO ================= -->
 <section id="top">
   <div class="ph-inner">
-    <p class="hero-label">What we do &middot; Services</p>
-    <h1>Japan entry isn't one service.<br>It's <span class="lm">three different jobs.</span></h1>
-    <p class="hero-sub">
-      Deciding whether to enter, turning interest into revenue, and taking care
-      of the customers you win are different kinds of work: with different
-      rhythms, different deliverables, and different meters. Find the sentence
-      that sounds like you.
+    <p class="crumb rv"><a href="index.html">INDEX</a> / SERVICES</p>
+    <p class="eyebrow rv">Services</p>
+    <h1 class="rv">A Japan presence that <span class="lm">runs</span>.</h1>
+    <p class="hero-sub rv">
+      What you actually want from Japan isn't a single meeting &mdash; it's a
+      market that works: customers won and kept, product shaped to the
+      market, a strategy behind it. That's the Retainer, and it's what
+      we're built to run. Not ready for the full function yet? Start
+      lighter &mdash; a results-based sales pilot when you need proof first,
+      or simply put your questions to the person who knows the market
+      when that's all you need today &mdash; and move up as the results earn it.
     </p>
-
-    <div class="pickers rv">
-      <a class="picker" href="#validate">
-        <span class="st">Stage 01 &middot; Validate</span>
-        <blockquote>&ldquo;Should we enter Japan at all, and what would we even sell?&rdquo;</blockquote>
-        <p>You're not in the market yet. You have a hypothesis, maybe a hunch,
-        and no local evidence to bet real money on.</p>
-        <span class="go">Market research &amp; validation <i>&darr;</i></span>
-      </a>
-      <a class="picker" href="#sell">
-        <span class="st">Stage 02 &middot; Sell</span>
-        <blockquote>&ldquo;Everyone is interested. Nobody is buying.&rdquo;</blockquote>
-        <p>You're in the market. Meetings happen, demos go well, pilots start,
-        and none of it converts into budgeted deals.</p>
-        <span class="go">Go-to-market operations <i>&darr;</i></span>
-      </a>
-      <a class="picker" href="#operate">
-        <span class="st">Stage 03 &middot; Operate</span>
-        <blockquote>&ldquo;We won our first Japanese customer. We have nobody in Japan.&rdquo;</blockquote>
-        <p>The deal is signed. Now someone has to sit in the meetings, walk the
-        site, and keep the relationship alive, in Japanese.</p>
-        <span class="go">Customer success representation <i>&darr;</i></span>
-      </a>
-    </div>
   </div>
 
   <div class="facts">
     <ul>
-      <li>Three jobs &middot; one discipline</li>
-      <li>30-day entry points</li>
-      <li>Evidence, then a call</li>
-      <li>EN / JA</li>
+      <li>The whole market function, run for you</li>
+      <li>Move up only when results earn it</li>
+      <li>You confirm every invoice line</li>
+      <li>No long-term lock-in</li>
     </ul>
   </div>
 </section>
 
-<!-- ================= STAGE 01 : VALIDATE ================= -->
-<section id="validate" class="sec">
+<!-- ================= THE STRUCTURE ================= -->
+<section id="unit" class="sec">
   <div class="wrap">
-    <div class="stage-marker rv">
-      <span class="big">01</span>
-      <span class="tag">Validate</span>
-      <span>Market research &amp; entry validation</span>
-      <span class="of">/ stage 01 of 03</span>
-    </div>
-
-    <h2 class="h2 rv">Know before you enter.<br>Validate before you invest.</h2>
-    <blockquote class="stage-quote rv">
-      &ldquo;Japan looks like the obvious next market. But every plan we have is
-      built on <span>assumptions we can't check from here</span>.&rdquo;
-    </blockquote>
-    <p class="stage-quote-src rv">The situation this stage exists for</p>
+    <p class="eyebrow rv" style="color:#fff">The structure</p>
+    <h2 class="h2 rv">Three ways to support you.<br>One goal: <span class="lm">a working Japan operation</span>.</h2>
     <p class="lead rv">
-      Overseas companies entering Japan fall into the same trap: strategies built
-      on assumptions that don't survive contact with the market. We run structured
-      research sprints that turn "we think Japan could work" into a prioritized,
-      evidence-backed entry plan, including the uncomfortable findings that
-      change it.
+      There are three, and only three. <b>Q&amp;A</b>, when you want to think
+      a question through with people who work in this market every day.
+      <b>Pilot</b>, when you want proof of real traction before committing
+      more. <b>Retainer</b>, when you want the whole operation run for
+      you. Each is priced by what it produces &mdash; start where today's
+      question justifies, and move up as the results earn it.
     </p>
 
-    <div class="narrative">
-      <div class="n-steps rv">
-        <div class="n-step">
-          <span class="no">01: Decode</span>
-          <div>
-            <h3>Decode why you win at home</h3>
-            <p>Before asking whether your success can travel, we reverse-engineer
-            where it comes from, and sort your advantages into what transfers
-            to Japan and what is anchored in your home market.</p>
-          </div>
-        </div>
-        <div class="n-step">
-          <span class="no">02: Measure</span>
-          <div>
-            <h3>Size the market, price the reality</h3>
-            <p>Market sizing under multiple scenarios, competitor teardowns built
-            from real user complaints, and benchmarks from real shelves and real
-            menus, not industry averages. Where direct data doesn't exist, we
-            build defensible proxy models from public statistics instead of
-            stopping at "no data."</p>
-          </div>
-        </div>
-        <div class="n-step">
-          <span class="no">03: Check</span>
-          <div>
-            <h3>Map the rules foreign entrants miss</h3>
-            <p>Invoice systems, labeling and compliance standards, subsidy
-            dynamics, payment culture: the local details that quietly decide
-            whether a product is sellable, treated as strategy inputs, not
-            footnotes.</p>
-          </div>
-        </div>
-        <div class="n-step">
-          <span class="no">04: Test</span>
-          <div>
-            <h3>Test your hypothesis honestly</h3>
-            <p>You usually arrive with a candidate plan. We score it against
-            evidence, and when the data pushes back, we say so. Every research
-            task exists to confirm or kill a specific assumption, nothing is
-            researched "for completeness."</p>
-          </div>
-        </div>
-        <div class="n-step">
-          <span class="no">05: Arm</span>
-          <div>
-            <h3>End with a plan you can execute</h3>
-            <p>Findings flow into a sequenced entry strategy: the beachhead
-            segment, the channel logic, vetted target lists, and sales materials
-            in Japanese: assets you can use the week the engagement ends.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="n-side">
-        <figure class="shot doc rv">
-          <div class="shot-frame">
-            <div class="bar"><i></i><i></i><i></i><span>research sprint &middot; evidence log (anonymized)</span></div>
-            <div class="ph">SCREENSHOT SLOT<br>3:4<br>evidence log / segment scoring page</div>
-          </div>
-          <figcaption>Every finding logged with its source: fact, inference, and open question kept separate.</figcaption>
-        </figure>
-        <div class="note-bar rv">
-          <b>Deliverable</b>
-          <span>A decision, not a report. The output is a go / no-go call with a
-          beachhead, the reasoning behind each rejected alternative, and what to
-          test next, documented so your board can audit it.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="spine rv">
-      <p class="sp-label">Engagement shape</p>
-      <div class="sp-chain">
-        <span>30-day sprint</span><i>&rarr;</i>
-        <span>Weekly reviews</span><i>&rarr;</i>
-        <span>Go / no-go call</span><i>&rarr;</i>
-        <span>Monthly validation</span>
-      </div>
-      <p>The first month is a fixed-scope research sprint with weekly checkpoints.
-      If the call is "go," the same structure extends month-to-month into
-      hypothesis validation (tastings, interviews, first outreach) without
-      re-scoping from zero.</p>
-    </div>
-
-    <div class="proof rv">
-      <p class="proof-h">Proof &middot; from the case files</p>
-      <a class="ins-item" href="use-case-single.html">
-        <span class="meta">Fleet &amp; telematics SaaS<br>Entering from overseas</span>
-        <div>
-          <h3>From "should we enter?" to a validated beachhead</h3>
-          <p>Market sizing, competitor battle cards, regulatory mapping, and a
-          tourism-driven regional entry strategy, with every rejected
-          alternative documented.</p>
-        </div>
-        <span class="stat">3 mo<span>question to strategy</span></span>
-        <i class="ar">&rarr;</i>
-      </a>
-      <a class="ins-item" href="use-cases.html">
-        <span class="meta">Food brand<br>Entering from overseas</span>
-        <div>
-          <h3>An entry hypothesis, tested against real menus and real buyers</h3>
-          <p>Four research tracks in one sprint: why the brand wins at home, how
-          Japanese consumers actually decide, the retail channel economics, and
-          a vetted wholesaler target list.</p>
-        </div>
-        <span class="stat">30 days<span>to a prioritized plan</span></span>
-        <i class="ar">&rarr;</i>
-      </a>
-      <p class="cap">Clients anonymized under confidentiality agreements. Full case studies available on the case-study index.</p>
-    </div>
-
-    <a class="next-stage rv" href="#sell">
+    <div class="formula rv" role="img" aria-label="Three plans: Q&amp;A at 99 dollars a month, Pilot from 150 dollars a month plus success fees, and the Retainer at 1,500 to 6,000 dollars a month">
       <div>
-        <span class="nx">Already in the market? &middot; Next</span>
-        <h3>Stage 02 &middot; Sell: when interest won't convert</h3>
+        <span class="fl">Q&amp;A</span>
+        <span class="fv">Talk to the person who knows the market</span>
+        <span class="fl">$99 / month</span>
       </div>
-      <i>&darr;</i>
-    </a>
-  </div>
-</section>
-
-<!-- ================= STAGE 02 : SELL ================= -->
-<section id="sell" class="sec">
-  <div class="wrap">
-    <div class="stage-marker rv">
-      <span class="big">02</span>
-      <span class="tag">Sell</span>
-      <span>Go-to-market operations</span>
-      <span class="of">/ stage 02 of 03</span>
-    </div>
-
-    <h2 class="h2 rv">Interest was never your problem.</h2>
-    <blockquote class="stage-quote rv">
-      &ldquo;A full calendar of demos, free pilots, and partner talks, and
-      <span>no revenue</span>.&rdquo;
-    </blockquote>
-    <p class="stage-quote-src rv">The situation this stage exists for</p>
-    <p class="lead rv">
-      For most companies entering Japan, interest is easy, and none of it
-      converts. The gap is everything after interest: who owns the problem inside
-      the buyer, what budget pays for it, and what the finished, purchasable
-      package even is. We run that commercial layer as an operating system, not a
-      series of favors.
-    </p>
-
-    <div class="do-grid">
-      <div class="do-list rv">
-        <div class="do-item">
-          <span class="tick">1</span>
-          <div>
-            <h3>Diagnose the pipeline honestly</h3>
-            <p>Every open opportunity audited and graded, then a deal-by-deal
-            priority list: push, nurture, or stop investing entirely. Telling you
-            what to stop doing is half the value.</p>
-          </div>
-        </div>
-        <div class="do-item">
-          <span class="tick">2</span>
-          <div>
-            <h3>Find where the demand actually is</h3>
-            <p>Candidate segments researched in depth before anyone sells anything:
-            does the problem exist, who owns it, what volume, can it pay?</p>
-          </div>
-        </div>
-        <div class="do-item">
-          <span class="tick">3</span>
-          <div>
-            <h3>Test ideas against evidence, including yours</h3>
-            <p>When you propose a positioning, we score it, not applaud it. Clients
-            pay us to be right, not agreeable.</p>
-          </div>
-        </div>
-      </div>
-      <div class="do-list rv">
-        <div class="do-item">
-          <span class="tick">4</span>
-          <div>
-            <h3>Put numbers on it first</h3>
-            <p>Market sizing, volume estimates per prospect, revenue models per
-            scenario, built <b>before</b> outreach, so effort goes where the
-            economics work.</p>
-          </div>
-        </div>
-        <div class="do-item">
-          <span class="tick">5</span>
-          <div>
-            <h3>Run the outreach and keep deals warm</h3>
-            <p>We send the messages, track every reply, and never let warm interest
-            expire. Every contact has a next action with a date: our own system
-            won't let us close a lead without one.</p>
-          </div>
-        </div>
-        <div class="do-item">
-          <span class="tick">6</span>
-          <div>
-            <h3>Stand in the room</h3>
-            <p>We sit in the live conversations, learn both your technology and the
-            buyer's approval process, and turn every interaction into a documented,
-            reusable asset.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <figure class="shot wide-shot rv">
-      <div class="shot-frame">
-        <div class="bar"><i></i><i></i><i></i><span>pipeline review &middot; deal-by-deal grading (anonymized)</span></div>
-        <div class="ph">SCREENSHOT SLOT &middot; WIDE<br>1920&times;900<br>pipeline grading sheet</div>
-      </div>
-      <figcaption>An actual pipeline review: every deal graded, with a call attached. Names blurred.</figcaption>
-    </figure>
-
-    <div class="spine rv">
-      <p class="sp-label">Engagement shape</p>
-      <div class="sp-chain">
-        <span>Lane</span><i>&rarr;</i>
-        <span>Batch</span><i>&rarr;</i>
-        <span>Call</span><i>&rarr;</i>
-        <span>Repeat or graduate</span>
-      </div>
-      <p>This stage runs as scoped engagements: you buy defined deliverables,
-      not hours. Each market question is tested through batches of real
-      companies, and every batch ends with an explicit call: continue,
-      adjust, or stop spending. The machinery behind it is on the
-      <a href="how-we-operate.html">How we operate</a> page;
-      the meters are on
-      <a href="pricing.html">Pricing</a>.</p>
-    </div>
-
-    <div class="proof rv">
-      <p class="proof-h">Proof &middot; from the case files</p>
-      <a class="ins-item" href="use-cases.html">
-        <span class="meta">Vertical SaaS<br>Global + Japan</span>
-        <div>
-          <h3>Full-stack GTM operations for a vertical SaaS vendor</h3>
-          <p>ICP research systems across 35+ country markets, research-driven
-          outbound and inbound ops, partnership design, and an end-to-end Japan
-          motion with data-driven PoCs.</p>
-        </div>
-        <span class="stat">35+<span>markets covered</span></span>
-        <i class="ar">&rarr;</i>
-      </a>
-      <a class="ins-item" href="use-cases.html">
-        <span class="meta">Vertical SaaS<br>In practice</span>
-        <div>
-          <h3>Turning a vertical SaaS product into a sellable business</h3>
-          <p>The anonymized long read: pipeline triage, segment demand maps,
-          partner economics, regulatory horizon: the full commercial layer
-          around one product.</p>
-        </div>
-        <span class="stat">7<span>workstreams, one engagement</span></span>
-        <i class="ar">&rarr;</i>
-      </a>
-      <p class="cap">One client named with permission pending; others anonymized. Composite figures: see each case study for sourcing.</p>
-    </div>
-
-    <a class="next-stage rv" href="#operate">
       <div>
-        <span class="nx">Already winning deals? &middot; Next</span>
-        <h3>Stage 03 &middot; Operate: someone has to be there</h3>
+        <span class="fl">Pilot</span>
+        <span class="fv">Qualified meetings &amp; moving deals</span>
+        <span class="fl">From $150/mo + success fees</span>
       </div>
-      <i>&darr;</i>
-    </a>
+      <div>
+        <span class="fl">Retainer</span>
+        <span class="fv">A working Japan operation</span>
+        <span class="fl">$1,500&ndash;6,000 / month</span>
+      </div>
+    </div>
+
+    <div class="u-ticks rv">
+      <div class="u-tick">
+        <span class="tick">1</span>
+        <div>
+          <h3>Q&amp;A &mdash; ask someone who knows</h3>
+          <p>The lightest way in. There's rarely a single right answer in
+          a new market, so instead of guessing alone, put the question to
+          people who work in it every day: a buyer's reply you can't
+          read, a term sheet that feels off. $99/mo, cancel anytime.</p>
+        </div>
+      </div>
+      <div class="u-tick">
+        <span class="tick">2</span>
+        <div>
+          <h3>Pilot &mdash; proof before you commit</h3>
+          <p>When you need evidence first: qualified first meetings held
+          with the right stakeholders, and qualified leads genuinely
+          progressing. Fixed cost stays low at $150/mo, with success fees
+          that only land when those outcomes do. A lighter alternative
+          when a full retainer isn't justified yet.</p>
+        </div>
+      </div>
+      <div class="u-tick">
+        <span class="tick">3</span>
+        <div>
+          <h3>Retainer &mdash; the whole function, run for you</h3>
+          <p>What most companies actually need: a market operation that
+          runs. Sales won, customers kept and grown, product shaped to
+          Japan, the market understood well enough to make calls &mdash; for
+          $1,500&ndash;6,000/mo.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ================= STAGE 03 : OPERATE ================= -->
-<section id="operate" class="sec">
+<!-- ================= SERVICE 01: Q&A ================= -->
+<section id="svc-qa" class="sec">
+  <div class="svc-grid rv">
+    <div class="svc-name">
+      <p class="eyebrow">Service 01</p>
+      <p class="svc-word">Q&amp;A</p>
+      <p class="svc-price">$99 / month &middot; up to 5 questions</p>
+    </div>
+    <div class="svc-copy">
+      <h3>Your product expertise,<br>our market expertise.</h3>
+      <p>
+        You know your product better than anyone. We spend every day in
+        front of Japanese buyers. Q&amp;A puts those two kinds of expertise
+        in the same conversation &mdash; not an advisor handing down answers,
+        but two specialists comparing notes across a border.
+      </p>
+      <p>
+        Send the question you're stuck on &mdash; a buyer's reply you can't
+        read, a term sheet that feels off, a pricing instinct you want
+        checked &mdash; and hear how someone who works in this market actually
+        reads it, in writing, within 48 hours. When there's no clear
+        answer, we say so: in a new market, an honest "it depends, and
+        here's what it depends on" beats a confident guess.
+      </p>
+      <p class="svc-who">For teams that want a thinking partner before
+      they spend real budget &mdash; not a vendor pitch dressed up as advice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICE 02: PILOT ================= -->
+<section id="svc-pilot" class="sec svc-alt">
+  <div class="svc-grid flip rv">
+    <div class="svc-name">
+      <p class="eyebrow">Service 02</p>
+      <p class="svc-word">Pilot</p>
+      <p class="svc-price">$150 / month + success fees</p>
+    </div>
+    <div class="svc-copy">
+      <h3>Proof before commitment.</h3>
+      <p>
+        Pilot exists for one moment: you believe Japan could work, but
+        you're not ready to fund a full operation on belief. So the meter
+        is built around evidence. A small fixed fee keeps the campaign
+        alive &mdash; pipeline maintained, replies tracked, a report every
+        month &mdash; and the real fees only land when outcomes do: a
+        qualified buyer actually in the room, a deal genuinely moving.
+      </p>
+      <p>
+        Quiet months bill almost nothing, and every billable meeting and
+        lead is shown to you before it reaches an invoice. If the market
+        says no, you find out cheaply. If it says yes, you have the
+        proof &mdash; and everything built here carries straight into the
+        Retainer.
+      </p>
+      <p class="svc-who">For companies that want the market's answer
+      before the bigger commitment. Deliberately narrow &mdash; sales only,
+      by design.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICE 03: RETAINER ================= -->
+<section id="svc-retainer" class="sec">
+  <div class="svc-grid rv">
+    <div class="svc-name">
+      <p class="eyebrow">Service 03</p>
+      <p class="svc-word">Retainer</p>
+      <p class="svc-price">$1,500&ndash;6,000 / month</p>
+    </div>
+    <div class="svc-copy">
+      <h3>The whole motion,<br>without the scope walls.</h3>
+      <p>
+        Japan entry doesn't respect functional boundaries. The bottleneck
+        moves &mdash; from research to outbound, from marketing to product
+        feedback, from closing to onboarding. Most engagements can't
+        follow it, because the scope was frozen at signing.
+      </p>
+      <p>
+        The Retainer is built for exactly that movement. Research, sales,
+        marketing, product management, customer success &mdash; one standing
+        engagement that shifts to wherever the constraint is this month,
+        no change order required. This is where the breadth of what we do
+        pays off most: you're not buying a task list, you're buying a
+        team that follows the problem.
+      </p>
+      <p class="svc-who">For companies serious about winning and holding
+      the market &mdash; the ones that need Japan to run, not just respond.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANS ================= -->
+<section id="plans" class="sec">
   <div class="wrap">
-    <div class="stage-marker rv">
-      <span class="big">03</span>
-      <span class="tag">Operate</span>
-      <span>Customer success representation</span>
-      <span class="of">/ stage 03 of 03</span>
+    <p class="eyebrow rv">Plans</p>
+    <h2 class="h2 rv">Built to run your market &mdash;<br>or to start lighter.</h2>
+
+    <div class="plan-grid rv">
+
+      <!-- Plan 1: Q&A $99 -->
+      <div class="plan">
+        <p class="ptag">Q&amp;A</p>
+        <p class="pname">Q&amp;A</p>
+        <p class="pprice">$99 <span>/ month</span></p>
+        <p class="prange">Up to 5 questions / mo &middot; 48h written replies</p>
+        <p class="pdesc">
+          The outcome: a straight conversation with people who know this
+          market, not a canned answer. Send a question &mdash; a buyer's reply
+          you can't read, a term sheet that feels off &mdash; and hear how
+          someone who works in Japan every day would read it.
+        </p>
+        <ul>
+          <li><span class="tk">&#10003;</span><span>Up to 5 written questions a month</span></li>
+          <li><span class="tk">&#10003;</span><span>Written replies within 48 hours</span></li>
+          <li><span class="tk">&#10003;</span><span>Honest "we don't know" when true</span></li>
+          <li><span class="tk">&#10003;</span><span>Cancel any month, no setup fee</span></li>
+          <li class="no"><span class="tk"></span><span>No execution &mdash; that's Pilot or Retainer</span></li>
+        </ul>
+        <p class="pwho">For companies watching Japan from a distance: not
+        ready to spend real budget, but tired of guessing alone.</p>
+        <a class="btn btn-lime btn-full" href="contact.html">Start asking &rarr;</a>
+      </div>
+
+      <!-- Plan 2: Pilot -->
+      <div class="plan">
+        <p class="ptag">Pilot</p>
+        <p class="pname">Pilot Plan</p>
+        <p class="pprice">$150 <span>/ month + success fees</span></p>
+        <p class="prange">$1,000 setup &middot; +$500 / qualified meeting &middot; +$500 / active qualified lead</p>
+        <p class="pdesc">
+          The outcome: qualified buyers in the room and deals moving &mdash;
+          proof of sales traction before you commit to more. A lighter,
+          results-based path for companies not ready for a full retainer
+          yet.
+        </p>
+        <ul>
+          <li><span class="tk">&#10003;</span><span>$150/mo keeps the campaign live: pipeline, tracking, follow-ups, report</span></li>
+          <li><span class="tk">&#10003;</span><span>$500 only when a qualified first meeting is actually held</span></li>
+          <li><span class="tk">&#10003;</span><span>$500 per active month a qualified lead is genuinely progressing</span></li>
+          <li><span class="tk">&#10003;</span><span>Quiet months bill $0 &mdash; no manufactured activity</span></li>
+          <li><span class="tk">&#10003;</span><span>Account-by-account preview &mdash; you confirm before every invoice</span></li>
+          <li class="no"><span class="tk"></span><span>Sales only &mdash; no customer success, product, research or strategy</span></li>
+        </ul>
+        <p class="pwho">For companies that want proof of real sales
+        traction in Japan before committing to the full function.</p>
+        <a class="btn btn-lime btn-full" href="contact.html">Start a campaign &rarr;</a>
+      </div>
+
+      <!-- Plan 3: Retainer (featured) -->
+      <div class="plan feature">
+        <p class="ptag">Retainer &middot; Most chosen</p>
+        <p class="pname">Retainer Plan</p>
+        <p class="pprice range">$1,500&ndash;6,000 <span>/ month</span></p>
+        <p class="prange">Scoped to your market stage &middot; exact figure in the first call</p>
+        <p class="pdesc">
+          The outcome most companies are really after: a Japan presence
+          that runs. Not just meetings, but customers kept, product shaped
+          to the market, and the strategy behind it &mdash; one integrated team
+          instead of five vendors.
+        </p>
+        <ul>
+          <li><span class="tk">&#10003;</span><span>Everything in Pilot: buyer development through pipeline</span></li>
+          <li><span class="tk">&#10003;</span><span>Customer success: renewals, upsell, post-deployment care in Japanese</span></li>
+          <li><span class="tk">&#10003;</span><span>Product management: Japan-market requirements, feedback to HQ</span></li>
+          <li><span class="tk">&#10003;</span><span>Research: market, competitor, regulatory and channel intelligence</span></li>
+          <li><span class="tk">&#10003;</span><span>Marketing: localization, events, content, lead generation</span></li>
+          <li><span class="tk">&#10003;</span><span>Strategy: entry, pricing, packaging, channel and partner strategy</span></li>
+        </ul>
+        <p class="pwho">For companies serious about building and running a
+        Japanese market presence &mdash; the ones that will actually win share
+        here.</p>
+        <a class="btn btn-lime btn-full" href="contact.html">Scope your retainer &rarr;</a>
+      </div>
+
     </div>
 
-    <h2 class="h2 rv">Your customer success team in Japan.</h2>
-    <blockquote class="stage-quote rv">
-      &ldquo;The contract is signed. The customer speaks Japanese, the site is in
-      Tokyo, and <span>our whole team is nine time zones away</span>.&rdquo;
-    </blockquote>
-    <p class="stage-quote-src rv">The situation this stage exists for</p>
+    <!-- steps toward the same destination -->
+    <div class="envelope rv">
+      <p class="sp-label">From a conversation, to proof, to a running market</p>
+      <div class="env-bar">
+        <div class="env-node"><b>Q&amp;A</b><small>$99/mo &middot; Talk it through</small></div>
+        <div class="env-line"></div>
+        <div class="env-node"><b>Pilot</b><small>$150/mo+ &middot; Proof of traction</small></div>
+        <div class="env-line"></div>
+        <div class="env-node hi"><b>Retainer</b><small>$1.5k&ndash;6k/mo &middot; A running market</small></div>
+      </div>
+      <p>
+        These aren't tiers of the same product &mdash; they're steps toward the
+        same destination. Most companies that succeed in Japan end up
+        needing the full function the Retainer provides: sales, customers,
+        product, strategy, run as one operation. Q&amp;A and Pilot exist
+        for the steps before that. Pilot is not a cheaper Retainer; it
+        does deliberately less. Start where you are, move up as the
+        results earn it.
+      </p>
+    </div>
+
+    <p class="cap rv">Question caps, response times and fee levels shown are working values for direction review. Prices in USD.</p>
+  </div>
+</section>
+
+<!-- ================= IN PRACTICE ================= -->
+<section id="examples" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">In practice</p>
+    <h2 class="h2 rv">What running the market<br>actually looks like.</h2>
+
+    <div class="principles rv">
+      <div class="principle">
+        <span class="kt">Sales, on the ground</span>
+        <h3>A relationship carried past the first meeting</h3>
+        <p>A qualified meeting is a start, not a finish. On the Retainer,
+        the same team that got you the meeting keeps it moving &mdash;
+        follow-ups, proposals, the technical back-and-forth &mdash; instead of
+        handing off to whoever's free that week.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Customer success, in Japanese</span>
+        <h3>A renewal saved before it became a problem</h3>
+        <p>Deployed customers get checked on before they go quiet. Usage,
+        satisfaction and a renewal conversation happen on a cadence &mdash; not
+        only when something's already broken.</p>
+      </div>
+      <div class="principle">
+        <span class="kt">Strategy, backed by evidence</span>
+        <h3>A go/no-go call made with real market feedback</h3>
+        <p>Pricing, positioning and channel decisions get made using what
+        the market actually said this month &mdash; not a one-time report
+        written in year one and never revisited.</p>
+      </div>
+    </div>
+
+    <p class="cap rv">This is what "run for you" means in practice. Exact
+    scope and price for your case (within $1,500&ndash;6,000/mo) &mdash; best shown
+    in a <a href="contact.html" style="border-bottom:1px solid rgba(26,0,58,.35)">short call</a>, not a generic page.</p>
+  </div>
+</section>
+
+<!-- ================= BEFORE YOU COMMIT ================= -->
+<section id="path" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">Before you commit</p>
+    <h2 class="h2 rv">The exact numbers,<br>walked through with you.</h2>
     <p class="lead rv">
-      Overseas technology companies often win their first Japanese customer before
-      they have any presence in Japan. A translation agency can't close that gap:
-      the customer needs someone accountable for the relationship, not just
-      the words. We act as your embedded customer success function on the ground.
+      Qualifying criteria, monthly reporting, and where a Retainer lands
+      in the $1,500&ndash;6,000 range all depend on your product, your targets
+      and your stage. Rather than publish a generic version here, we'd
+      rather show you the real mechanics with your numbers in the room.
     </p>
-
-    <div class="narrative">
-      <div class="n-steps rv">
-        <div class="n-step">
-          <span class="no">01: Represent</span>
-          <div>
-            <h3>Own the relationship locally</h3>
-            <p>We attend the meetings (online and on-site, internal and
-            customer-facing), provide interpretation, write concise bilingual
-            summaries, and chase the action items so nothing stalls between
-            time zones.</p>
-          </div>
-        </div>
-        <div class="n-step">
-          <span class="no">02: Translate</span>
-          <div>
-            <h3>Keep deeply technical content precise</h3>
-            <p>Audit reports, engineering documentation, system point lists:
-            translated into natural, technically accurate Japanese, plus
-            executive summaries your customer's leadership can act on.</p>
-          </div>
-        </div>
-        <div class="n-step">
-          <span class="no">03: Coordinate</span>
-          <div>
-            <h3>Handle the ground game</h3>
-            <p>Site visits, data collection, scheduling with local contractors,
-            installation management, run on Japanese business terms, so your
-            overseas team is never blocked by local logistics.</p>
-          </div>
-        </div>
-        <div class="n-step">
-          <span class="no">04: Support</span>
-          <div>
-            <h3>Work inside your own tools</h3>
-            <p>Customer inquiries handled end-to-end (translated, ticketed in
-            your support system, and followed up) so your product team sees
-            clear, actionable communication in English.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="n-side">
-        <figure class="shot tall rv">
-          <div class="shot-frame">
-            <div class="bar"><i></i><i></i><i></i><span>bilingual meeting summary &middot; excerpt (anonymized)</span></div>
-            <div class="ph">SCREENSHOT SLOT<br>4:3<br>bilingual summary / site-audit schedule</div>
-          </div>
-          <figcaption>The working documents: bilingual summaries, audit schedules, action-item logs.</figcaption>
-        </figure>
-        <div class="note-bar rv">
-          <b>The test</b>
-          <span>Your customer experiences a responsive, Japanese-speaking partner.
-          Your product team gets clear English. If either side ever has to say
-          "something got lost in between," we've failed.</span>
-        </div>
-      </div>
-    </div>
 
     <div class="spine rv">
-      <p class="sp-label">Engagement shape</p>
+      <p class="sp-label">How we get there</p>
       <div class="sp-chain">
-        <span>30-day trial</span><i>&rarr;</i>
-        <span>Monthly retainer</span><i>&rarr;</i>
-        <span>Renewal on results</span>
+        <span>Tell us your case</span><i>&rarr;</i>
+        <span>We scope the plan</span><i>&rarr;</i>
+        <span>Presentation with your numbers</span><i>&rarr;</i>
+        <span>Start</span>
       </div>
-      <p>Engagements start with a low-risk 30-day trial and scale as a monthly
-      retainer. The first project we ran this way converted from trial to ongoing
-      retainer, and became the client's reference case for further business
-      development in Japan.</p>
+      <p>No quote theater. The presentation includes the exact qualifying
+      criteria for meetings and leads, a sample of the monthly pipeline
+      report, and &mdash; if it's the Retainer &mdash; the specific number inside
+      the $1,500&ndash;6,000 range for your case.</p>
     </div>
 
-    <div class="proof rv">
-      <p class="proof-h">Proof &middot; from the case files</p>
-      <a class="ins-item" href="use-cases.html">
-        <span class="meta">Industrial automation<br>Entering from overseas</span>
-        <div>
-          <h3>A major factory deployment, run without a local subsidiary</h3>
-          <p>Bilingual project communication, a full-day on-site installation review, a
-          60+ page technical report translated, and contractor-coordinated line
-          installation, from first review to installed system.</p>
-        </div>
-        <span class="stat">20&ndash;30%<span>efficiency potential identified</span></span>
-        <i class="ar">&rarr;</i>
-      </a>
-      <p class="cap">Client and end customer anonymized under NDA. Full case study on the case-study index.</p>
+    <div class="note-bar rv">
+      <b>Said honestly</b>
+      <span>We won't pretend one page can define "qualified" for every
+      product, or price a Retainer for every company. Ask, and we'll show
+      you the real version, for yours.</span>
     </div>
+
+    <a class="btn btn-ink rv" href="contact.html" style="margin-top:30px">Request the presentation &rarr;</a>
   </div>
 </section>
 
-<!-- ================= WHICH STAGE? ================= -->
-<section id="which" class="sec">
+<!-- ================= FAQ ================= -->
+<section id="faq" class="sec">
   <div class="wrap">
-    <p class="eyebrow rv">Not sure which job is yours?</p>
-    <h2 class="h2 rv">Most companies are between stages.</h2>
-    <p class="lead rv">
-      Real engagements rarely fit one box: a validation sprint surfaces a live
-      deal, or a sales push reveals the market was never validated. The stages
-      share one method and one file system, so moving between them doesn't
-      mean starting over.
-    </p>
+    <p class="eyebrow rv">Before you ask</p>
+    <h2 class="h2 rv">The questions people<br>usually have about this page.</h2>
 
-    <div class="which-grid rv">
-      <div class="which-item">
-        <p class="wq">"We're mid-negotiation with our first buyer, but we've never checked if there are ten more."</p>
-        <a class="wa" href="#validate">Start at 01, keep 02 warm &rarr;</a>
-      </div>
-      <div class="which-item">
-        <p class="wq">"We validated the market two years ago. Nothing since has converted."</p>
-        <a class="wa" href="#sell">Straight to 02 &rarr;</a>
-      </div>
-      <div class="which-item">
-        <p class="wq">"Our reseller handles sales, but our end customers keep escalating to us."</p>
-        <a class="wa" href="#operate">That's an 03 problem &rarr;</a>
-      </div>
+    <div class="v-list rv">
+      <details class="v-acc">
+        <summary>How do I choose between the three plans?</summary>
+        <p>Q&amp;A ($99/mo) if you mainly want to put your questions to
+        someone who knows the market. Pilot ($150/mo + success fees) if
+        you want a lighter, results-based way to prove sales traction first.
+        Retainer ($1,500&ndash;6,000/mo) if you need the whole function &mdash;
+        sales, customer success, product, research, strategy &mdash; run for
+        you. Start where you are and move up as results earn it.</p>
+      </details>
+      <details class="v-acc">
+        <summary>When should I go straight to the Retainer?</summary>
+        <p>When your goal is to actually win and hold the market, not just
+        test it &mdash; customers to keep, product to adapt, a strategy to set.
+        Running those as five separate vendors is slower and more
+        expensive than one integrated team. If Japan is a real priority,
+        the Retainer is the plan built for it.</p>
+      </details>
+      <details class="v-acc">
+        <summary>What counts as a "qualified" appointment on Pilot?</summary>
+        <p>A held first meeting with a company matching the target
+        criteria agreed at setup, attended by relevant stakeholders
+        (procurement, technical, product, executive or business
+        development), with a substantive conversation about your product,
+        supply or partnership. No-shows, vendors selling to you, and
+        generic information exchanges don't qualify. Exact criteria for
+        your product are set before we start.</p>
+      </details>
+      <details class="v-acc">
+        <summary>What makes a month "active" for a qualified lead?</summary>
+        <p>Real deal progression: follow-up meetings, tailored proposals
+        or quotes, technical and specification work, NDA / vendor
+        registration / PoC coordination, expansion to additional
+        stakeholders, or reactivating a dormant deal. Status checks,
+        forwarding materials and unanswered outreach never qualify.</p>
+      </details>
+      <details class="v-acc">
+        <summary>How do I know the success fees won't pile up unexpectedly?</summary>
+        <p>Every billable meeting and lead is shared with you before it's
+        invoiced. No-shows and quiet months bill $0, and nothing goes on
+        an invoice you haven't already seen and confirmed.</p>
+      </details>
+      <details class="v-acc">
+        <summary>Why is there a $150 fixed fee if Pilot is results-based?</summary>
+        <p>Because a pipeline that isn't maintained dies quietly, and dead
+        pipelines produce no results. The $150 keeps the buyer list
+        current, replies tracked, and your monthly report delivered &mdash; the
+        minimum for outcomes to keep coming between meetings.</p>
+      </details>
+      <details class="v-acc">
+        <summary>Can I move from Pilot to the Retainer later?</summary>
+        <p>Yes &mdash; that's the usual path. Everything built on Pilot
+        (buyer list, pipeline, meeting records) carries straight into the
+        Retainer, so nothing is re-done or re-explained.</p>
+      </details>
+      <details class="v-acc">
+        <summary>What's the difference between Pilot and Retainer, really?</summary>
+        <p>The outcome, not just the price. Pilot produces sales
+        results &mdash; meetings and moving deals &mdash; and nothing else. The
+        Retainer produces a running market operation: customer success,
+        product management, research, marketing and strategy on top of
+        sales.</p>
+      </details>
+      <details class="v-acc">
+        <summary>Where can I see the exact qualifying criteria and a sample monthly report?</summary>
+        <p>In a presentation, not on this page &mdash; the real criteria depend
+        on your product and targets. Request one and we'll walk through
+        your specific numbers, meeting by meeting and month by month.</p>
+      </details>
+      <details class="v-acc">
+        <summary>How is the Retainer priced within $1,500&ndash;6,000?</summary>
+        <p>By scope: how many functions you need running (sales alone vs.
+        sales plus customer success, product, research, marketing,
+        strategy) and how much of each. We size it exactly in the first
+        call, not as a generic tier.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
+<!-- ================= CONTACT BAND ================= -->
 <section id="contact" class="sec">
   <div class="inner">
     <div>
       <p class="eyebrow rv">Contact</p>
-      <h2 class="h2 rv">Start with one question.</h2>
+      <h2 class="h2 rv">Tell us how far you want to go.</h2>
       <p class="lead rv">
-        Tell us the market question that matters most right now: which segment,
-        which buyer, which doubt. We'll tell you honestly whether it's a question
-        we can help answer, and what the leanest way to test it would be.
+        Tell us what you sell and what you want Japan to become. We'll
+        tell you honestly whether that's a full Retainer, a lighter
+        Pilot start, or just a conversation for now &mdash; with your
+        exact numbers, in the first reply.
       </p>
     </div>
-    <a class="btn btn-ink rv" href="contact.html">Send the question &rarr;</a>
+    <a class="btn btn-ink rv" href="contact.html">Send your case &rarr;</a>
   </div>
 </section>
 
@@ -896,7 +868,7 @@ footer .logo{color:#fff}
 <footer>
   <div class="fgrid">
     <div>
-      <a class="logo" href="index.html" style="margin-bottom:20px"><i></i>DORADO</a>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><img src="../assets/logo/logo-white.png" alt="DORADO" class="logo-img"></a>
       <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
       <div class="fsocial">
         <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -914,7 +886,6 @@ footer .logo{color:#fff}
         <li><a href="services.html">Services</a></li>
         <li><a href="how-we-operate.html">Process</a></li>
         <li><a href="use-cases.html">Use cases</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
         <li><a href="insights.html">Insights</a></li>
         <li><a href="partners.html">Partners</a></li>
         <li><a href="about.html">About</a></li>
@@ -939,7 +910,7 @@ footer .logo{color:#fff}
   </div>
   <div class="fbottom">
     <span>&copy; 2026 Dorado LLC</span>
-    <span>Services mockup v1 &middot; for direction review</span>
+    <span>Services mockup v3 &middot; Q&amp;A / Pilot / Retainer &middot; for direction review</span>
   </div>
 </footer>
 
@@ -952,6 +923,27 @@ footer .logo{color:#fff}
     });
   }, { threshold: .12 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
+})();
+</script>
+<script>
+(function(){
+  const btn = document.querySelector('.menu-btn');
+  const panel = document.getElementById('sp-nav');
+  if(!btn || !panel) return;
+  const closeBtn = panel.querySelector('.sp-close');
+  function setOpen(v){
+    panel.classList.toggle('open', v);
+    btn.setAttribute('aria-expanded', String(v));
+    panel.setAttribute('aria-hidden', String(!v));
+    document.body.style.overflow = v ? 'hidden' : '';
+    (v ? closeBtn : btn).focus();
+  }
+  btn.addEventListener('click', () => setOpen(true));
+  closeBtn.addEventListener('click', () => setOpen(false));
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && panel.classList.contains('open')) setOpen(false);
+  });
 })();
 </script>
 </body>
