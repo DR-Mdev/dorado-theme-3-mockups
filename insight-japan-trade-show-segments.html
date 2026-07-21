@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DORADO | Japan Trade Show Segment Classification &middot; Insight (mockup v1)</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-ink-lime-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon/favicon-ink-lime-64.png">
+<link rel="apple-touch-icon" href="../assets/favicon/favicon-ink-lime-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1A003A;
+  --deep:#2B0548;
+  --lime:#CCFF00;
+  --white:#FFFFFF;
+  --gray:#EBEBEB;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4.5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--white);color:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,9vh,110px) var(--pad)}
+.eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;opacity:.85;
+}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--lime)}
+.h2{font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:18px 0 14px}
+.cap{font-size:13px;line-height:1.6;opacity:.6;margin-top:20px}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+header{
+  position:sticky;top:0;left:0;right:0;z-index:110;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--pad);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(26,0,58,.12);
+}
+.logo{display:flex;align-items:center}
+.logo-img{height:34px;width:auto;display:block}
+nav{display:flex;align-items:center;gap:28px}
+nav a.nl{
+  color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
+  border-bottom:2px solid transparent;transition:color .25s,border-color .25s;
+}
+nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
+.menu-btn{
+  display:none;width:44px;height:44px;flex:none;
+  flex-direction:column;justify-content:center;align-items:center;gap:6px;
+  background:transparent;border:1px solid rgba(26,0,58,.4);cursor:pointer;padding:0;
+}
+.menu-btn span{display:block;width:20px;height:2px;background:var(--ink)}
+@media (max-width:1020px){nav a.nl{display:none}.menu-btn{display:flex}}
+@media (max-width:420px){nav .btn{display:none}}
+.sp-nav{
+  position:fixed;inset:0;z-index:200;background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;padding:0 var(--pad) 28px;
+  opacity:0;visibility:hidden;transform:translateY(-12px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease),visibility 0s .35s;
+  overflow-y:auto;
+}
+.sp-nav.open{opacity:1;visibility:visible;transform:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.sp-nav-top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 24px}
+.sp-close{
+  width:44px;height:44px;flex:none;background:transparent;cursor:pointer;
+  border:1px solid rgba(255,255,255,.35);color:#fff;font-size:18px;line-height:1;
+}
+.sp-nav ul{display:flex;flex-direction:column}
+.sp-nav li a{
+  display:flex;align-items:center;gap:14px;padding:18px 0;
+  font-size:clamp(1.45rem,6vw,1.9rem);font-weight:700;letter-spacing:-.01em;color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.sp-nav li a::before{content:"";width:9px;height:9px;background:var(--lime);flex:none}
+.sp-nav li a[aria-current="page"]{color:var(--lime)}
+.sp-cta{margin-top:auto;padding-top:28px}
+.btn-full{width:100%;justify-content:center}
+.btn{
+  display:inline-flex;align-items:center;gap:12px;padding:15px 24px;
+  font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;
+}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:var(--ink);color:var(--lime)}
+.btn-ghost{border-color:rgba(26,0,58,.4);color:var(--ink);background:transparent}
+.btn-ink{background:var(--ink);color:var(--lime)}
+.btn-ink:hover{background:var(--deep)}
+.btn-sm{padding:10px 16px;font-size:11px}
+
+.shot{margin:0}
+.shot-frame{background:#fff;border:1px solid rgba(26,0,58,.25);box-shadow:10px 10px 0 rgba(26,0,58,.08);overflow:hidden}
+.shot-frame .bar{display:flex;gap:5px;align-items:center;padding:8px 12px;background:var(--gray);border-bottom:1px solid rgba(26,0,58,.15)}
+.shot-frame .bar i{width:8px;height:8px;background:rgba(26,0,58,.28)}
+.shot-frame .bar span{margin-left:8px;font-size:10px;color:rgba(26,0,58,.55);letter-spacing:.05em}
+.shot-frame img{display:block;width:100%;height:auto}
+.shot-frame .ph{
+  aspect-ratio:16/10;display:grid;place-items:center;text-align:center;
+  background:repeating-linear-gradient(45deg,rgba(26,0,58,.035) 0 12px,transparent 12px 24px);
+  border:2px dashed rgba(26,0,58,.25);margin:10px;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(26,0,58,.45);line-height:2;
+}
+.shot.wide .ph{aspect-ratio:21/9}
+
+.cat-tag{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:.16em;
+  background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;text-transform:uppercase;
+}
+.ins-meta{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(26,0,58,.55);
+}
+.ins-meta time{opacity:.85}
+.ins-meta .dot{width:3px;height:3px;background:rgba(26,0,58,.4)}
+
+#top{background:var(--white);border-bottom:1px solid rgba(26,0,58,.12)}
+.ph-inner{max-width:900px;margin:0 auto;padding:clamp(48px,7vh,80px) var(--pad) clamp(36px,5vh,52px)}
+.crumb{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:22px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.crumb a:hover{color:var(--ink)}
+h1{font-size:clamp(1.9rem,4.2vw,3.1rem);font-weight:700;line-height:1.1;letter-spacing:-.025em;margin:20px 0 20px}
+.dek{font-size:clamp(16px,1.6vw,19px);line-height:1.6;opacity:.75;max-width:760px}
+.byline{margin-top:32px;padding-top:22px;border-top:1px solid rgba(26,0,58,.14);display:flex;align-items:center;gap:14px}
+.byline .av{width:38px;height:38px;background:var(--ink);flex:none;display:grid;place-items:center}
+.byline .av i{width:9px;height:9px;background:var(--lime)}
+.byline .who{font-size:13.5px;font-weight:700}
+.byline .what{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(26,0,58,.5);margin-top:2px}
+
+.feat-img{max-width:1100px;margin:0 auto;padding:0 var(--pad) clamp(40px,6vh,64px)}
+
+.article-grid{max-width:1100px;margin:0 auto;padding:0 var(--pad);display:grid;grid-template-columns:1fr 260px;gap:clamp(40px,6vw,80px);align-items:start}
+@media (max-width:900px){.article-grid{grid-template-columns:1fr}}
+.article-body{max-width:760px;font-size:16px;line-height:1.75;color:rgba(26,0,58,.86)}
+.article-body p{margin-bottom:22px}
+.article-body h2{font-size:clamp(1.25rem,2.4vw,1.6rem);font-weight:700;letter-spacing:-.015em;margin:48px 0 18px;scroll-margin-top:96px}
+.article-body h2:first-of-type{margin-top:8px}
+.article-body h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;margin:34px 0 6px;scroll-margin-top:96px}
+.article-body ul{margin:0 0 22px;padding-left:0}
+.article-body li{position:relative;padding-left:22px;margin-bottom:10px;line-height:1.65}
+.article-body li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--lime)}
+.article-body strong{font-weight:700}
+
+.note-bar{margin:36px 0;background:var(--gray);border-left:3px solid var(--lime);padding:20px 24px;display:flex;align-items:flex-start;gap:16px;font-size:14.5px;line-height:1.65}
+.note-bar b{color:var(--deep);font-size:11px;letter-spacing:.2em;text-transform:uppercase;flex:none;padding-top:3px}
+
+/* data tables */
+.data-table-wrap{margin:8px 0 30px;overflow-x:auto;border:1px solid rgba(26,0,58,.18)}
+table.data-table{width:100%;border-collapse:collapse;font-size:13.5px}
+table.data-table th,table.data-table td{text-align:left;padding:13px 16px;vertical-align:top;border-bottom:1px solid rgba(26,0,58,.12)}
+table.data-table thead th{
+  background:var(--ink);color:var(--lime);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:500;white-space:nowrap;
+}
+table.data-table tbody tr:last-child td{border-bottom:none}
+table.data-table tbody tr:nth-child(even){background:rgba(26,0,58,.03)}
+table.data-table td:first-child{font-weight:700}
+
+/* individual show cards, within each detailed category */
+.show-card{border:1px solid rgba(26,0,58,.16);padding:18px 20px;margin-bottom:14px}
+.show-card h4{font-size:1rem;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.show-card .sc-row{font-size:13.5px;line-height:1.6;margin-bottom:6px}
+.show-card .sc-row b{
+  display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(26,0,58,.5);
+  margin-bottom:3px;font-weight:500;
+}
+.show-card .sc-row a{border-bottom:1px solid rgba(26,0,58,.3);word-break:break-all}
+.show-card .sc-row a:hover{border-color:var(--ink)}
+
+.article-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:32px}
+@media (max-width:900px){.article-side{position:static}}
+.side-block .sb-h{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:14px;border-bottom:2px solid var(--ink);padding-bottom:10px}
+/* numbered, flat list. align-items:stretch is required: the global
+   nav{align-items:center} rule would otherwise shrink-wrap each row
+   and stagger the list. */
+.toc{display:flex;flex-direction:column;align-items:stretch;gap:0;counter-reset:toc}
+.toc a{display:flex;align-items:baseline;gap:10px;font-size:13px;line-height:1.5;padding:11px 8px 11px 12px;color:rgba(26,0,58,.68);border-top:1px solid rgba(26,0,58,.12);transition:color .2s,background .2s}
+.toc a:first-child{border-top:none}
+.toc a::before{counter-increment:toc;content:counter(toc,decimal-leading-zero);flex:none;width:18px;font-size:10px;letter-spacing:.08em;color:rgba(26,0,58,.42)}
+.toc a:hover{color:var(--ink);background:rgba(26,0,58,.04)}
+.toc a.on{color:var(--ink);font-weight:700;box-shadow:inset 3px 0 0 var(--lime)}
+.toc a.on::before{color:var(--deep)}
+.source-note{font-size:12.5px;line-height:1.6;color:rgba(26,0,58,.62)}
+.share-row{display:flex;gap:8px}
+.share-row a{width:34px;height:34px;border:1px solid rgba(26,0,58,.3);display:grid;place-items:center;font-size:11px;transition:background .2s,border-color .2s,color .2s}
+.share-row a:hover{background:var(--ink);border-color:var(--ink);color:var(--lime)}
+
+#related{background:var(--gray)}
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px}
+@media (max-width:900px){.ins-grid{grid-template-columns:1fr}}
+.ins-card{background:#fff;border:1px solid rgba(26,0,58,.18);display:flex;flex-direction:column;transition:transform .3s var(--ease),border-color .25s,box-shadow .25s}
+.ins-card:hover{transform:translate(-3px,-3px);border-color:var(--ink);box-shadow:8px 8px 0 var(--lime)}
+.ins-card .shot-frame{border:none;border-bottom:1px solid rgba(26,0,58,.15);box-shadow:none}
+.ins-card .ins-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.ins-card h3{font-size:1rem;font-weight:700;letter-spacing:-.01em;line-height:1.32}
+.ins-card p{font-size:13px;line-height:1.58;opacity:.68}
+.ins-card .ins-link{margin-top:auto;padding-top:12px;border-top:1px solid rgba(26,0,58,.14);display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.1em;color:rgba(26,0,58,.78);text-transform:uppercase}
+.ins-card .ins-link i{width:24px;height:24px;border:1px solid rgba(26,0,58,.35);display:grid;place-items:center;font-style:normal;transition:background .2s,border-color .2s}
+.ins-card:hover .ins-link i{background:var(--lime);border-color:var(--lime)}
+
+#contact{background:var(--lime);color:var(--ink)}
+#contact .inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+@media (max-width:820px){#contact .inner{grid-template-columns:1fr}}
+#contact .h2{font-size:clamp(2rem,4.6vw,3.6rem);margin:14px 0 10px}
+#contact .lead{opacity:.8;max-width:640px;font-size:clamp(15px,1.35vw,17px);line-height:1.68}
+footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding:64px var(--pad) 30px}
+.fsocial{display:flex;gap:10px;margin-top:22px}
+.fsocial a{width:36px;height:36px;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;transition:border-color .25s,background .25s}
+.fsocial a:hover{border-color:var(--lime);background:var(--lime)}
+.fsocial a svg{width:16px;height:16px;fill:rgba(255,255,255,.75);transition:fill .25s}
+.fsocial a:hover svg{fill:var(--ink)}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1240px;margin:0 auto}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fgrid h4{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
+.fgrid p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.65);max-width:320px}
+.fgrid ul{display:flex;flex-direction:column;gap:12px}
+.fgrid ul.two{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;gap:12px 28px}
+.fgrid ul a{font-size:13px;color:rgba(255,255,255,.72);letter-spacing:.04em;transition:color .25s}
+.fgrid ul a:hover{color:var(--lime)}
+.fbottom{max-width:1240px;margin:52px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:10.5px;letter-spacing:.16em;color:rgba(255,255,255,.45);text-transform:uppercase}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.rv{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><img src="../assets/logo/logo-ink.png" alt="DORADO" class="logo-img"></a>
+  <nav>
+    <a class="nl" href="services.html">Services</a>
+    <a class="nl" href="how-we-operate.html">Process</a>
+    <a class="nl" href="use-cases.html">Use cases</a>
+    <a class="nl" href="insights.html">Insights</a>
+    <a class="nl" href="partners.html">Partners</a>
+    <a class="nl" href="about.html">About</a>
+    <a class="btn btn-lime btn-sm" href="contact.html">Contact us &rarr;</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sp-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+<div class="sp-nav" id="sp-nav" aria-hidden="true">
+  <div class="sp-nav-top">
+    <a class="logo" href="index.html"><img src="../assets/logo/logo-white.png" alt="DORADO" class="logo-img"></a>
+    <button class="sp-close" type="button" aria-label="Close menu">&#10005;</button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="how-we-operate.html">Process</a></li>
+      <li><a href="use-cases.html">Use cases</a></li>
+      <li><a href="insights.html" aria-current="page">Insights</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div class="sp-cta"><a class="btn btn-lime btn-full" href="contact.html">Contact us &rarr;</a></div>
+</div>
+
+<main>
+
+<section id="top">
+  <div class="ph-inner">
+    <p class="crumb rv">
+      <a href="index.html">INDEX</a> /
+      <a href="insights.html">INSIGHTS</a> /
+      <a href="insights.html">MARKET ENTRY</a>
+    </p>
+    <div class="ins-meta rv">
+      <a class="cat-tag" href="insights.html">Market Entry</a>
+      <span class="dot"></span>
+      <time datetime="2026-07-20">July 20, 2026</time>
+      <span class="dot"></span>
+      <span>6 min read</span>
+    </div>
+    <h1 class="rv">Japan Trade Show Segment Classification</h1>
+    <p class="dek rv">
+      A working reference for sorting Japan's major 2026 trade shows into
+      four verticals &mdash; digital/AI/cloud, manufacturing/electronics/
+      mobility, infrastructure/space/logistics, and healthcare/agriculture/
+      food/consumer goods &mdash; with the target verticals and official URL
+      for each show.
+    </p>
+
+    <div class="byline rv">
+      <span class="av"><i></i></span>
+      <div>
+        <p class="who">Dorado</p>
+        <p class="what">Internal reference, published as-is &middot; Tokyo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="feat-img rv">
+  <figure class="shot wide">
+    <div class="shot-frame">
+      <div class="bar"><i></i><i></i><i></i><span>trade show roundup &middot; digital, manufacturing, sensing</span></div>
+      <div class="ph">FEATURED IMAGE SLOT<br>21:9<br>composite of official show banners (TOKYO DIGICONX, Interop, Automotive World, Monodzukuri, HVAC&amp;R, Smart Sensing / SEMISOL)</div>
+    </div>
+  </figure>
+</div>
+
+<section class="sec" style="padding-top:0">
+  <div class="article-grid">
+
+    <div class="article-body rv">
+
+      <div class="note-bar" style="margin-top:0">
+        <b>How to use this</b>
+        <span>A quick-reference classification, not a ranking. If you want
+        help deciding which show fits a specific product or ICP, reach out
+        and we'll walk through it together.</span>
+      </div>
+
+      <h2 id="overview">Overview table</h2>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Segment</th><th>Included trade shows</th><th>Main target verticals</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Digital / AI / Cloud / Content</td>
+              <td>TOKYO DIGICONX 2026, AWS Summit Japan 2026, Interop Tokyo 2026, Business Innovation Japan 2026 Summer Tokyo</td>
+              <td>AI, cloud, networking, cybersecurity, DX, SaaS, Web3, XR, metaverse, digital content, business process improvement, marketing DX, sales DX</td>
+            </tr>
+            <tr>
+              <td>2. Manufacturing / Electronics / Mobility</td>
+              <td>NEPCON JAPAN 2026, Automotive World 2026, Manufacturing World Tokyo 2026, HVAC&amp;R JAPAN 2026, Smart Sensing / SEMISOL 2026, nano tech 2026</td>
+              <td>Manufacturing, electronic components, semiconductors, sensors, automotive technology, EV, autonomous driving, factory DX, robotics, materials, refrigeration, air conditioning, heating, advanced materials</td>
+            </tr>
+            <tr>
+              <td>3. Infrastructure / Space / Resilience / Logistics</td>
+              <td>Smart Logistics Expo 2026, International Space Industry Exhibition 2026, Disaster Prevention Industry Exhibition 2026, Green Infrastructure Industry Exhibition 2026, G-Spatial Expo 2026, CSPI-EXPO 2026</td>
+              <td>Logistics, warehousing, construction, surveying, GIS, geospatial data, smart cities, disaster prevention, resilience, space, satellites, urban infrastructure, green infrastructure</td>
+            </tr>
+            <tr>
+              <td>4. Healthcare / Agriculture / Food / Consumer Goods</td>
+              <td>Medical Japan Tokyo 2026, J-AGRI TOKYO 2026, Kodawari Food Fair 2026, COSME Week TOKYO 2026 Summer, International Jewellery Tokyo 2026</td>
+              <td>Healthcare, nursing care, pharmacies, medical DX, agriculture, livestock, food, cosmetics, beauty, hair care, jewelry, luxury consumer goods, retail</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="detailed">Detailed tables</h2>
+
+      <h3 id="seg-1">1. Digital / AI / Cloud / Content</h3>
+
+      <div class="show-card">
+        <h4>TOKYO DIGICONX 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>XR / AR / VR / MR, metaverse, AI, Web3 / blockchain, IoT, cloud, robotics, games, anime / video, music, event production, digital content</p>
+        <p class="sc-row"><b>URL</b><a href="https://xr-meta-biz.tokyo/" target="_blank" rel="noopener">https://xr-meta-biz.tokyo/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>AWS Summit Japan 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Cloud, AI, generative AI, agentic AI, serverless, cloud infrastructure, databases, data utilization, security, DevOps, application modernization, cloud migration, SaaS</p>
+        <p class="sc-row"><b>URL</b><a href="https://aws.amazon.com/jp/events/summits/japan/" target="_blank" rel="noopener">https://aws.amazon.com/jp/events/summits/japan/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Interop Tokyo 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Networking, internet infrastructure, cybersecurity, data centers, AI infrastructure, cloud operations, telecommunications, satellite communications, media delivery, network operations, academic technology, Sleep Tech</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.interop.jp/" target="_blank" rel="noopener">https://www.interop.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Business Innovation Japan 2026 Summer Tokyo</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Management support, business process improvement, workstyle reform, talent development, recruitment support, wellbeing, SDGs / ESG, back-office DX, sales DX, marketing DX, legal DX, accounting / finance DX, information systems</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.bizcrew.jp/expo/bij-tokyo/" target="_blank" rel="noopener">https://www.bizcrew.jp/expo/bij-tokyo/</a></p>
+      </div>
+
+      <h3 id="seg-2">2. Manufacturing / Electronics / Mobility</h3>
+
+      <div class="show-card">
+        <h4>NEPCON JAPAN 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Electronics manufacturing, EMS / design outsourcing, electronic components, electronic materials, printed circuit boards, semiconductor packaging, sensors, inspection and testing equipment, microfabrication, power devices, automotive electronic components</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.nepcon.jp/" target="_blank" rel="noopener">https://www.nepcon.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Automotive World 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Automotive, EV / HV / FCV, automotive electronics, ADAS / autonomous driving, SDV, connected cars, lightweighting technology, automotive parts processing, carbon-neutral vehicle technologies</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.automotiveworld.jp/" target="_blank" rel="noopener">https://www.automotiveworld.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Manufacturing World Tokyo 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Manufacturing, manufacturing DX, IoT / AI, 3D printing, mechanical components, processing technologies, sensors, measurement, factory equipment, robotics / automation, VR / AR, maintenance DX, procurement / production engineering</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.manufacturing-world.jp/" target="_blank" rel="noopener">https://www.manufacturing-world.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>HVAC&amp;R JAPAN 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>HVAC, refrigeration, air conditioning, heating, ventilation, indoor air quality, heat pumps, refrigerants, chillers, building facilities, energy-saving equipment, cold chain</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.jraia.or.jp/hvacr/" target="_blank" rel="noopener">https://www.jraia.or.jp/hvacr/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Smart Sensing / SEMISOL 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Sensors, sensing, AI sensors, edge AI, IoT, data platforms, machine vision, communication networks, power supply / energy harvesting, semiconductor back-end process, semiconductor packaging, chiplets, substrates, inspection / analysis</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.smartsensingexpo.com/" target="_blank" rel="noopener">https://www.smartsensingexpo.com/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>nano tech 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Nanotechnology, advanced materials, functional materials, green materials, next-generation devices, MEMS, surface treatment, additive manufacturing, thermal management, resources / energy, GX / carbon neutrality, water treatment, university technologies / startups</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.nanotechexpo.jp/" target="_blank" rel="noopener">https://www.nanotechexpo.jp/</a></p>
+      </div>
+
+      <h3 id="seg-3">3. Infrastructure / Space / Resilience / Logistics</h3>
+
+      <div class="show-card">
+        <h4>Smart Logistics Expo 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Logistics, warehouse automation, material handling, transport robots, logistics DX, 3PL, logistics facilities, trucking / delivery, SCM, trade management, warehouse management systems, labor management</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.smart-logistic.jp/" target="_blank" rel="noopener">https://www.smart-logistic.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>International Space Industry Exhibition 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Space industry, satellite manufacturing, satellite communications, ground stations, rockets, launch services, spaceports, lunar exploration, planetary exploration, space resource development, satellite data utilization, remote sensing, on-orbit services, space life support</p>
+        <p class="sc-row"><b>URL</b><a href="https://biz.nikkan.co.jp/eve/isiex/" target="_blank" rel="noopener">https://biz.nikkan.co.jp/eve/isiex/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Disaster Prevention Industry Exhibition 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Disaster prevention, disaster mitigation, resilience, BCP, disaster information systems, evacuation support, stranded commuter measures, emergency power supplies, stockpiling, drones, robots, VR disaster training, infrastructure disaster prevention</p>
+        <p class="sc-row"><b>URL</b><a href="https://biz.nikkan.co.jp/eve/bousai/" target="_blank" rel="noopener">https://biz.nikkan.co.jp/eve/bousai/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Green Infrastructure Industry Exhibition 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Green infrastructure, nature-based solutions, urban development, landscape architecture, disaster prevention / mitigation, stormwater management, ecosystem conservation, blue carbon, green finance, smart cities, GX construction</p>
+        <p class="sc-row"><b>URL</b><a href="https://biz.nikkan.co.jp/eve/green-infra/" target="_blank" rel="noopener">https://biz.nikkan.co.jp/eve/green-infra/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>G-Spatial Expo 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Geospatial information, GIS, GNSS / GPS, surveying, map data, human flow data, remote sensing, i-Construction, BIM / CIM, construction DX, disaster prevention, logistics / traffic management, smart cities, digital twins</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.g-expo.jp/" target="_blank" rel="noopener">https://www.g-expo.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>CSPI-EXPO 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Construction, civil engineering, construction machinery, heavy equipment, attachments, surveying, geospatial, construction DX, i-Construction, BIM / CIM, drones, point clouds, construction cloud, site management, rental / leasing</p>
+        <p class="sc-row"><b>URL</b><a href="https://cspi-expo.com/" target="_blank" rel="noopener">https://cspi-expo.com/</a></p>
+      </div>
+
+      <h3 id="seg-4">4. Healthcare / Agriculture / Food / Consumer Goods</h3>
+
+      <div class="show-card">
+        <h4>Medical Japan Tokyo 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Healthcare, medical devices, hospital facilities, hospital management, clinics, telemedicine, medical IT, electronic medical records, medical DX, nursing care / welfare, pharmacies, pharmacy systems, infection control, preventive medicine, health promotion, health checkups / medical screening, healthcare foods / supplements</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.medical-jpn.jp/tokyo/ja-jp.html" target="_blank" rel="noopener">https://www.medical-jpn.jp/tokyo/ja-jp.html</a></p>
+      </div>
+      <div class="show-card">
+        <h4>J-AGRI TOKYO 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Agriculture, agritech, smart agriculture, agricultural materials, greenhouses, agricultural machinery, fertilizers, packaging / logistics, livestock, feed, livestock housing, hygiene management, farm management, sixth-sector industrialization, plant factories, drones, agricultural robots, renewable energy, organic agriculture, decarbonized agriculture</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.jagri-global.jp/" target="_blank" rel="noopener">https://www.jagri-global.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>Kodawari Food Fair 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Specialty foods, regional foods, premium foods, processed foods, food manufacturing, food distribution, food wholesale, retail-ready foods, ingredient- and process-focused foods, food branding</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.shokusan.or.jp/fair/" target="_blank" rel="noopener">https://www.shokusan.or.jp/fair/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>COSME Week TOKYO 2026 Summer</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Cosmetics, beauty, skincare, body care, hair care, cosmetic ingredients, OEM / ODM, containers / packaging, cosmetics marketing, beauty retail / D2C</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.cosme-week.jp/" target="_blank" rel="noopener">https://www.cosme-week.jp/</a></p>
+      </div>
+      <div class="show-card">
+        <h4>International Jewellery Tokyo 2026</h4>
+        <p class="sc-row"><b>Target verticals to output</b>Jewelry, jewelry wholesale, jewelry manufacturing, diamonds, colored gemstones, pearls, natural stones, minerals, watches, bags / apparel, handmade materials / parts</p>
+        <p class="sc-row"><b>URL</b><a href="https://www.ijt.jp/" target="_blank" rel="noopener">https://www.ijt.jp/</a></p>
+      </div>
+
+      <div class="note-bar">
+        <b>Not sure which fits?</b>
+        <span>If you want to discuss which show is the best fit for your product and ICP, <a href="contact.html" style="border-bottom:1px solid rgba(26,0,58,.35)">reach out</a> and we'll walk through it together.</span>
+      </div>
+    </div>
+
+    <aside class="article-side rv">
+      <div class="side-block">
+        <p class="sb-h">In this piece</p>
+        <nav class="toc" id="toc">
+          <a href="#overview">Overview table</a>
+          <a href="#seg-1">1. Digital / AI / Cloud</a>
+          <a href="#seg-2">2. Manufacturing / Mobility</a>
+          <a href="#seg-3">3. Infrastructure / Logistics</a>
+          <a href="#seg-4">4. Healthcare / Food / Consumer</a>
+        </nav>
+      </div>
+
+      <div class="side-block">
+        <p class="sb-h">Source</p>
+        <p class="source-note">Compiled from official show listings for 2026.
+        Dates, venues, and URLs change; verify against the organizer site
+        before committing budget.</p>
+      </div>
+
+      <div class="side-block">
+        <p class="sb-h">Share</p>
+        <div class="share-row">
+          <a href="#" aria-label="Share by email">EM</a>
+          <a href="#" aria-label="Share on LinkedIn">IN</a>
+          <a href="#" aria-label="Copy link">&#128279;</a>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<section id="related" class="sec">
+  <div class="wrap">
+    <p class="eyebrow rv">More from the log</p>
+    <h2 class="h2 rv">Related insights.</h2>
+
+    <div class="ins-grid rv">
+      <article class="ins-card">
+        <a href="insight-foodservice-automation-adoption.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>field note 04 &middot; kitchen floor plan</span></div>
+            <div class="ph">THUMBNAIL SLOT<br>16:10</div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="insights.html">Buyer Side</a>
+            <span class="dot"></span>
+            <time datetime="2026-07-18">July 2026</time>
+          </div>
+          <h3><a href="insight-foodservice-automation-adoption.html">Foodservice Automation in Japan: Adoption Conditions for Overseas Robotics Companies</a></h3>
+          <p>Demand signals are not proof of adoption. Segment, workflow, buyer, and maintenance model decide it.</p>
+          <a class="ins-link" href="insight-foodservice-automation-adoption.html">Read <i>&rarr;</i></a>
+        </div>
+      </article>
+
+      <article class="ins-card">
+        <a href="insight-foodservice-ingredient-adoption.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>single lever &middot; process reduction</span></div>
+            <div style="aspect-ratio:16/10;position:relative;overflow:hidden;margin:10px;background:#fff;display:flex;align-items:center;gap:10px;padding:10px;">
+              <div style="flex:none;width:54px;height:54px;border-radius:50%;background:#1A003A;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4px;">
+                <span style="font-size:6.5px;letter-spacing:.1em;color:#CCFF00;text-transform:uppercase;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Single lever</span>
+                <span style="font-size:8px;font-weight:700;line-height:1.1;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Process Reduction</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:4px;min-width:0;">
+                <div style="border:1px solid rgba(26,0,58,.16);border-left:3px solid #CCFF00;background:#EBEBEB;padding:4px 7px;display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:8.5px;font-weight:700;color:#1A003A;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Training load</span>
+                  <span style="font-size:10.5px;font-weight:700;color:#1A003A;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">&minus;89%</span>
+                </div>
+                <div style="border:1px solid rgba(26,0,58,.16);border-left:3px solid rgba(26,0,58,.35);padding:4px 7px;display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:8.5px;color:rgba(26,0,58,.7);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Serving speed</span>
+                  <span style="font-size:9.5px;font-weight:700;color:rgba(26,0,58,.7);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">&minus;5%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="insights.html">Buyer Side</a>
+            <span class="dot"></span>
+            <time datetime="2026-07-15">July 2026</time>
+          </div>
+          <h3><a href="insight-foodservice-ingredient-adoption.html">The three things restaurants check before taste when considering a new ingredient</a></h3>
+          <p>Operational fit, entry route, and repeatability decide adoption before flavor does.</p>
+          <a class="ins-link" href="insight-foodservice-ingredient-adoption.html">Read <i>&rarr;</i></a>
+        </div>
+      </article>
+
+      <article class="ins-card">
+        <a href="insight-single.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>message archive &middot; reply tracking</span></div>
+            <div class="ph">THUMBNAIL SLOT<br>16:10</div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="insights.html">Messaging</a>
+            <span class="dot"></span>
+            <time datetime="2026-07-10">July 2026</time>
+          </div>
+          <h3><a href="insight-single.html">Same-day replies: what a measured message archive actually shows</a></h3>
+          <p>Hooks built on the prospect's own situation earn same-day replies. Generic industry news earns silence.</p>
+          <a class="ins-link" href="insight-single.html">Read <i>&rarr;</i></a>
+        </div>
+      </article>
+    </div>
+
+    <p class="cap rv"><a href="insights.html" style="border-bottom:1px solid rgba(26,0,58,.35)">View all insights &rarr;</a></p>
+  </div>
+</section>
+
+<section id="contact" class="sec">
+  <div class="inner">
+    <div>
+      <p class="eyebrow rv">Contact</p>
+      <h2 class="h2 rv">Start with one question.</h2>
+      <p class="lead rv">
+        Tell us the market question that matters most right now: which segment,
+        which buyer, which doubt. We'll tell you honestly whether it's a question
+        we can help answer, and what the leanest way to test it would be.
+      </p>
+    </div>
+    <a class="btn btn-ink rv" href="contact.html">Send the question &rarr;</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="index.html" style="margin-bottom:20px"><img src="../assets/logo/logo-white.png" alt="DORADO" class="logo-img"></a>
+      <p style="margin-top:18px">Buyer-side intelligence and structured market execution. Tokyo.</p>
+      <div class="fsocial">
+        <a href="https://www.linkedin.com/company/dorado-llc" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@dorado-llc" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul class="two">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="how-we-operate.html">Process</a></li>
+        <li><a href="use-cases.html">Use cases</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://grants.dorado-group.jp/" target="_blank" rel="noopener">Grants database</a></li>
+        <li><a href="https://buyers.dorado-group.jp/" target="_blank" rel="noopener">Buyers database</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 Dorado LLC</span>
+    <span>Insight single mockup &middot; trade show segment classification &middot; content from old site, for direction review</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  const toc = document.querySelectorAll('#toc a');
+  const targets = [...toc].map(a => document.querySelector(a.getAttribute('href')));
+  const spy = new IntersectionObserver((es) => {
+    es.forEach(e => {
+      const i = targets.indexOf(e.target);
+      if (i === -1) return;
+      if (e.isIntersecting) { toc.forEach(a => a.classList.remove('on')); toc[i].classList.add('on'); }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  targets.forEach(t => t && spy.observe(t));
+})();
+</script>
+<script>
+(function(){
+  const btn = document.querySelector('.menu-btn');
+  const panel = document.getElementById('sp-nav');
+  if(!btn || !panel) return;
+  const closeBtn = panel.querySelector('.sp-close');
+  function setOpen(v){
+    panel.classList.toggle('open', v);
+    btn.setAttribute('aria-expanded', String(v));
+    panel.setAttribute('aria-hidden', String(!v));
+    document.body.style.overflow = v ? 'hidden' : '';
+    (v ? closeBtn : btn).focus();
+  }
+  btn.addEventListener('click', () => setOpen(true));
+  closeBtn.addEventListener('click', () => setOpen(false));
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && panel.classList.contains('open')) setOpen(false); });
+})();
+</script>
+</body>
+</html>

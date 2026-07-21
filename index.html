@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DORADO | Japan Market Intelligence &amp; Execution (mockup v4, crafted)</title>
+<title>DORADO | Japan Market Intelligence &amp; Execution (mockup v6)</title>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-ink-lime-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon/favicon-ink-lime-64.png">
 <link rel="apple-touch-icon" href="../assets/favicon/favicon-ink-lime-512.png">
@@ -180,15 +180,15 @@ h1 .lm{background:var(--lime);padding:0 .12em .04em}
 }
 
 /* ============ statement: editorial two-col, no word animation ============ */
-#gap .cols{
+.cols{
   display:grid;grid-template-columns:1fr 300px;gap:clamp(32px,5vw,72px);
   align-items:start;margin-top:30px;
 }
-@media (max-width:900px){#gap .cols{grid-template-columns:1fr}}
-#statement{
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+.statement{
   font-size:clamp(1.3rem,2.5vw,2rem);font-weight:500;line-height:1.45;letter-spacing:-.012em;
 }
-#statement em{font-style:normal;box-shadow:inset 0 -0.45em var(--lime)}
+.statement em{font-style:normal;box-shadow:inset 0 -0.45em var(--lime)}
 .margin-note{
   border-top:2px solid var(--ink);padding-top:18px;
   font-size:14px;line-height:1.7;color:rgba(26,0,58,.7);
@@ -231,12 +231,15 @@ h1 .lm{background:var(--lime);padding:0 .12em .04em}
 }
 .note-bar b{color:var(--lime);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;flex:none;padding-top:3px}
 
-/* ============ what we do: checklist + wide shot ============ */
-#whatwedo .do-grid{
+/* ============ what we do: checklist, absorbed into #otherside ============ */
+.do-bridge{margin-top:64px;max-width:640px}
+.do-bridge h3{font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:700;letter-spacing:-.015em;margin-bottom:12px}
+.do-bridge p{font-size:14.5px;line-height:1.7;opacity:.78}
+#otherside .do-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
-  margin-top:56px;align-items:start;
+  margin-top:32px;align-items:start;
 }
-@media (max-width:900px){#whatwedo .do-grid{grid-template-columns:1fr}}
+@media (max-width:900px){#otherside .do-grid{grid-template-columns:1fr}}
 .do-list{display:flex;flex-direction:column}
 .do-item{
   display:grid;grid-template-columns:34px 1fr;gap:16px;
@@ -250,84 +253,74 @@ h1 .lm{background:var(--lime);padding:0 .12em .04em}
 .do-item h3{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
 .do-item p{font-size:13.5px;line-height:1.6;opacity:.72}
 
-/* ============ method ============ */
-#method{background:var(--gray)}
-.m-flow{
-  display:flex;align-items:stretch;gap:0;margin-top:52px;flex-wrap:wrap;
-  border:1px solid rgba(26,0,58,.25);background:#fff;
+/* ============ method: slim teaser toward how-we-operate.html ============ */
+.m-points{margin-top:36px;display:flex;flex-direction:column;max-width:640px}
+.m-points li{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px 0;border-top:1px solid rgba(26,0,58,.15);
+  font-size:15px;line-height:1.6;
 }
-.m-cell{flex:1 1 220px;padding:26px 24px;border-right:1px solid rgba(26,0,58,.15)}
-.m-cell:last-child{border-right:none}
-.m-cell .nt{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;
-  background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;margin-bottom:14px;
-}
-.m-cell h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.m-cell p{font-size:13.5px;line-height:1.6;opacity:.72}
-.m-annot{
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);
-  margin-top:64px;align-items:center;
-}
-@media (max-width:900px){.m-annot{grid-template-columns:1fr}}
-.m-annot .txt h3{font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:700;letter-spacing:-.015em;margin-bottom:14px}
-.m-annot .txt p{font-size:14.5px;line-height:1.7;opacity:.78;max-width:480px}
-.m-annot .txt p + p{margin-top:14px}
-.m-annot.flip .txt{order:2}
-.m-annot.flip .shot{order:1}
-@media (max-width:900px){.m-annot.flip .txt{order:1}.m-annot.flip .shot{order:2}}
-.spine{
-  margin-top:64px;background:var(--ink);color:#fff;padding:30px 28px;
-}
-.spine .sp-label{font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
-.spine .sp-chain{
-  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-}
-.spine .sp-chain span{border:1px solid rgba(255,255,255,.35);padding:9px 14px}
-.spine .sp-chain i{font-style:normal;color:var(--lime)}
-.spine p{margin-top:18px;font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);max-width:720px}
+.m-points li:first-child{border-top:2px solid var(--ink)}
+.m-points li:last-child{border-bottom:1px solid rgba(26,0,58,.15)}
+.m-points li::before{content:"";width:9px;height:9px;background:var(--lime);flex:none;margin-top:7px}
 
-/* ============ depth: alternating doc rows ============ */
-.depth-row{
-  display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:clamp(28px,4vw,64px);
-  padding:40px 0;border-top:1px solid rgba(26,0,58,.15);align-items:center;
-}
-.depth-row:first-of-type{margin-top:44px;border-top:2px solid var(--ink)}
-@media (max-width:820px){.depth-row{grid-template-columns:1fr}}
-.depth-row .kt{
+/* ============ depth: 2x2 card grid ============ */
+.kt{
   font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:.2em;
   background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;
   margin-bottom:14px;text-transform:uppercase;
 }
-.depth-row h3{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
-.depth-row p{font-size:14px;line-height:1.65;opacity:.75;max-width:560px}
+#depth{background:var(--gray)}
+.depth-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(26,0,58,.2);
+  border:1px solid rgba(26,0,58,.2);margin-top:48px;
+}
+@media (max-width:820px){.depth-grid{grid-template-columns:1fr}}
+.depth-card{background:#fff;padding:26px 26px 28px}
+.depth-card h3{font-size:1.2rem;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.depth-card p{font-size:13.5px;line-height:1.62;opacity:.72}
 
-/* ============ use cases: editorial quotes ============ */
+/* ============ use cases / insights: shared card grid (from use-cases.html / insights.html recipe) ============ */
 #usecases{background:var(--ink);color:#fff}
 #usecases .lead{color:rgba(255,255,255,.72)}
 #usecases .cap{color:rgba(255,255,255,.5)}
-.uc-row{
-  display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:clamp(28px,4vw,64px);
-  padding:38px 0;border-top:1px solid rgba(255,255,255,.18);
+#usecases .ins-card{color:var(--ink)}
+.cat-tag{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:.16em;
+  background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;
+  text-transform:uppercase;
 }
-.uc-row:first-of-type{margin-top:48px;border-top:2px solid var(--lime)}
-@media (max-width:820px){.uc-row{grid-template-columns:1fr}}
-.uc-row .who{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--lime);margin-bottom:14px;
+.ins-meta{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(26,0,58,.55);
 }
-.uc-row blockquote{
-  font-size:clamp(1.2rem,2vw,1.55rem);font-weight:500;line-height:1.35;letter-spacing:-.01em;
+.ins-meta time{opacity:.85}
+.ins-meta .dot{width:3px;height:3px;background:rgba(26,0,58,.4)}
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
+@media (max-width:940px){.ins-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){.ins-grid{grid-template-columns:1fr}}
+.ins-card{
+  background:#fff;border:1px solid rgba(26,0,58,.18);
+  display:flex;flex-direction:column;
+  transition:transform .3s var(--ease),border-color .25s,box-shadow .25s;
 }
-.uc-row .body p{font-size:14px;line-height:1.68;color:rgba(255,255,255,.72)}
-.uc-row .body .call{
-  margin-top:16px;padding:16px 18px;border-left:3px solid var(--lime);
-  background:var(--deep);font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.88);
+.ins-card:hover{transform:translate(-3px,-3px);border-color:var(--ink);box-shadow:8px 8px 0 var(--lime)}
+.ins-card .shot-frame{border:none;border-bottom:1px solid rgba(26,0,58,.15);box-shadow:none}
+.ins-card .ins-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.ins-card h3{font-size:1.08rem;font-weight:700;letter-spacing:-.01em;line-height:1.32}
+.ins-card p{font-size:13.5px;line-height:1.6;opacity:.68}
+.ins-card .ins-link{
+  margin-top:auto;padding-top:14px;border-top:1px solid rgba(26,0,58,.14);
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.1em;
+  color:rgba(26,0,58,.78);text-transform:uppercase;
 }
-.uc-row .body .call b{
-  color:var(--lime);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;
-  letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:6px;
+.ins-card .ins-link i{
+  width:26px;height:26px;border:1px solid rgba(26,0,58,.35);
+  display:grid;place-items:center;font-style:normal;transition:background .2s,border-color .2s;
 }
+.ins-card:hover .ins-link i{background:var(--lime);border-color:var(--lime)}
 
 /* ============ services teaser ============ */
 #services-teaser{background:var(--ink);color:#fff}
@@ -346,58 +339,10 @@ h1 .lm{background:var(--lime);padding:0 .12em .04em}
 .formula .fl{font-size:10px;letter-spacing:.2em;opacity:.6}
 .formula > div:last-child .fl{opacity:.75}
 
-/* ============ posture: stacked quotes ============ */
-#posture{background:var(--gray)}
-.pq-list{margin-top:48px;display:flex;flex-direction:column}
-.pq-item{
-  display:grid;grid-template-columns:200px 1fr;gap:clamp(20px,3vw,48px);
-  padding:30px 0;border-top:1px solid rgba(26,0,58,.2);
-}
-.pq-item:last-child{border-bottom:1px solid rgba(26,0,58,.2)}
-@media (max-width:760px){.pq-item{grid-template-columns:1fr}}
-.pq-item .pq-tag{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--deep);padding-top:6px;
-}
-.pq-item blockquote{
-  font-size:clamp(1.25rem,2.2vw,1.7rem);font-weight:500;line-height:1.38;letter-spacing:-.012em;
-}
-.pq-item blockquote span{box-shadow:inset 0 -0.4em var(--lime)}
-.pq-item .why{margin-top:12px;font-size:13.5px;line-height:1.6;color:rgba(26,0,58,.62);max-width:640px}
-.principles{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(26,0,58,.2);
-  border:1px solid rgba(26,0,58,.2);margin-top:56px;
-}
-@media (max-width:820px){.principles{grid-template-columns:1fr}}
-.principle{background:var(--gray);padding:26px 26px 28px}
-.principle .kt{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
-  color:var(--deep);text-transform:uppercase;display:block;margin-bottom:12px;
-}
-.principle h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.principle p{font-size:13.5px;line-height:1.62;opacity:.72}
+/* ============ philosophy: short statement (about.html recipe, margin-note css shared with #gap) ============ */
 
-/* ============ insights: plain index list ============ */
-.ins-list{margin-top:48px}
-.ins-item{
-  display:grid;grid-template-columns:120px 1fr 32px;gap:clamp(16px,3vw,40px);
-  align-items:center;padding:22px 0;border-top:1px solid rgba(26,0,58,.15);
-  transition:background .25s;
-}
-.ins-item:last-child{border-bottom:1px solid rgba(26,0,58,.15)}
-.ins-item:hover{background:var(--gray)}
-.ins-item .meta{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(26,0,58,.55);line-height:1.9;
-}
-.ins-item h3{font-size:clamp(1.05rem,1.7vw,1.3rem);font-weight:700;letter-spacing:-.012em;line-height:1.3}
-.ins-item p{font-size:13.5px;line-height:1.55;opacity:.65;margin-top:6px;max-width:640px}
-.ins-item .ar{
-  width:30px;height:30px;border:1px solid rgba(26,0,58,.4);
-  display:grid;place-items:center;font-style:normal;
-}
-.ins-item:hover .ar{background:var(--lime);border-color:var(--lime)}
-@media (max-width:700px){.ins-item{grid-template-columns:1fr}.ins-item .ar{display:none}}
+/* ============ insights: card grid (uses shared .ins-grid/.ins-card from #usecases block) ============ */
+#insights{background:var(--gray)}
 
 /* ============ products: real capture slots ============ */
 .prods{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:52px}
@@ -571,7 +516,7 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   <div class="wrap">
     <p class="eyebrow rv">The gap we close</p>
     <div class="cols">
-      <p id="statement" class="rv">
+      <p class="statement rv">
         Companies don't have a hard time abroad because their product is weak.
         They struggle because everything they're good at was refined for a market
         they already understand. What's missing in a new market is never the
@@ -653,19 +598,12 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ================= WHAT WE ACTUALLY DO ================= -->
-<section id="whatwedo" class="sec">
-  <div class="wrap">
-    <p class="eyebrow rv">What we actually do</p>
-    <h2 class="h2 rv">Interest was never your problem.</h2>
-    <p class="lead rv">
-      Meetings happen. Demos go well. Free trials, pilot talks, "let's explore a
-      partnership." For most companies entering Japan, interest is easy, and
-      none of it converts. The real work is everything after interest.
-    </p>
+    <div class="do-bridge rv">
+      <h3>What we actually do about it</h3>
+      <p>Interest is rarely the problem in Japan &mdash; meetings and demos come
+      easily. Converting them is the work, and it looks like this:</p>
+    </div>
 
     <div class="do-grid">
       <div class="do-list rv">
@@ -708,7 +646,7 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   </div>
 </section>
 
-<!-- ================= PROCESS ================= -->
+<!-- ================= PROCESS (teaser) ================= -->
 <section id="method" class="sec">
   <div class="wrap">
     <p class="eyebrow rv">Process</p>
@@ -719,81 +657,13 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
       system to make that impossible.
     </p>
 
-    <div class="m-flow rv">
-      <div class="m-cell">
-        <span class="nt">LANE</span>
-        <h3>One question</h3>
-        <p>Every engagement is organized around testable questions, like "will
-        mid-size Japanese manufacturers buy this component from a foreign second
-        source?"</p>
-      </div>
-      <div class="m-cell">
-        <span class="nt">BATCH</span>
-        <h3>One test</h3>
-        <p>Each question is tested through batches of real companies: who, angle,
-        channel, planned volume. No batch is allowed to just fade out.</p>
-      </div>
-      <div class="m-cell">
-        <span class="nt">CALL</span>
-        <h3>One decision</h3>
-        <p>Every batch ends with an explicit call: CONTINUE, ADJUST, or STOP
-        SPENDING, recorded with the evidence that produced it.</p>
-      </div>
-    </div>
+    <ul class="m-points rv">
+      <li>Every engagement is organized around questions the market can actually answer.</li>
+      <li>Every test runs through real, named companies &mdash; nothing is allowed to just fade out.</li>
+      <li>Every result ends in a recorded decision: continue, adjust, or stop spending.</li>
+    </ul>
 
-    <div class="m-annot rv">
-      <div class="txt">
-        <h3>Messages are measured like product features</h3>
-        <p>Every message is archived verbatim with its metadata: the hook, the
-        template, whether it got a reply. A draft only becomes a reusable template
-        after it has demonstrably worked, and the library records what failed, too.</p>
-        <p>One example from the log: hooks built on the prospect's own situation
-        (a third-party review of their product, a change in their stack) earn
-        same-day replies. Generic industry news earns silence. We know this
-        because we measured it.</p>
-      </div>
-      <figure class="shot">
-        <div class="shot-frame">
-          <div class="bar"><i></i><i></i><i></i><span>message archive &middot; reply tracking</span></div>
-          <div class="ph">SCREENSHOT SLOT<br>16:10<br>message archive with reply flags</div>
-        </div>
-        <figcaption>The message library: what was sent, what replied, what died.</figcaption>
-      </figure>
-    </div>
-
-    <div class="m-annot flip rv">
-      <div class="txt">
-        <h3>The exit is designed in from day one</h3>
-        <p>The end state of our work is not dependence on Dorado. When an account
-        is qualified (real problem, real owner, real timeline), it is packaged
-        and transferred into your own CRM: contacts, channels, research, and the
-        full touch history. You own the relationship. The playbook stays with you.</p>
-      </div>
-      <figure class="shot">
-        <div class="shot-frame">
-          <div class="bar"><i></i><i></i><i></i><span>account dossier &middot; handover package</span></div>
-          <div class="ph">SCREENSHOT SLOT<br>16:10<br>account dossier / handover doc</div>
-        </div>
-        <figcaption>A standing dossier you can read in sixty seconds, including whose ball it is.</figcaption>
-      </figure>
-    </div>
-
-    <div class="spine rv">
-      <p class="sp-label">One structure for everything</p>
-      <div class="sp-chain">
-        <span>Company</span><i>&rarr;</i>
-        <span>Contact</span><i>&rarr;</i>
-        <span>Touch history</span><i>&rarr;</i>
-        <span>Status</span><i>&rarr;</i>
-        <span>Next action</span>
-      </div>
-      <p>Nothing depends on anyone's memory. If a project pauses for three months,
-      it resumes from the file, not from recollection. The system described here
-      is the one this page was written from: the same files, the same database,
-      the same rules we apply to client work every day.</p>
-    </div>
-
-    <a class="btn btn-ghost rv" href="how-we-operate.html" style="margin-top:32px">See the full system &amp; the three stages it runs: Validate, Sell, Operate &rarr;</a>
+    <a class="btn btn-ghost rv" href="how-we-operate.html" style="margin-top:36px">See the full system &rarr;</a>
   </div>
 </section>
 
@@ -807,14 +677,8 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
       next week. Recent client-facing work includes:
     </p>
 
-    <div class="depth-row rv">
-      <figure class="shot doc">
-        <div class="shot-frame">
-          <div class="bar"><i></i><i></i><i></i><span>deep-dive &middot; table of contents</span></div>
-          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; report page</div>
-        </div>
-      </figure>
-      <div>
+    <div class="depth-grid rv">
+      <div class="depth-card">
         <span class="kt">Deep dive</span>
         <h3>Buying-process deep dives</h3>
         <p>For a single target buyer, we reconstruct the actual route in: purchasing
@@ -822,48 +686,21 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
         evaluation functions, qualification programs, verified against primary
         sources, with facts, hypotheses, and to-verify items clearly separated.</p>
       </div>
-    </div>
-
-    <div class="depth-row rv">
-      <figure class="shot doc">
-        <div class="shot-frame">
-          <div class="bar"><i></i><i></i><i></i><span>demand map &middot; segment matrix</span></div>
-          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; segment matrix</div>
-        </div>
-      </figure>
-      <div>
+      <div class="depth-card">
         <span class="kt">Demand map</span>
         <h3>Segment demand maps</h3>
         <p>A dozen-plus candidate verticals for one product, researched to a decision:
         does the problem exist here, who owns it, what volume flows through it, can
         it pay, and which two segments deserve the next quarter.</p>
       </div>
-    </div>
-
-    <div class="depth-row rv">
-      <figure class="shot doc">
-        <div class="shot-frame">
-          <div class="bar"><i></i><i></i><i></i><span>horizon report &middot; regulation timeline</span></div>
-          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; regulation timeline</div>
-        </div>
-      </figure>
-      <div>
+      <div class="depth-card">
         <span class="kt">Horizon</span>
         <h3>Regulatory horizon reports</h3>
         <p>Five-year outlooks on how regulation reshapes a market: what new laws
         actually require, where budgets will be forced into existence, and what that
         means for how a product should be positioned <b>now</b>.</p>
       </div>
-    </div>
-
-    <div class="depth-row rv">
-      <figure class="shot doc">
-        <div class="shot-frame">
-          <div class="bar"><i></i><i></i><i></i><span>win/loss library &middot; pattern index</span></div>
-          <div class="ph">SCREENSHOT SLOT<br>3:4 &middot; pattern index</div>
-        </div>
-      </figure>
-      <div>
+      <div class="depth-card">
         <span class="kt">Patterns</span>
         <h3>Win / loss pattern libraries</h3>
         <p>What actually moved orders for foreign suppliers into Japan, and the
@@ -888,130 +725,97 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
       always the same: evidence, then a call.
     </p>
 
-    <div class="uc-row rv">
-      <div>
-        <p class="who">Software / API vendor</p>
-        <blockquote>&ldquo;Everyone is interested. Nobody is buying.&rdquo;</blockquote>
-      </div>
-      <div class="body">
-        <p>A full calendar of demos, free pilots, and partner talks, and no
-        revenue. We audited every open opportunity, graded the funnel deal by
-        deal, and researched a dozen candidate segments before any new outreach
-        went out.</p>
-        <div class="call">
-          <b>The call</b>
-          A priority list of accounts to push, nurture, or drop, and an end to
-          the free pilots that were consuming the team's capacity without a path
-          to a contract.
-        </div>
-      </div>
-    </div>
+    <div class="ins-grid rv">
 
-    <div class="uc-row rv">
-      <div>
-        <p class="who">Precision manufacturer</p>
-        <blockquote>&ldquo;We want this one buyer. How do we get in?&rdquo;</blockquote>
-      </div>
-      <div class="body">
-        <p>A component maker targeting a single large Japanese OEM. We
-        reconstructed the buyer's actual route in: purchasing organization,
-        supplier registration, screening criteria, qualification programs,
-        verified against primary sources.</p>
-        <div class="call">
-          <b>The call</b>
-          A concrete entry route with the gaps named: which credibility signals
-          were missing from the buyer's point of view, and in what order to fix
-          them.
+      <a class="ins-card" href="use-case-saas-japan-enterprise.html">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>enterprise pipeline &middot; SaaS</span></div>
+          <div style="aspect-ratio:16/10;position:relative;overflow:hidden;margin:10px;background:radial-gradient(circle at 75% 35%,#3a0a63 0%,#2B0548 45%,#1A003A 85%);display:flex;flex-direction:column;justify-content:center;padding:14px;">
+            <div style="position:absolute;right:6%;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#ffffff 0%,#e7d9ff 45%,#b79bdc 100%);"></div>
+            <p style="color:#fff;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:14px;line-height:1.15;letter-spacing:-.01em;margin:0 0 8px;max-width:62%;">Cracking Japan's Enterprise.</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;max-width:62%;">
+              <span style="border:1px solid rgba(255,255,255,.35);color:#fff;font-size:9px;padding:3px 7px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">10 SQLs</span>
+              <span style="border:1px solid rgba(255,255,255,.35);color:#fff;font-size:9px;padding:3px 7px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">20 Deals</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+        <div class="ins-body">
+          <div class="ins-meta"><span class="cat-tag">Real estate SaaS</span></div>
+          <h3>&ldquo;Contacts existed. Pipeline didn't.&rdquo;</h3>
+          <p>Pitch restructured, buyers retargeted, use cases localized &mdash; 10
+          sales-qualified leads and ~20 active deals in six months, from a market
+          the client couldn't crack alone.</p>
+          <span class="ins-link">Read the case <i>&rarr;</i></span>
+        </div>
+      </a>
 
-    <div class="uc-row rv">
-      <div>
-        <p class="who">New category</p>
-        <blockquote>&ldquo;No one has ever evaluated this before.&rdquo;</blockquote>
-      </div>
-      <div class="body">
-        <p>A genuinely new product for a niche buyer with no existing evaluation
-        playbook, on either side. We flipped the work: deep research into the
-        buyer's business first, then built the case from the ground up.</p>
-        <div class="call">
-          <b>The call</b>
-          A tested storyline the internal champion could carry into review, and
-          a clear read on which variant of the offer deserved the next batch.
+      <a class="ins-card" href="use-cases.html">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>route map &middot; manufacturing</span></div>
+          <div class="ph">THUMBNAIL SLOT<br>16:10</div>
         </div>
-      </div>
+        <div class="ins-body">
+          <div class="ins-meta"><span class="cat-tag">Precision manufacturer</span></div>
+          <h3>&ldquo;We want this one buyer. How do we get in?&rdquo;</h3>
+          <p>The buyer's actual route in, reconstructed from primary sources &mdash;
+          and the missing credibility signals named, in the order they needed
+          fixing.</p>
+          <span class="ins-link">Read the case <i>&rarr;</i></span>
+        </div>
+      </a>
+
+      <a class="ins-card" href="use-case-fortune500-electronics.html">
+        <div class="shot-frame">
+          <div class="bar"><i></i><i></i><i></i><span>MQL output &middot; 24 months</span></div>
+          <div style="aspect-ratio:16/10;position:relative;overflow:hidden;margin:10px;background:radial-gradient(circle at 3px 3px,rgba(26,0,58,.12) 1.2px,transparent 1.2px) 0 0/16px 16px,linear-gradient(120deg,#EDEBFB 0%,#F7F6FD 55%,#FBFAFF 100%);display:flex;align-items:center;justify-content:space-between;padding:12px;gap:8px;">
+            <div style="min-width:0;">
+              <p style="font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-weight:700;color:#1A003A;font-size:12.5px;line-height:1.15;letter-spacing:-.01em;margin:0 0 5px;">We doubled their pipeline from Tokyo.</p>
+              <span style="font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9px;color:rgba(26,0,58,.55);letter-spacing:.06em;text-transform:uppercase;">MQL output &middot; 24 months</span>
+            </div>
+            <div style="flex:none;width:64px;background:#fff;border:1px solid rgba(26,0,58,.12);box-shadow:0 6px 14px rgba(26,0,58,.14);padding:8px;">
+              <span style="display:block;font-size:8px;color:rgba(26,0,58,.5);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">MQLs/mo</span>
+              <span style="display:block;font-size:17px;font-weight:700;color:#1A003A;margin-top:2px;">2.0&times;</span>
+            </div>
+          </div>
+        </div>
+        <div class="ins-body">
+          <div class="ins-meta"><span class="cat-tag">Electronics / telecom manufacturer</span></div>
+          <h3>&ldquo;Japan can't be run from Australia.&rdquo;</h3>
+          <p>Embedded as the Japan-side marketing operations partner for a
+          Fortune 500 manufacturer &mdash; five campaigns, one reliable local
+          partner, MQL output doubled in 24 months.</p>
+          <span class="ins-link">Read the case <i>&rarr;</i></span>
+        </div>
+      </a>
+
     </div>
 
     <p class="cap rv">
-      Composite examples, anonymized. A full anonymized case study is available on request.
+      Two of three are real engagements, anonymized; the middle card is a composite example. Full anonymized case studies are available on request.
     </p>
+    <a class="btn btn-lime rv" href="use-cases.html" style="margin-top:28px">See all use cases &rarr;</a>
   </div>
 </section>
 
-<!-- ================= POSTURE ================= -->
-<section id="posture" class="sec">
+<!-- ================= PHILOSOPHY ================= -->
+<section id="philosophy" class="sec">
   <div class="wrap">
-    <p class="eyebrow rv">How we operate with you</p>
-    <h2 class="h2 rv">Honest calls, not comfortable ones.</h2>
-    <p class="lead rv">
-      Some of the most valuable sentences we deliver sound like this, said
-      early, with the evidence attached:
-    </p>
-
-    <div class="pq-list rv">
-      <div class="pq-item">
-        <span class="pq-tag">Said to a client &middot; 01</span>
-        <div>
-          <blockquote>&ldquo;This deal is <span>a nurture, not a pipeline item</span>.&rdquo;</blockquote>
-          <p class="why">Said when a forecast is carrying deals that will never
-          close this year. Naming them frees the team to work the ones that will.</p>
-        </div>
-      </div>
-      <div class="pq-item">
-        <span class="pq-tag">Said to a client &middot; 02</span>
-        <div>
-          <blockquote>&ldquo;Free pilots are increasing <span>your workload, not your revenue</span>.&rdquo;</blockquote>
-          <p class="why">Said when goodwill is being mistaken for demand. Interest
-          that costs you money every month is not traction.</p>
-        </div>
-      </div>
-      <div class="pq-item">
-        <span class="pq-tag">Said to a client &middot; 03</span>
-        <div>
-          <blockquote>&ldquo;This partner is <span>structurally unable to sell for you</span>.&rdquo;</blockquote>
-          <p class="why">Said when a channel looks busy but cannot close. Loyalty
-          to a broken structure is one of the most expensive habits in market entry.</p>
-        </div>
-      </div>
+    <p class="eyebrow rv">Philosophy</p>
+    <h2 class="h2 rv">Selling creates the gap.<br>Seeing closes it.</h2>
+    <div class="cols">
+      <p class="statement rv">
+        The gap between great products and the buyers who need them is usually
+        created by selling itself &mdash; not the product, not the market.
+        Everything we do is a method for <em>staying in seeing mode</em> while
+        still moving deals forward.
+      </p>
+      <aside class="margin-note rv">
+        <b>Why this is hard</b>
+        Destroying yesterday's success is a mental game before it's a
+        strategic one. We treat that game as part of the job.
+      </aside>
     </div>
-
-    <div class="principles rv">
-      <div class="principle">
-        <span class="kt">Principle 01</span>
-        <h3>Start from the next decision</h3>
-        <p>We scope work around the decision you actually need to make next,
-        not the broadest possible engagement we could sell you.</p>
-      </div>
-      <div class="principle">
-        <span class="kt">Principle 02</span>
-        <h3>Transparent about uncertainty</h3>
-        <p>Facts, hypotheses, and to-verify items are labeled as what they are.
-        We don't dress up unknowns as solved.</p>
-      </div>
-      <div class="principle">
-        <span class="kt">Principle 03</span>
-        <h3>Validate before scaling</h3>
-        <p>Hiring, local entities, and big campaigns come <b>after</b> the path is
-        tested, never before, on optimism.</p>
-      </div>
-      <div class="principle">
-        <span class="kt">Principle 04</span>
-        <h3>With you, not around you</h3>
-        <p>We push back, ask questions, and show our reasoning rather than
-        executing blindly on instructions.</p>
-      </div>
-    </div>
+    <a class="btn btn-ghost rv" href="about.html" style="margin-top:36px">Read our beliefs &rarr;</a>
   </div>
 </section>
 
@@ -1025,57 +829,101 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
       message archive says works, and where deals really die.
     </p>
 
-    <div class="ins-list rv">
-      <a class="ins-item" href="#">
-        <span class="meta">Buyer side<br>2026 &middot; 8 min</span>
-        <div>
-          <h3>How Japanese buyers screen foreign suppliers before the first reply</h3>
-          <p>The evaluation starts with your public information: registries, quality
-          signals, whether your materials survive being forwarded to a boss.</p>
+    <div class="ins-grid rv">
+
+      <article class="ins-card">
+        <a href="insight-foodservice-ingredient-adoption.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>single lever &middot; process reduction</span></div>
+            <div style="aspect-ratio:16/10;position:relative;overflow:hidden;margin:10px;background:#fff;display:flex;align-items:center;gap:10px;padding:10px;">
+              <div style="flex:none;width:54px;height:54px;border-radius:50%;background:#1A003A;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4px;">
+                <span style="font-size:6.5px;letter-spacing:.1em;color:#CCFF00;text-transform:uppercase;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Single lever</span>
+                <span style="font-size:8px;font-weight:700;line-height:1.1;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Process Reduction</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:4px;min-width:0;">
+                <div style="border:1px solid rgba(26,0,58,.16);border-left:3px solid #CCFF00;background:#EBEBEB;padding:4px 7px;display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:8.5px;font-weight:700;color:#1A003A;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Training load</span>
+                  <span style="font-size:10.5px;font-weight:700;color:#1A003A;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">&minus;89%</span>
+                </div>
+                <div style="border:1px solid rgba(26,0,58,.16);border-left:3px solid rgba(26,0,58,.35);padding:4px 7px;display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:8.5px;color:rgba(26,0,58,.7);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">Serving speed</span>
+                  <span style="font-size:9.5px;font-weight:700;color:rgba(26,0,58,.7);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">&minus;5%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="#">Buyer Side</a>
+            <span class="dot"></span>
+            <time datetime="2026-07-15">July 2026</time>
+            <span class="dot"></span>
+            <span>9 min</span>
+          </div>
+          <h3><a href="insight-foodservice-ingredient-adoption.html">The three things restaurants check before taste when considering a new ingredient</a></h3>
+          <p>Operational fit, entry route, and repeatability decide adoption before flavor does.</p>
+          <a class="ins-link" href="insight-foodservice-ingredient-adoption.html">Read <i>&rarr;</i></a>
         </div>
-        <i class="ar">&rarr;</i>
-      </a>
-      <a class="ins-item" href="#">
-        <span class="meta">Win / loss<br>2026 &middot; 10 min</span>
-        <div>
-          <h3>Twelve ways deals die after the order is won</h3>
-          <p>Winning the order is the midpoint, not the finish line. The patterns
-          behind post-order failures, and what prevents each one.</p>
+      </article>
+
+      <article class="ins-card">
+        <a href="insight-foodservice-automation-adoption.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>field note 04 &middot; kitchen floor plan</span></div>
+            <div class="ph">THUMBNAIL SLOT<br>16:10</div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="#">Buyer Side</a>
+            <span class="dot"></span>
+            <time datetime="2026-07-18">July 2026</time>
+            <span class="dot"></span>
+            <span>10 min</span>
+          </div>
+          <h3><a href="insight-foodservice-automation-adoption.html">Foodservice Automation in Japan: Adoption Conditions for Overseas Robotics Companies</a></h3>
+          <p>Demand signals are not proof of adoption. Segment, workflow, buyer, and maintenance model decide it.</p>
+          <a class="ins-link" href="insight-foodservice-automation-adoption.html">Read <i>&rarr;</i></a>
         </div>
-        <i class="ar">&rarr;</i>
-      </a>
-      <a class="ins-item" href="#">
-        <span class="meta">Messaging<br>2026 &middot; 6 min</span>
-        <div>
-          <h3>Same-day replies: what a measured message archive actually shows</h3>
-          <p>Hooks built on the prospect's own situation earn same-day replies.
-          Generic industry news earns silence. The data behind the claim.</p>
+      </article>
+
+      <article class="ins-card">
+        <a href="insight-japan-trade-show-segments.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>trade show roundup &middot; digital, manufacturing, sensing</span></div>
+            <div class="ph">THUMBNAIL SLOT<br>16:10</div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="#">Market Entry</a>
+            <span class="dot"></span>
+            <time datetime="2026-07-20">July 2026</time>
+            <span class="dot"></span>
+            <span>6 min</span>
+          </div>
+          <h3><a href="insight-japan-trade-show-segments.html">Japan Trade Show Segment Classification</a></h3>
+          <p>Japan's major 2026 trade shows sorted into four verticals, with target verticals and official URLs for each show.</p>
+          <a class="ins-link" href="insight-japan-trade-show-segments.html">Read <i>&rarr;</i></a>
         </div>
-        <i class="ar">&rarr;</i>
-      </a>
-      <a class="ins-item" href="#">
-        <span class="meta">Regulation<br>2026 &middot; 9 min</span>
-        <div>
-          <h3>Reading regulation as a five-year demand forecast</h3>
-          <p>New laws force budgets into existence. How we turn a regulatory horizon
-          into a positioning decision you can act on now.</p>
-        </div>
-        <i class="ar">&rarr;</i>
-      </a>
+      </article>
+
     </div>
 
-    <p class="cap rv">Titles are placeholders for direction review, articles to be drafted.</p>
+    <p class="cap rv">Three real articles shown, drawn from live engagement notes.</p>
+    <a class="btn btn-ghost rv" href="insights.html" style="margin-top:28px">See all insights &rarr;</a>
   </div>
 </section>
 
-<!-- ================= PRODUCTS : real capture slots ================= -->
-<section id="products" class="sec" style="background:var(--gray)">
+<!-- ================= DATABASES : real capture slots ================= -->
+<section id="databases" class="sec">
   <div class="wrap">
-    <p class="eyebrow rv">Products</p>
-    <h2 class="h2 rv">We run our own tools in production.</h2>
+    <p class="eyebrow rv">Databases</p>
+    <h2 class="h2 rv">Two public databases,<br>kept current.</h2>
     <p class="lead rv">
-      The systems behind the method are public products. Drop real captures into
-      the frames below.
+      Side outputs of the research work, published as-is: the same primary-source
+      discipline we run for clients, in database form. Free to browse.
     </p>
 
     <div class="prods">
@@ -1098,8 +946,8 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
             <div class="ph">SCREENSHOT SLOT<br>16:10 &middot; real capture</div>
           </div>
         </figure>
-        <div class="p-name"><h3>BUYERS</h3><span>Intelligence</span></div>
-        <p>Buyer-side intelligence on the Japan market. Placeholder copy, to be confirmed.</p>
+        <div class="p-name"><h3>BUYERS</h3><span>Database</span></div>
+        <p>A structured database of Japanese buyer organizations. Placeholder copy, to be confirmed.</p>
         <div class="p-link">buyers.dorado-group.jp <i>&#8599;</i></div>
       </a>
     </div>
@@ -1168,7 +1016,7 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   </div>
   <div class="fbottom">
     <span>&copy; 2026 Dorado LLC</span>
-    <span>Mockup v5 &middot; hero rewrite &amp; services teaser &middot; for direction review</span>
+    <span>Mockup v6 &middot; section restructure (cards, philosophy, slim process) &middot; for direction review</span>
   </div>
 </footer>
 

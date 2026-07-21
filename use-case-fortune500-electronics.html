@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DORADO | Validating a Fleet-Telematics Provider's Japan Entry &middot; Use Case (mockup v1)</title>
+<title>DORADO | The Execution Gap: Why Japan Cannot Run Remotely &middot; Use Case (mockup v1)</title>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-ink-lime-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon/favicon-ink-lime-64.png">
 <link rel="apple-touch-icon" href="../assets/favicon/favicon-ink-lime-512.png">
@@ -145,6 +145,64 @@ nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
 }
 .shot.wide .ph{aspect-ratio:21/9}
 
+/* ============ hero visual (light card variant, from the client's supplied use-case card) ============ */
+.hero-visual{
+  aspect-ratio:21/9;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 3px 3px,rgba(26,0,58,.12) 1.2px,transparent 1.2px) 0 0/22px 22px,
+    linear-gradient(120deg,#EDEBFB 0%,#F7F6FD 55%,#FBFAFF 100%);
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+  padding:clamp(28px,4vw,56px);color:var(--ink);
+}
+.hero-visual .hv-brand{
+  position:absolute;top:24px;left:28px;
+  font-size:11px;font-weight:700;letter-spacing:.06em;
+}
+.hero-visual .hv-tag{
+  position:absolute;top:26px;right:28px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);
+}
+.hero-visual .hv-left{max-width:440px;padding-top:8px}
+.hero-visual .hv-eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(26,0,58,.55);margin-bottom:14px;
+}
+.hero-visual .hv-title{
+  font-size:clamp(1.5rem,3vw,2.4rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;
+}
+.hero-visual .hv-sub{margin-top:14px;font-size:13px;line-height:1.6;color:rgba(26,0,58,.62);max-width:360px}
+.hero-visual .hv-facts{display:flex;gap:clamp(18px,2.4vw,32px);margin-top:26px;flex-wrap:wrap}
+.hero-visual .hv-facts div b{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;display:block}
+.hero-visual .hv-facts div span{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);display:block;margin-top:3px;
+}
+.hero-visual .hv-card{
+  flex:none;width:min(38%,320px);background:#fff;border:1px solid rgba(26,0,58,.12);
+  box-shadow:0 18px 40px rgba(26,0,58,.14);padding:20px 22px 18px;
+}
+.hero-visual .hv-card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.hero-visual .hv-card-top span{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);
+}
+.hero-visual .hv-badge{
+  font-size:10px;font-weight:700;color:#0B7A4B;background:#E4F7EC;padding:3px 8px;
+}
+.hero-visual .hv-card-val{font-size:2rem;font-weight:700;letter-spacing:-.02em;margin-top:8px}
+.hero-visual .hv-card-cap{font-size:10.5px;color:rgba(26,0,58,.5);margin-top:2px}
+.hero-visual .hv-chart{margin-top:14px}
+.hero-visual .hv-axis{
+  display:flex;justify-content:space-between;margin-top:6px;
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9px;letter-spacing:.08em;
+  color:rgba(26,0,58,.4);
+}
+@media (max-width:820px){
+  .hero-visual{flex-direction:column;align-items:flex-start;aspect-ratio:auto;padding:28px 24px 32px}
+  .hero-visual .hv-card{width:100%}
+}
+
 /* ============ stage tag + meta (shared with archive) ============ */
 .cat-tag{
   font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:.16em;
@@ -195,8 +253,6 @@ h1{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;letter-sp
 }
 @media (max-width:940px){.article-grid{grid-template-columns:1fr}}
 
-/* WP: everything inside .article-body except the aside is the_content();
-   give each <h2> a matching id so the sidebar TOC can #jump to it. */
 .article-body{max-width:680px;font-size:16px;line-height:1.75;color:rgba(26,0,58,.86)}
 .article-body p{margin-bottom:22px}
 .article-body h2{
@@ -382,29 +438,25 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
 <main>
 
 <!-- ================= ARTICLE HERO ================= -->
-<!-- WP single-usecase.php: the_title(), the primary "stage" term,
-     custom "sector" and "duration" fields, the_excerpt() or a manual
-     "dek" field for the sub-head. -->
 <section id="top">
   <div class="ph-inner">
     <p class="crumb rv">
       <a href="index.html">INDEX</a> /
       <a href="use-cases.html">USE CASES</a> /
-      <a href="how-we-operate.html#validate">VALIDATE</a>
+      <a href="how-we-operate.html#operate">OPERATE</a>
     </p>
     <div class="ins-meta rv">
-      <a class="cat-tag" href="how-we-operate.html#validate">01 Validate</a>
+      <a class="cat-tag" href="how-we-operate.html#operate">03 Operate</a>
       <span class="dot"></span>
-      <span>Fleet &amp; telematics SaaS</span>
+      <span>Electronics / telecom manufacturer</span>
       <span class="dot"></span>
-      <span>~3 months</span>
+      <span>24 months</span>
     </div>
-    <h1 class="rv">Validating Japan market entry for a fleet-telematics SaaS provider, in three months, with evidence instead of assumptions</h1>
+    <h1 class="rv">The execution gap: why Japan cannot run remotely</h1>
     <p class="dek rv">
-      A fleet-telematics SaaS company with hundreds of deployments abroad
-      wanted to enter Japan. We designed and executed a
-      hypothesis-driven research program, and turned the findings into a
-      validated go-to-market strategy and sales-ready Japanese materials.
+      Japan's execution requirements don't travel. Dorado served as the
+      ground-level layer, ran five campaigns and doubled MQL output for a
+      global tech firm.
     </p>
 
     <div class="byline rv">
@@ -417,21 +469,41 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   </div>
 </section>
 
-<!-- WP: the_post_thumbnail( 'large' ) -->
+<!-- Featured visual, styled after the source use-case card the client supplied -->
 <div class="feat-img rv">
-  <figure class="shot wide">
-    <div class="shot-frame">
-      <div class="bar"><i></i><i></i><i></i><span>market-entry research &middot; deliverable set (anonymized)</span></div>
-      <div class="ph">FEATURED IMAGE SLOT<br>21:9<br>research deliverable stack, client name redacted</div>
+  <div class="hero-visual">
+    <span class="hv-brand">DORADO</span>
+    <span class="hv-tag">Case study &middot; Japan</span>
+    <div class="hv-left">
+      <p class="hv-eyebrow">MQL output &middot; 24 months</p>
+      <p class="hv-title">We doubled their pipeline from Tokyo.</p>
+      <p class="hv-sub">On-the-ground marketing ops for a Fortune 500 electronics manufacturer. Five campaigns, one local partner, 2&times; MQLs.</p>
+      <div class="hv-facts">
+        <div><b>5</b><span>Campaigns run</span></div>
+        <div><b>24</b><span>Months, on the ground</span></div>
+        <div><b>2.0&times;</b><span>MQL output growth</span></div>
+      </div>
     </div>
-  </figure>
+    <div class="hv-card">
+      <div class="hv-card-top">
+        <span>MQLs / month</span>
+        <span class="hv-badge">&#9650; 2.0&times;</span>
+      </div>
+      <p class="hv-card-val">2.0&times;</p>
+      <p class="hv-card-cap">vs. baseline at engagement start</p>
+      <svg class="hv-chart" viewBox="0 0 260 70" width="100%" height="70" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,58 32,52 64,55 96,44 128,38 160,32 192,24 224,14 256,8" fill="none" stroke="#1A003A" stroke-width="2"/>
+        <circle cx="256" cy="8" r="4" fill="#1A003A"/>
+      </svg>
+      <div class="hv-axis"><span>M00</span><span>M06</span><span>M12</span><span>M18</span><span>M24</span></div>
+    </div>
+  </div>
 </div>
 
 <!-- ================= ARTICLE BODY + SIDEBAR ================= -->
 <section class="sec" style="padding-top:0">
   <div class="article-grid">
 
-    <!-- WP: the_content() -->
     <div class="article-body rv">
 
       <div class="note-bar" style="margin-top:0">
@@ -441,136 +513,75 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
         approval from the client is required.</span>
       </div>
 
-      <h2 id="the-challenge">The Challenge</h2>
-      <p>The client had built a successful fleet-telematics business abroad,
-      where regulatory reporting requirements had made digital adoption the
-      norm. Japan looked like a natural next market: a large trucking sector,
-      tightening labor regulation, and carriers under pressure to
-      modernize.</p>
+      <h2 id="client">Client</h2>
+      <p>A Fortune 500 global telecommunications and electronics
+      manufacturer with APAC headquarters in Australia.</p>
 
-      <p>But Japan is a different world: strict driver working-hour caps
-      instead of the client's home-market rules, a fragmented multi-tier
-      subcontracting structure, entrenched domestic platforms, and long-term
-      contracts that make displacing an installed dispatch system difficult.
-      The client needed to know, before committing resources: <strong>is
-      there a viable entry point, and what would it take to win it?</strong></p>
+      <h2 id="glance">Glance</h2>
+      <p>Over two years, Dorado served as the on-the-ground marketing
+      operations partner in Japan, managing local agency relationships,
+      executing five major campaigns across multiple channels, and doubling
+      the client's MQL output while supporting partner management and
+      portal operations.</p>
 
-      <h2 id="what-we-did">What We Did</h2>
-      <p>We structured the engagement as a research program with defined
-      workstreams, weekly progress reviews, and a deliverable tracker shared
-      with the client.</p>
+      <h2 id="issue">Issue</h2>
+      <p>The client's APAC headquarters managed Japan marketing operations
+      remotely from Australia, creating a structural gap between regional
+      strategy and local execution. The existing local agency had
+      reliability issues that were undermining campaign quality and
+      consistency. Beyond agency performance, Japan-specific requirements,
+      platform rules, UI conventions, and compliance considerations made
+      remote management genuinely difficult. APAC HQ recognized that
+      hands-on Japanese-language support was not optional but essential, and
+      needed a trusted local partner to bridge that gap.</p>
 
-      <h3>Market analysis</h3>
-      <p>We sized the Japanese fleet-telematics market against global
-      benchmarks, built growth forecasts under multiple CAGR scenarios, and
-      mapped pricing across the market, including hardware pricing, bundled
-      subscription tiers, and installation-and-maintenance options that are
-      unique to Japanese fleet operators.</p>
+      <h2 id="approach">Approach</h2>
+      <p>Dorado embedded as the Japan-side marketing operations function,
+      working directly with APAC HQ across three workstreams.</p>
 
-      <h3>Competitive analysis</h3>
-      <p>We produced SWOT analyses of the leading domestic platforms,
-      function-by-function feature comparison matrices, pricing comparison
-      tables, and sales battle cards. To understand how these products
-      actually perform in the field, we mined and synthesized dozens of
-      published user reviews, surfacing recurring complaints (support
-      quality, hidden costs, integration friction with existing dispatch
-      software) that became attack points for the client's positioning.</p>
+      <h3>1. Audit the operations and agency landscape</h3>
+      <p>Assessment of the existing agency relationship and local execution
+      infrastructure, identifying gaps and establishing a reliable vendor
+      baseline for ongoing campaign work.</p>
 
-      <h3>Regulatory and cultural research</h3>
-      <p>We mapped Japan's revised driver working-hour standards (tightened
-      in 2024), the state of digital-tachograph adoption, and the differences
-      between the client's home-market rules and Japan's logistics
-      regulatory regime, including the multi-tier subcontracting structure
-      that foreign entrants routinely underestimate. We also assessed the
-      impact of the government's logistics-digitalization subsidy program on
-      carrier purchasing behavior.</p>
+      <h3>2. Design localization strategy and campaign architecture</h3>
+      <p>Development of Japan-specific campaign concepts and creative
+      direction across multiple marketing initiatives, ensuring alignment
+      with both APAC-level strategy and local market expectations.</p>
 
-      <h3>Hypothesis-driven market validation</h3>
-      <p>Rather than a generic market report, we worked with the client to
-      articulate explicit strategic hypotheses and test each one against
-      evidence:</p>
-
-      <ul>
-        <li><strong>Regional carriers are underserved white space, while major
-        logistics hubs are locked up by incumbents.</strong> Direct telematics
-        adoption data by region did not exist, so we built a proxy model from
-        government transport statistics (MLIT data, regional freight surveys)
-        to estimate regional adoption gaps.</li>
-        <li><strong>Non-adoption has identifiable, addressable causes.</strong>
-        Research confirmed the barriers: driver pushback against monitoring
-        (the top-cited reason in operator surveys, strongest among
-        owner-operators), cost-benefit doubts, integration concerns with
-        legacy dispatch software, and reliance on informal subcontractor
-        relationships in regional trucking.</li>
-      </ul>
-
-      <p>The output was not just data but a decision: pursue regional white
-      space rather than head-to-head displacement at major logistics hubs,
-      with each supporting assumption documented and sourced.</p>
-
-      <h3>GTM strategy and localization</h3>
-      <p>We identified a differentiated wedge: regulatory compliance.
-      Regional logistics associations and prefectural governments were
-      actively pushing carriers toward digital compliance tools, and the
-      client's platform was purpose-built for exactly that requirement. We
-      built the go-to-market strategy around partnerships with regional
-      logistics associations, equipment resellers, and system integrators,
-      drafted the Japanese sales deck around a concrete model case, localized
-      customer success stories from the client's home market, and converted
-      pricing into Japan-ready plans. We also prepared reseller and end-user
-      target lists for outreach.</p>
+      <h3>3. Direct execution and manage the full partner ecosystem</h3>
+      <p>Ongoing management of the local agency, partner relationships, and
+      operational platforms including portal administration, ensuring APAC
+      HQ had consistent visibility and control without requiring direct
+      involvement in Japan-specific workflows.</p>
 
       <div class="pull-quote">
-        <span>Hypotheses first, research second.</span> Every research task
-        existed to confirm or kill a specific strategic assumption,
-        nothing was researched "for completeness."
+        <span>MQL volume doubled</span> over the course of the engagement,
+        with five major campaigns executed and continuous operational
+        support across agency direction, partner management, and platform
+        operations.
       </div>
 
-      <h2 id="the-outcome">The Outcome</h2>
-      <p>In roughly three months, the client went from an open question
-      ("should we enter Japan?") to:</p>
-
-      <ul>
-        <li>A sourced, scenario-based view of market size and growth</li>
-        <li>A validated beachhead strategy (regional carriers, compliance-driven
-        adoption) with the reasoning behind each rejected alternative
-        documented</li>
-        <li>Competitor battle cards and positioning built on real user pain
-        points</li>
-        <li>A complete Japanese-language sales deck and pricing structure,
-        ready for first customer conversations</li>
-        <li>Named target lists of resellers and end users to begin market
-        validation outreach</li>
-      </ul>
-
-      <h2 id="why-it-worked">Why It Worked</h2>
-      <p><strong>Hypotheses first, research second.</strong> Every research
-      task existed to confirm or kill a specific strategic assumption,
-      nothing was researched "for completeness."</p>
-
-      <p><strong>Proxy modeling where data doesn't exist.</strong> When
-      direct adoption data was unavailable, we built defensible estimates
-      from public government statistics instead of stopping at "no data."</p>
-
-      <p><strong>Local nuance foreign entrants miss.</strong> Working-hour
-      compliance, subcontracting structures, subsidy dynamics, and regional
-      integrator ecosystems were treated as first-class strategic inputs, not
-      footnotes.</p>
-
-      <p><strong>Research that ends in sales tools.</strong> Findings flowed
-      directly into battle cards, a localized deck, and target lists,
-      assets the client could use the week the engagement ended.</p>
+      <h2 id="roi">Engagement ROI</h2>
+      <p>Over a two-year engagement, Dorado executed five major marketing
+      campaigns and maintained continuous operational support across agency
+      direction, partner management, and platform operations. MQL volume
+      doubled over the course of the engagement. By serving as a reliable,
+      Japanese-fluent operational layer between APAC HQ and the local
+      market, the client was able to maintain strategic oversight from
+      Australia while achieving execution quality that remote management
+      alone could not deliver.</p>
     </div>
 
-    <!-- sidebar: table of contents + at-a-glance + share -->
     <aside class="article-side rv">
       <div class="side-block">
         <p class="sb-h">In this case</p>
         <nav class="toc" id="toc">
-          <a href="#the-challenge">The Challenge</a>
-          <a href="#what-we-did">What We Did</a>
-          <a href="#the-outcome">The Outcome</a>
-          <a href="#why-it-worked">Why It Worked</a>
+          <a href="#client">Client</a>
+          <a href="#glance">Glance</a>
+          <a href="#issue">Issue</a>
+          <a href="#approach">Approach</a>
+          <a href="#roi">Engagement ROI</a>
         </nav>
       </div>
 
@@ -579,23 +590,23 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
         <div class="glance">
           <div class="glance-row">
             <p class="gl">Client</p>
-            <p class="gv">Fleet-telematics SaaS provider (hundreds of deployments abroad)</p>
+            <p class="gv">Fortune 500 telecom &amp; electronics manufacturer, APAC HQ in Australia</p>
           </div>
           <div class="glance-row">
             <p class="gl">Objective</p>
-            <p class="gv">Assess and prepare entry into the Japanese market</p>
+            <p class="gv">Replace unreliable local agency execution with a trusted on-the-ground Japan operations partner</p>
           </div>
           <div class="glance-row">
             <p class="gl">Scope</p>
-            <p class="gv">Market research, competitive analysis, regulatory research, hypothesis validation, GTM strategy, sales collateral localization</p>
+            <p class="gv">Agency &amp; ops audit, localization strategy, campaign execution, partner and portal management</p>
           </div>
           <div class="glance-row">
             <p class="gl">Duration</p>
-            <p class="gv">Approx. 3 months</p>
+            <p class="gv">24 months (2 years)</p>
           </div>
           <div class="glance-row">
-            <p class="gl">Deliverables</p>
-            <p class="gv">40+ research documents, analysis sheets, and localized sales materials</p>
+            <p class="gl">Results</p>
+            <p class="gv">5 major campaigns executed &middot; MQL output doubled (2.0&times;)</p>
           </div>
         </div>
       </div>
@@ -619,8 +630,6 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
     <p class="eyebrow rv">More use cases</p>
     <h2 class="h2 rv">Other engagements, other stages.</h2>
 
-    <!-- WP: WP_Query, tax_query excluding the current post ID,
-         posts_per_page = 3. Same .ins-card markup as the archive loop. -->
     <div class="ins-grid rv">
       <article class="ins-card">
         <a href="use-case-saas-japan-enterprise.html">
@@ -649,6 +658,25 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
       </article>
 
       <article class="ins-card">
+        <a href="use-case-single.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>market-entry research &middot; deliverable set</span></div>
+            <div class="ph">THUMBNAIL SLOT<br>16:10</div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="how-we-operate.html#validate">01 Validate</a>
+            <span class="dot"></span>
+            <span>Fleet &amp; telematics SaaS</span>
+          </div>
+          <h3><a href="use-case-single.html">Validating Japan market entry for a fleet-telematics SaaS provider</a></h3>
+          <p>A hypothesis-driven research program turned into a validated go-to-market strategy in three months.</p>
+          <a class="ins-link" href="use-case-single.html">Read <i>&rarr;</i></a>
+        </div>
+      </article>
+
+      <article class="ins-card">
         <a href="#">
           <div class="shot-frame">
             <div class="bar"><i></i><i></i><i></i><span>retail channel benchmark &middot; 50 items</span></div>
@@ -664,34 +692,6 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
           <h3><a href="#">Market research &amp; entry validation for a food brand</a></h3>
           <p>A one-month research sprint across product, consumer, channel, and GTM hypotheses.</p>
           <a class="ins-link" href="#">Read <i>&rarr;</i></a>
-        </div>
-      </article>
-
-      <article class="ins-card">
-        <a href="use-case-fortune500-electronics.html">
-          <div class="shot-frame">
-            <div class="bar"><i></i><i></i><i></i><span>MQL output &middot; 24 months</span></div>
-            <div style="aspect-ratio:16/10;position:relative;overflow:hidden;margin:10px;background:radial-gradient(circle at 3px 3px,rgba(26,0,58,.12) 1.2px,transparent 1.2px) 0 0/16px 16px,linear-gradient(120deg,#EDEBFB 0%,#F7F6FD 55%,#FBFAFF 100%);display:flex;align-items:center;justify-content:space-between;padding:12px;gap:8px;">
-              <div style="min-width:0;">
-                <p style="font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-weight:700;color:#1A003A;font-size:12.5px;line-height:1.15;letter-spacing:-.01em;margin:0 0 5px;">We doubled their pipeline from Tokyo.</p>
-                <span style="font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9px;color:rgba(26,0,58,.55);letter-spacing:.06em;text-transform:uppercase;">MQL output &middot; 24 months</span>
-              </div>
-              <div style="flex:none;width:64px;background:#fff;border:1px solid rgba(26,0,58,.12);box-shadow:0 6px 14px rgba(26,0,58,.14);padding:8px;">
-                <span style="display:block;font-size:8px;color:rgba(26,0,58,.5);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">MQLs/mo</span>
-                <span style="display:block;font-size:17px;font-weight:700;color:#1A003A;margin-top:2px;">2.0&times;</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <div class="ins-body">
-          <div class="ins-meta">
-            <a class="cat-tag" href="how-we-operate.html#operate">03 Operate</a>
-            <span class="dot"></span>
-            <span>Electronics / telecom manufacturer</span>
-          </div>
-          <h3><a href="use-case-fortune500-electronics.html">The execution gap: why Japan cannot run remotely</a></h3>
-          <p>On-the-ground marketing operations for a Fortune 500 electronics manufacturer. Five campaigns, one local partner, 2&times; MQLs.</p>
-          <a class="ins-link" href="use-case-fortune500-electronics.html">Read <i>&rarr;</i></a>
         </div>
       </article>
     </div>
@@ -763,13 +763,12 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   </div>
   <div class="fbottom">
     <span>&copy; 2026 Dorado LLC</span>
-    <span>Use case single mockup v1 &middot; for direction review</span>
+    <span>Use case single mockup &middot; Fortune 500 electronics &middot; content from old site, for direction review</span>
   </div>
 </footer>
 
 <script>
 (function(){
-  /* single, subtle reveal */
   const io = new IntersectionObserver((es) => {
     es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -777,7 +776,6 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   }, { threshold: .12 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-  /* lightweight scrollspy for the TOC */
   const toc = document.querySelectorAll('#toc a');
   const targets = [...toc].map(a => document.querySelector(a.getAttribute('href')));
   const spy = new IntersectionObserver((es) => {

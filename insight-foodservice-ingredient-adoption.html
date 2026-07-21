@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DORADO | Validating a Fleet-Telematics Provider's Japan Entry &middot; Use Case (mockup v1)</title>
+<title>DORADO | The Three Things Restaurants Check Before Taste &middot; Insight (mockup v1)</title>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-ink-lime-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon/favicon-ink-lime-64.png">
 <link rel="apple-touch-icon" href="../assets/favicon/favicon-ink-lime-512.png">
@@ -56,7 +56,7 @@ header{
 }
 .logo{display:flex;align-items:center}
 .logo-img{height:34px;width:auto;display:block}
-nav{display:flex;align-items:center;gap:24px}
+nav{display:flex;align-items:center;gap:28px}
 nav a.nl{
   color:rgba(26,0,58,.68);font-size:12px;font-weight:500;
   letter-spacing:.14em;text-transform:uppercase;padding:4px 0;
@@ -145,7 +145,46 @@ nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
 }
 .shot.wide .ph{aspect-ratio:21/9}
 
-/* ============ stage tag + meta (shared with archive) ============ */
+/* ============ featured diagram: single lever -> effect chain ============ */
+.lever-diagram{
+  background:#fff;padding:clamp(24px,3.4vw,44px);
+  display:flex;align-items:center;gap:clamp(20px,3vw,40px);
+}
+.lever-core{
+  flex:none;width:clamp(150px,20vw,190px);aspect-ratio:1;border-radius:50%!important;
+  background:var(--ink);color:#fff;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;gap:6px;padding:14px;
+}
+.lever-core .lc-eyebrow{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--lime);
+}
+.lever-core .lc-title{font-size:1.15rem;font-weight:700;line-height:1.15;letter-spacing:-.01em}
+.lever-core .lc-sub{font-size:11px;line-height:1.4;opacity:.7}
+.lever-effects{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0}
+.lever-row{
+  border:1px solid rgba(26,0,58,.16);border-left:3px solid rgba(26,0,58,.35);
+  padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.lever-row.on{border-color:var(--ink);border-left-color:var(--lime);background:var(--gray)}
+.lever-row .lr-label{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);
+}
+.lever-row .lr-title{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-top:2px}
+.lever-row .lr-sub{font-size:11.5px;color:rgba(26,0,58,.6);margin-top:1px}
+.lever-row .lr-val{text-align:right;flex:none}
+.lever-row .lr-val b{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;display:block}
+.lever-row .lr-val span{
+  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(26,0,58,.5);
+}
+@media (max-width:760px){
+  .lever-diagram{flex-direction:column;align-items:stretch}
+  .lever-core{align-self:center}
+}
+
+/* ============ category tag + meta (shared with archive) ============ */
 .cat-tag{
   font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:.16em;
   background:var(--ink);color:var(--lime);display:inline-block;padding:5px 10px;
@@ -156,6 +195,7 @@ nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
   font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.12em;
   text-transform:uppercase;color:rgba(26,0,58,.55);
 }
+.ins-meta time{opacity:.85}
 .ins-meta .dot{width:3px;height:3px;background:rgba(26,0,58,.4);border-radius:0}
 
 /* ============ article hero ============ */
@@ -168,7 +208,7 @@ nav a.nl:hover{color:var(--ink);border-bottom-color:var(--lime)}
 }
 .crumb a{transition:color .25s}
 .crumb a:hover{color:var(--ink)}
-h1{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;letter-spacing:-.022em;margin:20px 0 20px}
+h1{font-size:clamp(1.9rem,4.2vw,3.1rem);font-weight:700;line-height:1.1;letter-spacing:-.025em;margin:20px 0 20px}
 .dek{
   font-size:clamp(16px,1.6vw,19px);line-height:1.6;opacity:.75;max-width:760px;
 }
@@ -184,19 +224,17 @@ h1{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;letter-sp
   text-transform:uppercase;color:rgba(26,0,58,.5);margin-top:2px;
 }
 
-/* featured image */
+/* featured image, full-bleed-ish within wrap */
 .feat-img{max-width:1100px;margin:0 auto;padding:0 var(--pad) clamp(40px,6vh,64px)}
 
 /* ============ article layout: body + sticky sidebar ============ */
 .article-grid{
   max-width:1100px;margin:0 auto;padding:0 var(--pad);
-  display:grid;grid-template-columns:1fr 280px;gap:clamp(40px,6vw,80px);
+  display:grid;grid-template-columns:1fr 260px;gap:clamp(40px,6vw,80px);
   align-items:start;
 }
-@media (max-width:940px){.article-grid{grid-template-columns:1fr}}
+@media (max-width:900px){.article-grid{grid-template-columns:1fr}}
 
-/* WP: everything inside .article-body except the aside is the_content();
-   give each <h2> a matching id so the sidebar TOC can #jump to it. */
 .article-body{max-width:680px;font-size:16px;line-height:1.75;color:rgba(26,0,58,.86)}
 .article-body p{margin-bottom:22px}
 .article-body h2{
@@ -231,7 +269,7 @@ h1{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;letter-sp
 
 /* sidebar */
 .article-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:32px}
-@media (max-width:940px){.article-side{position:static}}
+@media (max-width:900px){.article-side{position:static}}
 .side-block .sb-h{
   font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;
   text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:14px;
@@ -255,17 +293,7 @@ h1{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;letter-sp
 .toc a:hover{color:var(--ink);background:rgba(26,0,58,.04)}
 .toc a.on{color:var(--ink);font-weight:700;box-shadow:inset 3px 0 0 var(--lime)}
 .toc a.on::before{color:var(--deep)}
-
-/* "at a glance" stat block */
-.glance{display:flex;flex-direction:column}
-.glance-row{padding:11px 0;border-top:1px solid rgba(26,0,58,.12)}
-.glance-row:first-child{border-top:none;padding-top:0}
-.glance-row .gl{
-  font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(26,0,58,.5);margin-bottom:4px;
-}
-.glance-row .gv{font-size:13px;line-height:1.5}
-
+.source-note{font-size:12.5px;line-height:1.6;color:rgba(26,0,58,.62)}
 .share-row{display:flex;gap:8px}
 .share-row a{
   width:34px;height:34px;border:1px solid rgba(26,0,58,.3);display:grid;place-items:center;
@@ -273,7 +301,7 @@ h1{font-size:clamp(1.9rem,4.2vw,3rem);font-weight:700;line-height:1.14;letter-sp
 }
 .share-row a:hover{background:var(--ink);border-color:var(--ink);color:var(--lime)}
 
-/* ============ related cases (ins-card, reused) ============ */
+/* ============ related posts (ins-card, reused) ============ */
 #related{background:var(--gray)}
 .ins-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px;
@@ -370,8 +398,8 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
     <ul>
       <li><a href="services.html">Services</a></li>
       <li><a href="how-we-operate.html">Process</a></li>
-      <li><a href="use-cases.html" aria-current="page">Use cases</a></li>
-      <li><a href="insights.html">Insights</a></li>
+      <li><a href="use-cases.html">Use cases</a></li>
+      <li><a href="insights.html" aria-current="page">Insights</a></li>
       <li><a href="partners.html">Partners</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
@@ -382,222 +410,325 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
 <main>
 
 <!-- ================= ARTICLE HERO ================= -->
-<!-- WP single-usecase.php: the_title(), the primary "stage" term,
-     custom "sector" and "duration" fields, the_excerpt() or a manual
-     "dek" field for the sub-head. -->
 <section id="top">
   <div class="ph-inner">
     <p class="crumb rv">
       <a href="index.html">INDEX</a> /
-      <a href="use-cases.html">USE CASES</a> /
-      <a href="how-we-operate.html#validate">VALIDATE</a>
+      <a href="insights.html">INSIGHTS</a> /
+      <a href="insights.html">BUYER SIDE</a>
     </p>
     <div class="ins-meta rv">
-      <a class="cat-tag" href="how-we-operate.html#validate">01 Validate</a>
+      <a class="cat-tag" href="insights.html">Buyer Side</a>
       <span class="dot"></span>
-      <span>Fleet &amp; telematics SaaS</span>
+      <time datetime="2026-07-15">July 15, 2026</time>
       <span class="dot"></span>
-      <span>~3 months</span>
+      <span>9 min read</span>
     </div>
-    <h1 class="rv">Validating Japan market entry for a fleet-telematics SaaS provider, in three months, with evidence instead of assumptions</h1>
+    <h1 class="rv">The three things restaurants check before taste when considering a new ingredient</h1>
     <p class="dek rv">
-      A fleet-telematics SaaS company with hundreds of deployments abroad
-      wanted to enter Japan. We designed and executed a
-      hypothesis-driven research program, and turned the findings into a
-      validated go-to-market strategy and sales-ready Japanese materials.
+      A new ingredient does not always get rejected because it tastes bad. In
+      foodservice, taste is only one part of the decision. Before a product
+      gets a fair evaluation, operators generally look at whether it can
+      actually work in the store, how it can enter the business, and whether
+      there is a realistic path to repeat use.
     </p>
 
     <div class="byline rv">
       <span class="av"><i></i></span>
       <div>
         <p class="who">Dorado</p>
-        <p class="what">Client case, anonymized &middot; Tokyo</p>
+        <p class="what">From the operating log &middot; Tokyo</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WP: the_post_thumbnail( 'large' ) -->
+<!-- Featured diagram: the "single lever" effect chain referenced under Condition 1 (process reduction) -->
 <div class="feat-img rv">
-  <figure class="shot wide">
-    <div class="shot-frame">
-      <div class="bar"><i></i><i></i><i></i><span>market-entry research &middot; deliverable set (anonymized)</span></div>
-      <div class="ph">FEATURED IMAGE SLOT<br>21:9<br>research deliverable stack, client name redacted</div>
+  <div class="lever-diagram">
+    <div class="lever-core">
+      <span class="lc-eyebrow">Single lever</span>
+      <span class="lc-title">Process Reduction</span>
+      <span class="lc-sub">kitchen automation &amp; workflow</span>
     </div>
-  </figure>
+    <div class="lever-effects">
+      <div class="lever-row">
+        <div>
+          <p class="lr-label">Effect 01</p>
+          <p class="lr-title">Serving speed</p>
+          <p class="lr-sub">Order-to-table cycle time</p>
+        </div>
+        <div class="lr-val"><b>&minus;5%</b><span>Faster</span></div>
+      </div>
+      <div class="lever-row">
+        <div>
+          <p class="lr-label">Effect 02</p>
+          <p class="lr-title">Quality stability</p>
+          <p class="lr-sub">Uncleared-table response time</p>
+        </div>
+        <div class="lr-val"><b>&minus;30%</b><span>Spot time</span></div>
+      </div>
+      <div class="lever-row on">
+        <div>
+          <p class="lr-label">Effect 03</p>
+          <p class="lr-title">Training load</p>
+          <p class="lr-sub">Accounting task time</p>
+        </div>
+        <div class="lr-val"><b>&minus;89%</b><span>Workload</span></div>
+      </div>
+      <div class="lever-row">
+        <div>
+          <p class="lr-label">Effect 04</p>
+          <p class="lr-title">Lean staffing</p>
+          <p class="lr-sub">Floor headcount per shift</p>
+        </div>
+        <div class="lr-val"><b>5&rarr;4</b><span>Staff</span></div>
+      </div>
+      <div class="lever-row">
+        <div>
+          <p class="lr-label">Effect 05</p>
+          <p class="lr-title">Turnover &amp; margin</p>
+          <p class="lr-sub">Food + labor cost ratio</p>
+        </div>
+        <div class="lr-val"><b>&minus;8%</b><span>FL cost</span></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ================= ARTICLE BODY + SIDEBAR ================= -->
 <section class="sec" style="padding-top:0">
   <div class="article-grid">
 
-    <!-- WP: the_content() -->
     <div class="article-body rv">
+      <p>A new ingredient does not always get rejected because it tastes
+      bad. In foodservice, taste is only one part of the decision. Before a
+      product gets a fair evaluation, operators generally look at whether it
+      can actually work in the store, how it can enter the business, and
+      whether there is a realistic path to repeat use.</p>
 
-      <div class="note-bar" style="margin-top:0">
-        <b>Note on naming</b>
-        <span>An NDA is in place for this engagement. The client is referred
-        to anonymously below. Before publishing with a real name, written
-        approval from the client is required.</span>
-      </div>
+      <p>That's because the adoption decision is not really made in a
+      tasting room. It is made under operating pressure. Even a strong
+      product becomes hard to introduce if it adds prep time, depends on
+      individual skill, or makes service less stable. So the first question
+      is not whether the ingredient is appealing. It is more about whether
+      the shop can keep using it without making daily operations harder.</p>
 
-      <h2 id="the-challenge">The Challenge</h2>
-      <p>The client had built a successful fleet-telematics business abroad,
-      where regulatory reporting requirements had made digital adoption the
-      norm. Japan looked like a natural next market: a large trucking sector,
-      tightening labor regulation, and carriers under pressure to
-      modernize.</p>
+      <p>And the labor pressure side makes it even harder. In a sector where
+      staffing is already tight, products that require extra training, extra
+      handling, or unstable execution are more difficult to absorb. That's
+      kind of the reason why many new ingredients are screened first for
+      operational fit, route-to-market fit, and continuity. The flavor part
+      comes after that.</p>
 
-      <p>But Japan is a different world: strict driver working-hour caps
-      instead of the client's home-market rules, a fragmented multi-tier
-      subcontracting structure, entrenched domestic platforms, and long-term
-      contracts that make displacing an installed dispatch system difficult.
-      The client needed to know, before committing resources: <strong>is
-      there a viable entry point, and what would it take to win it?</strong></p>
+      <h2 id="halfway">Good taste only gets you halfway</h2>
+      <p>Taste matters. But taste is a necessary condition, not the
+      condition for adoption. In foodservice, a new ingredient does not pass
+      just because it tastes good.</p>
 
-      <h2 id="what-we-did">What We Did</h2>
-      <p>We structured the engagement as a research program with defined
-      workstreams, weekly progress reviews, and a deliverable tracker shared
-      with the client.</p>
+      <p>The real decision is made under operating constraints. Buyers are
+      not judging the product on its own. They are judging whether it can
+      work inside an actual store, with real staff, real prep limits, and
+      real service pressure.</p>
 
-      <h3>Market analysis</h3>
-      <p>We sized the Japanese fleet-telematics market against global
-      benchmarks, built growth forecasts under multiple CAGR scenarios, and
-      mapped pricing across the market, including hardware pricing, bundled
-      subscription tiers, and installation-and-maintenance options that are
-      unique to Japanese fleet operators.</p>
+      <p>So the question is not only whether the ingredient is good. It is
+      also whether the ingredient can hold up in daily operations. If it
+      adds complexity, depends on staff skill, or creates inconsistency,
+      strong taste alone will not carry it through.</p>
 
-      <h3>Competitive analysis</h3>
-      <p>We produced SWOT analyses of the leading domestic platforms,
-      function-by-function feature comparison matrices, pricing comparison
-      tables, and sales battle cards. To understand how these products
-      actually perform in the field, we mined and synthesized dozens of
-      published user reviews, surfacing recurring complaints (support
-      quality, hidden costs, integration friction with existing dispatch
-      software) that became attack points for the client's positioning.</p>
+      <p>And this matters even more in restaurant roles where hiring is
+      already tight. When stores are short on people, anything that adds
+      training burden or execution risk becomes harder to adopt. So in
+      practice, the judgment is not only about flavor. It is also about
+      whether ingredients can actually work at store level.</p>
 
-      <h3>Regulatory and cultural research</h3>
-      <p>We mapped Japan's revised driver working-hour standards (tightened
-      in 2024), the state of digital-tachograph adoption, and the differences
-      between the client's home-market rules and Japan's logistics
-      regulatory regime, including the multi-tier subcontracting structure
-      that foreign entrants routinely underestimate. We also assessed the
-      impact of the government's logistics-digitalization subsidy program on
-      carrier purchasing behavior.</p>
+      <h2 id="condition-1">Condition 1: It has to work on the floor</h2>
+      <p>Before taste, it has to fit the operation. What restaurants tend to
+      avoid is not only a weak product. It is also a menu item that tastes
+      good but is still too heavy to run. In day-to-day operations, that
+      kind of item gets in the way. It slows prep, makes execution less
+      stable, and makes things harder during busy hours.</p>
 
-      <h3>Hypothesis-driven market validation</h3>
-      <p>Rather than a generic market report, we worked with the client to
-      articulate explicit strategic hypotheses and test each one against
-      evidence:</p>
+      <p>What gets adopted more easily is generally something that can be
+      served quickly with stable quality. That does not mean restaurants
+      value shortcuts over quality. It means they need a format that can
+      hold up across shifts, staff levels, and service peaks.</p>
 
-      <ul>
-        <li><strong>Regional carriers are underserved white space, while major
-        logistics hubs are locked up by incumbents.</strong> Direct telematics
-        adoption data by region did not exist, so we built a proxy model from
-        government transport statistics (MLIT data, regional freight surveys)
-        to estimate regional adoption gaps.</li>
-        <li><strong>Non-adoption has identifiable, addressable causes.</strong>
-        Research confirmed the barriers: driver pushback against monitoring
-        (the top-cited reason in operator surveys, strongest among
-        owner-operators), cost-benefit doubts, integration concerns with
-        legacy dispatch software, and reliance on informal subcontractor
-        relationships in regional trucking.</li>
-      </ul>
+      <p>And process reduction is part of that. Cutting steps is not really
+      about lowering standards. It is more about what makes consistency,
+      speed, and margin possible at the same time. If a product cannot be
+      delivered with repeatable quality under real store conditions, taste
+      alone will rarely be enough. That's kind of the reason why operational
+      fit comes first.</p>
 
-      <p>The output was not just data but a decision: pursue regional white
-      space rather than head-to-head displacement at major logistics hubs,
-      with each supporting assumption documented and sourced.</p>
+      <p>So before a restaurant asks whether a new ingredient is attractive,
+      the first question is usually whether the ingredient can be built into
+      a workflow that staff can actually sustain.</p>
 
-      <h3>GTM strategy and localization</h3>
-      <p>We identified a differentiated wedge: regulatory compliance.
-      Regional logistics associations and prefectural governments were
-      actively pushing carriers toward digital compliance tools, and the
-      client's platform was purpose-built for exactly that requirement. We
-      built the go-to-market strategy around partnerships with regional
-      logistics associations, equipment resellers, and system integrators,
-      drafted the Japanese sales deck around a concrete model case, localized
-      customer success stories from the client's home market, and converted
-      pricing into Japan-ready plans. We also prepared reseller and end-user
-      target lists for outreach.</p>
+      <h3>Speed of service is part of the customer experience</h3>
+      <p>Delays turn into dissatisfaction pretty directly. In foodservice,
+      speed is not only an internal operations thing. It also shapes how
+      the customer experiences the meal.</p>
+
+      <p>So fast and stable delivery has value on its own. Even if the
+      product is good, the experience gets weaker when service is slow or
+      inconsistent. Restaurants are not only trying to serve food quickly.
+      They are also trying to protect the overall experience at the
+      table.</p>
+
+      <p>That's one of the reasons why operational improvement matters
+      before a new ingredient is adopted at scale. If a product helps the
+      store serve more quickly and more consistently, it supports both
+      sides: execution on the floor, and customer satisfaction.</p>
+
+      <h3>Speed of service also affects store economics</h3>
+      <p>Delays do not only hurt the customer experience. They also affect
+      table turnover, peak-hour capacity, staffing efficiency, and training
+      burden.</p>
+
+      <p>So ingredients that fit the operation are generally easier for
+      stores to keep using. When a product can be prepared and served
+      smoothly, the store can handle busy periods with less strain and more
+      consistent output. That makes the ingredient easier to manage, not
+      only on the floor, but also in the business model behind the
+      store.</p>
+
+      <h3>Ingredients that reduce steps have proposal value on their own</h3>
+      <p>When presenting a new ingredient, taste is not the only thing that
+      matters. What matters just as much is how much it can reduce the
+      burden on the floor, across prep, plating, cooking, and service.</p>
+
+      <p>That is where the proposal value becomes more concrete. If an
+      ingredient helps cut even one step from the workflow, it can reduce
+      labor strain, improve consistency, and make service easier to sustain
+      during busy periods. For operators, that is not really a secondary
+      benefit. It is more of the reason the product becomes viable in the
+      first place.</p>
+
+      <p>So an ingredient that makes store-level execution lighter is
+      already solving a business problem, even before flavor is discussed
+      in full. That makes operational ease part of the product's value
+      proposition, not just a supporting point.</p>
+
+      <h2 id="condition-2">Condition 2: Do not localize for Japan by default</h2>
+      <p>Decide what to adapt and what to preserve. This is not just a
+      matter of changing the flavor for Japan. If you localize too much,
+      the product can lose the very reason it was interesting as an
+      imported ingredient in the first place.</p>
+
+      <p>At the same time, leaving every sharp edge untouched does not
+      always create demand either. A product that feels distinctive in one
+      market can become too narrow if the entry point is unclear, or if the
+      usage context is limited.</p>
+
+      <p>So the question is not really whether the ingredient is foreign or
+      familiar. It is more about whether its distinctive traits match a
+      realistic point of entry. In some cases, the value is authenticity.
+      In other cases, it is novelty, menu differentiation, or fit with a
+      specific format, channel, or customer occasion.</p>
 
       <div class="pull-quote">
-        <span>Hypotheses first, research second.</span> Every research task
-        existed to confirm or kill a specific strategic assumption,
-        nothing was researched "for completeness."
+        The key decision is not <span>how far to localize</span>. It is
+        more about where to localize &mdash; which elements need to be
+        adjusted for acceptance, and which should stay as they are.
       </div>
 
-      <h2 id="the-outcome">The Outcome</h2>
-      <p>In roughly three months, the client went from an open question
-      ("should we enter Japan?") to:</p>
+      <p>That's kind of why the key decision is not how far to localize. It
+      is more about where to localize. The stronger approach is to decide
+      which elements need to be adjusted for acceptance, and which elements
+      should stay as they are. That is where the value comes from. Products
+      are easier to adopt when that line is clear from the start.</p>
 
-      <ul>
-        <li>A sourced, scenario-based view of market size and growth</li>
-        <li>A validated beachhead strategy (regional carriers, compliance-driven
-        adoption) with the reasoning behind each rejected alternative
-        documented</li>
-        <li>Competitor battle cards and positioning built on real user pain
-        points</li>
-        <li>A complete Japanese-language sales deck and pricing structure,
-        ready for first customer conversations</li>
-        <li>Named target lists of resellers and end users to begin market
-        validation outreach</li>
-      </ul>
+      <h2 id="condition-3">Condition 3: Getting in through a fair is not the same as staying on the menu</h2>
+      <p>A fair can be a practical entry point. It gives restaurants a
+      low-risk way to test a new ingredient, see customer reaction, and
+      check whether the product can work in an actual menu setting.</p>
 
-      <h2 id="why-it-worked">Why It Worked</h2>
-      <p><strong>Hypotheses first, research second.</strong> Every research
-      task existed to confirm or kill a specific strategic assumption,
-      nothing was researched "for completeness."</p>
+      <p>But getting in through a fair is not the same as becoming a
+      standard item. A limited-time promotion can create initial interest
+      without proving that the product deserves a long-term place in the
+      business.</p>
 
-      <p><strong>Proxy modeling where data doesn't exist.</strong> When
-      direct adoption data was unavailable, we built defensible estimates
-      from public government statistics instead of stopping at "no data."</p>
+      <p>So the exit matters as much as the entry. If there is no clear
+      path from trial to repeat use, the product is more likely to end as a
+      one-off. Early adoption on its own does not tell you whether the
+      ingredient can stay after the promotional window closes.</p>
 
-      <p><strong>Local nuance foreign entrants miss.</strong> Working-hour
-      compliance, subcontracting structures, subsidy dynamics, and regional
-      integrator ecosystems were treated as first-class strategic inputs, not
-      footnotes.</p>
+      <p>For suppliers, the real question is not only how to get the first
+      listing. It is also about what has to be true for the product to
+      stay. Unless that part is considered from the start, even a
+      successful test can fail to turn into ongoing business.</p>
 
-      <p><strong>Research that ends in sales tools.</strong> Findings flowed
-      directly into battle cards, a localized deck, and target lists,
-      assets the client could use the week the engagement ended.</p>
+      <h3>A fair is a practical entry point</h3>
+      <p>A limited-time promotion is an easy way to test a new ingredient.
+      It is easier for stores to try, and it is usually easier to get
+      approved internally than a full-scale rollout from the start.</p>
+
+      <p>So it becomes a natural first entry point for a new product. It
+      lowers the commitment, creates room to see the real-world response,
+      and gives both the supplier and the operator a manageable way to test
+      fit before making a bigger decision.</p>
+
+      <h3>But becoming a regular item depends on a different set of conditions</h3>
+      <p>Long-term adoption depends on more than an initial sale. Repeat
+      orders, standardization, margin fit, and operational fit all have to
+      be in place before a product can stay on the menu.</p>
+
+      <p>So one successful run does not guarantee regular placement. A
+      product may perform well once and still fail to become a standard
+      item if it is hard to reorder, difficult to run consistently, or weak
+      on store-level economics.</p>
+
+      <p>Initial traction and ongoing viability are not the same thing. To
+      become a regular item, the ingredient has to work not only in a
+      limited campaign. It also has to work in the store's repeatable
+      operating model.</p>
+
+      <h3>The time it takes to become a regular item varies widely</h3>
+      <p>Some products become regular items quickly. Others stay in trial
+      use for longer and only get accepted after a slower evaluation
+      process.</p>
+
+      <p>And that variation matters. If a supplier judges the result too
+      quickly, it can miss products that need more time to prove repeat
+      demand, operational fit, or reorder potential.</p>
+
+      <p>Early results are useful, but they do not tell the whole story.
+      The real question is not only whether the product sold in the short
+      term. It is whether it can stay in the business over time.</p>
+
+      <h2 id="conclusion">Conclusion</h2>
+      <p>Whether a new ingredient gets adopted in foodservice is not
+      decided by taste alone. What operators look at is whether it can work
+      on the floor, which entry point gives it a realistic chance, and
+      whether there is a path from trial to continued use.</p>
+
+      <p>So improving flavor alone is not enough. A stronger proposal takes
+      the full adoption process into account, from operational fit to entry
+      design to repeatability after launch. Products are more likely to
+      stay when the pitch is built not only around what tastes good. It
+      also has to be built around what the business can keep running.</p>
     </div>
 
-    <!-- sidebar: table of contents + at-a-glance + share -->
     <aside class="article-side rv">
       <div class="side-block">
-        <p class="sb-h">In this case</p>
+        <p class="sb-h">In this piece</p>
         <nav class="toc" id="toc">
-          <a href="#the-challenge">The Challenge</a>
-          <a href="#what-we-did">What We Did</a>
-          <a href="#the-outcome">The Outcome</a>
-          <a href="#why-it-worked">Why It Worked</a>
+          <a href="#halfway">Good taste only gets you halfway</a>
+          <a href="#condition-1">Condition 1: Work on the floor</a>
+          <a href="#condition-2">Condition 2: What to localize</a>
+          <a href="#condition-3">Condition 3: Fair vs. menu</a>
+          <a href="#conclusion">Conclusion</a>
         </nav>
       </div>
 
       <div class="side-block">
-        <p class="sb-h">At a glance</p>
-        <div class="glance">
-          <div class="glance-row">
-            <p class="gl">Client</p>
-            <p class="gv">Fleet-telematics SaaS provider (hundreds of deployments abroad)</p>
-          </div>
-          <div class="glance-row">
-            <p class="gl">Objective</p>
-            <p class="gv">Assess and prepare entry into the Japanese market</p>
-          </div>
-          <div class="glance-row">
-            <p class="gl">Scope</p>
-            <p class="gv">Market research, competitive analysis, regulatory research, hypothesis validation, GTM strategy, sales collateral localization</p>
-          </div>
-          <div class="glance-row">
-            <p class="gl">Duration</p>
-            <p class="gv">Approx. 3 months</p>
-          </div>
-          <div class="glance-row">
-            <p class="gl">Deliverables</p>
-            <p class="gv">40+ research documents, analysis sheets, and localized sales materials</p>
-          </div>
-        </div>
+        <p class="sb-h">Source</p>
+        <p class="source-note">Drawn from Dorado's foodservice buyer-side
+        research, the same discipline described on
+        <a href="how-we-operate.html" style="border-bottom:1px solid rgba(26,0,58,.35)">How we operate</a>.
+        Client and operator identities withheld; the pattern is what's
+        shared.</p>
       </div>
 
       <div class="side-block">
@@ -616,87 +747,69 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
 <!-- ================= RELATED ================= -->
 <section id="related" class="sec">
   <div class="wrap">
-    <p class="eyebrow rv">More use cases</p>
-    <h2 class="h2 rv">Other engagements, other stages.</h2>
+    <p class="eyebrow rv">More from the log</p>
+    <h2 class="h2 rv">Related insights.</h2>
 
-    <!-- WP: WP_Query, tax_query excluding the current post ID,
-         posts_per_page = 3. Same .ins-card markup as the archive loop. -->
     <div class="ins-grid rv">
       <article class="ins-card">
-        <a href="use-case-saas-japan-enterprise.html">
+        <a href="insight-single.html">
           <div class="shot-frame">
-            <div class="bar"><i></i><i></i><i></i><span>enterprise pipeline &middot; SaaS</span></div>
-            <div style="aspect-ratio:16/10;position:relative;overflow:hidden;margin:10px;background:radial-gradient(circle at 75% 35%,#3a0a63 0%,#2B0548 45%,#1A003A 85%);display:flex;flex-direction:column;justify-content:center;padding:14px;">
-              <div style="position:absolute;right:6%;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#ffffff 0%,#e7d9ff 45%,#b79bdc 100%);"></div>
-              <p style="color:#fff;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:14px;line-height:1.15;letter-spacing:-.01em;margin:0 0 8px;max-width:62%;">Cracking Japan's Enterprise.</p>
-              <div style="display:flex;gap:6px;flex-wrap:wrap;max-width:62%;">
-                <span style="border:1px solid rgba(255,255,255,.35);color:#fff;font-size:9px;padding:3px 7px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">10 SQLs</span>
-                <span style="border:1px solid rgba(255,255,255,.35);color:#fff;font-size:9px;padding:3px 7px;font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">20 Deals</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <div class="ins-body">
-          <div class="ins-meta">
-            <a class="cat-tag" href="how-we-operate.html#sell">02 Sell</a>
-            <span class="dot"></span>
-            <span>Real estate SaaS</span>
-          </div>
-          <h3><a href="use-case-saas-japan-enterprise.html">Cracking Japan's Enterprise Market: A SaaS Story</a></h3>
-          <p>Japan contacts existed. Pipeline didn't. 10 SQLs and 20 active deals in six months.</p>
-          <a class="ins-link" href="use-case-saas-japan-enterprise.html">Read <i>&rarr;</i></a>
-        </div>
-      </article>
-
-      <article class="ins-card">
-        <a href="#">
-          <div class="shot-frame">
-            <div class="bar"><i></i><i></i><i></i><span>retail channel benchmark &middot; 50 items</span></div>
+            <div class="bar"><i></i><i></i><i></i><span>message archive &middot; reply tracking</span></div>
             <div class="ph">THUMBNAIL SLOT<br>16:10</div>
           </div>
         </a>
         <div class="ins-body">
           <div class="ins-meta">
-            <a class="cat-tag" href="how-we-operate.html#validate">01 Validate</a>
+            <a class="cat-tag" href="insights.html">Messaging</a>
             <span class="dot"></span>
-            <span>Food &amp; beverage</span>
+            <time datetime="2026-07-10">July 2026</time>
           </div>
-          <h3><a href="#">Market research &amp; entry validation for a food brand</a></h3>
-          <p>A one-month research sprint across product, consumer, channel, and GTM hypotheses.</p>
-          <a class="ins-link" href="#">Read <i>&rarr;</i></a>
+          <h3><a href="insight-single.html">Same-day replies: what a measured message archive actually shows</a></h3>
+          <p>Hooks built on the prospect's own situation earn same-day replies. Generic industry news earns silence.</p>
+          <a class="ins-link" href="insight-single.html">Read <i>&rarr;</i></a>
         </div>
       </article>
 
       <article class="ins-card">
-        <a href="use-case-fortune500-electronics.html">
+        <a href="insight-foodservice-automation-adoption.html">
           <div class="shot-frame">
-            <div class="bar"><i></i><i></i><i></i><span>MQL output &middot; 24 months</span></div>
-            <div style="aspect-ratio:16/10;position:relative;overflow:hidden;margin:10px;background:radial-gradient(circle at 3px 3px,rgba(26,0,58,.12) 1.2px,transparent 1.2px) 0 0/16px 16px,linear-gradient(120deg,#EDEBFB 0%,#F7F6FD 55%,#FBFAFF 100%);display:flex;align-items:center;justify-content:space-between;padding:12px;gap:8px;">
-              <div style="min-width:0;">
-                <p style="font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-weight:700;color:#1A003A;font-size:12.5px;line-height:1.15;letter-spacing:-.01em;margin:0 0 5px;">We doubled their pipeline from Tokyo.</p>
-                <span style="font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;font-size:9px;color:rgba(26,0,58,.55);letter-spacing:.06em;text-transform:uppercase;">MQL output &middot; 24 months</span>
-              </div>
-              <div style="flex:none;width:64px;background:#fff;border:1px solid rgba(26,0,58,.12);box-shadow:0 6px 14px rgba(26,0,58,.14);padding:8px;">
-                <span style="display:block;font-size:8px;color:rgba(26,0,58,.5);font-family:'DM Sans',-apple-system,'Helvetica Neue',Arial,sans-serif;">MQLs/mo</span>
-                <span style="display:block;font-size:17px;font-weight:700;color:#1A003A;margin-top:2px;">2.0&times;</span>
-              </div>
-            </div>
+            <div class="bar"><i></i><i></i><i></i><span>field note 04 &middot; kitchen floor plan</span></div>
+            <div class="ph">THUMBNAIL SLOT<br>16:10</div>
           </div>
         </a>
         <div class="ins-body">
           <div class="ins-meta">
-            <a class="cat-tag" href="how-we-operate.html#operate">03 Operate</a>
+            <a class="cat-tag" href="#">Buyer Side</a>
             <span class="dot"></span>
-            <span>Electronics / telecom manufacturer</span>
+            <time datetime="2026-07-18">July 2026</time>
           </div>
-          <h3><a href="use-case-fortune500-electronics.html">The execution gap: why Japan cannot run remotely</a></h3>
-          <p>On-the-ground marketing operations for a Fortune 500 electronics manufacturer. Five campaigns, one local partner, 2&times; MQLs.</p>
-          <a class="ins-link" href="use-case-fortune500-electronics.html">Read <i>&rarr;</i></a>
+          <h3><a href="insight-foodservice-automation-adoption.html">Foodservice Automation in Japan: Adoption Conditions for Overseas Robotics Companies</a></h3>
+          <p>Demand signals are not proof of adoption. Segment, workflow, buyer, and maintenance model decide it.</p>
+          <a class="ins-link" href="insight-foodservice-automation-adoption.html">Read <i>&rarr;</i></a>
+        </div>
+      </article>
+
+      <article class="ins-card">
+        <a href="insight-japan-trade-show-segments.html">
+          <div class="shot-frame">
+            <div class="bar"><i></i><i></i><i></i><span>trade show roundup &middot; digital, manufacturing, sensing</span></div>
+            <div class="ph">THUMBNAIL SLOT<br>16:10</div>
+          </div>
+        </a>
+        <div class="ins-body">
+          <div class="ins-meta">
+            <a class="cat-tag" href="#">Market Entry</a>
+            <span class="dot"></span>
+            <time datetime="2026-07-20">July 2026</time>
+          </div>
+          <h3><a href="insight-japan-trade-show-segments.html">Japan Trade Show Segment Classification</a></h3>
+          <p>Japan's major 2026 trade shows sorted into four verticals, with target verticals and official URLs for each show.</p>
+          <a class="ins-link" href="insight-japan-trade-show-segments.html">Read <i>&rarr;</i></a>
         </div>
       </article>
     </div>
 
-    <p class="cap rv"><a href="use-cases.html" style="border-bottom:1px solid rgba(26,0,58,.35)">View all use cases &rarr;</a></p>
+    <p class="cap rv"><a href="insights.html" style="border-bottom:1px solid rgba(26,0,58,.35)">View all insights &rarr;</a></p>
   </div>
 </section>
 
@@ -763,13 +876,12 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   </div>
   <div class="fbottom">
     <span>&copy; 2026 Dorado LLC</span>
-    <span>Use case single mockup v1 &middot; for direction review</span>
+    <span>Insight single mockup &middot; foodservice ingredient adoption &middot; content from old site, for direction review</span>
   </div>
 </footer>
 
 <script>
 (function(){
-  /* single, subtle reveal */
   const io = new IntersectionObserver((es) => {
     es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -777,7 +889,6 @@ footer{background:var(--ink);color:#fff;border-top:4px solid var(--lime);padding
   }, { threshold: .12 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-  /* lightweight scrollspy for the TOC */
   const toc = document.querySelectorAll('#toc a');
   const targets = [...toc].map(a => document.querySelector(a.getAttribute('href')));
   const spy = new IntersectionObserver((es) => {
